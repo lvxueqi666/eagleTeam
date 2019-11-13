@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 .setIndicator(getTabSpecView("tag3",R.drawable.me1,"我的"));
         fragmentTabHost.addTab(tabSpec3,MeFragment.class,null);
 
-
+        fragmentTabHost.setCurrentTab(0);
         imageViewMap.get("tag1").setImageResource(R.drawable.home);
+
 
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
