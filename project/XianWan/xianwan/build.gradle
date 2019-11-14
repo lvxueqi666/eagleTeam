@@ -19,6 +19,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:design:27.1.1'
+    implementation'com.youth.banner:banner:1.4.10'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
