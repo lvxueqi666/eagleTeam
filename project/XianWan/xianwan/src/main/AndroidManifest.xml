@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".messageadapter.NoticeActivity" />
+        <activity android:name=".messageadapter.ActivitiesActivity" />
+        <activity android:name=".messageadapter.InteractionActivity" />
+        <activity android:name=".messageadapter.MessageChatActivity"></activity>
     </application>
 
 </manifest>
