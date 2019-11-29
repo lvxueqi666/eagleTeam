@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.person_content;
+package com.example.qiqi.xianwan.meadapter.person_content;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.qiqi.xianwan.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
 
 import org.greenrobot.eventbus.EventBus;

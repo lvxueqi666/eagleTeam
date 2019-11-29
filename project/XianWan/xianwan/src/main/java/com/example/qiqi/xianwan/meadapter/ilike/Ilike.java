@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.ilike;
+package com.example.qiqi.xianwan.meadapter.ilike;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

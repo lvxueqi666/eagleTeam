@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.person_content;
+package com.example.qiqi.xianwan.meadapter.person_content;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.qiqi.xianwan.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 import com.example.qiqi.xianwan.R;
 import com.lljjcoder.citypickerview.widget.CityPicker.OnCityItemClickListener;

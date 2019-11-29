@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.wofabu;
+package com.example.qiqi.xianwan.meadapter.wofabu;
 import android.Manifest;
 import android.content.ContentUris;
 import android.content.DialogInterface;
@@ -33,7 +33,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.example.qiqi.xianwan.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
 
 import org.greenrobot.eventbus.EventBus;

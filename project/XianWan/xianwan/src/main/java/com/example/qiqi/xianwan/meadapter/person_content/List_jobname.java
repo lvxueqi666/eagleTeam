@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.person_content;
+package com.example.qiqi.xianwan.meadapter.person_content;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.example.qiqi.xianwan.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
 
 import org.greenrobot.eventbus.EventBus;

@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan;
+package com.example.qiqi.xianwan.meadapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.qiqi.xianwan.R;
 
 
 public class item_view extends LinearLayout {

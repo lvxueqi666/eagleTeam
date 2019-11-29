@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.wofabu;
+package com.example.qiqi.xianwan.meadapter.wofabu;
 
 
 import android.content.Intent;
@@ -7,9 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.qiqi.xianwan.R;

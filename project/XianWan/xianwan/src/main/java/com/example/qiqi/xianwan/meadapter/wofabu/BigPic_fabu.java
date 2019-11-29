@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.wofabu;
+package com.example.qiqi.xianwan.meadapter.wofabu;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,14 +8,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.qiqi.xianwan.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
 
 import org.greenrobot.eventbus.EventBus;

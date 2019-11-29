@@ -204,7 +204,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <com.example.qiqi.xianwan.item_view
+            <com.example.qiqi.xianwan.meadapter.item_view
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                 zsg:show_leftimg="@drawable/add"
                 zsg:show_text="我的收藏" />
 
-            <com.example.qiqi.xianwan.item_view
+            <com.example.qiqi.xianwan.meadapter.item_view
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -221,7 +221,7 @@
                 zsg:show_leftimg="@drawable/add"
                 zsg:show_text="历史记录" />
 
-            <com.example.qiqi.xianwan.item_view
+            <com.example.qiqi.xianwan.meadapter.item_view
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -229,7 +229,7 @@
                 zsg:show_leftimg="@drawable/add"
                 zsg:show_text="离线缓存" />
 
-            <com.example.qiqi.xianwan.item_view
+            <com.example.qiqi.xianwan.meadapter.item_view
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -238,7 +238,7 @@
                 zsg:show_leftimg="@drawable/add"
                 zsg:show_text="版本更新" />
 
-            <com.example.qiqi.xianwan.item_view
+            <com.example.qiqi.xianwan.meadapter.item_view
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"

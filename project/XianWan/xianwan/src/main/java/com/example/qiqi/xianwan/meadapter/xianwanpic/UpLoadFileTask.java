@@ -1,4 +1,4 @@
-package com.example.qiqi.xianwan.xianwanpic;
+package com.example.qiqi.xianwan.meadapter.xianwanpic;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
