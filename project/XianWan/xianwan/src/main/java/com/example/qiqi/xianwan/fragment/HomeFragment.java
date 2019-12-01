@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private MyRecyclerAdapter myRecyclerAdapter;
+    private List<String> commodityId;
     private List<String> images;
     private List<String> introductions;
     private List<String> price;
@@ -75,6 +76,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private List<String> titles;
     private List<String> userId;
     private List<String> userName;
+    private List<String> attr;
+    private List<String> showLike;
     private List<String> bannerImg;
     private Banner banner;
     private SearchView mSearchView;
@@ -96,27 +99,31 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             }
         }else {
             view = inflater.inflate(R.layout.home_fragment_layout,container,false);
+            //handler,用于在初始化界面时，接收服务器端传来的信息
             handler = new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
                     super.handleMessage(msg);
                     String json = (String) msg.obj;
+                    Log.e("jsonjsonjson",json);
                     try {
                         JSONArray jsonArray = new JSONArray(json);
-                        Log.e("length",jsonArray.length()+"");
                         for(int i = 0; i < jsonArray.length();i++){
                             String objStr = jsonArray.getString(i);
                             JSONObject jsonObject = new JSONObject(objStr);
+                            commodityId.add(jsonObject.getString("id"));
                             images.add(jsonObject.getString("image"));
                             introductions.add(jsonObject.getString("introduce"));
                             price.add(jsonObject.getString("price"));
                             icon.add(jsonObject.getString("icon"));
                             userName.add(jsonObject.getString("userName"));
+                            userId.add(jsonObject.getString("userId"));
+                            attr.add(jsonObject.getString("attr"));
+                            showLike.add(jsonObject.getString("showLike"));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                     initRecyclerView();
                     initTabLayout();
 
@@ -134,16 +141,21 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         return view;
     }
 
+    //初始化数组
     private void initData(){
+        commodityId = new ArrayList<>();
         images = new ArrayList<>();
         introductions = new ArrayList<>();
         price = new ArrayList<>();
         icon = new ArrayList<>();
         userName = new ArrayList<>();
         userId = new ArrayList<>();
+        attr = new ArrayList<>();
+        showLike = new ArrayList<>();
     }
 
 
+    //初始化搜索框
     private void initSearchView(){
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1));
         listView.setTextFilterEnabled(true);
@@ -167,6 +179,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         });
     }
 
+    //绑定控件
     private void findView(){
         mSearchView = view.findViewById(R.id.searchView);
         listView = view.findViewById(R.id.listView);
@@ -176,13 +189,15 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         refreshLayout = view.findViewById(R.id.refreshLayout);
     }
 
+    //自定义刷新样式
     private void initRefreshLayout() {
         refreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
                 android.R.color.holo_orange_light, android.R.color.holo_green_light);
         refreshLayout.setOnRefreshListener(this);
     }
 
-    private void initBanner(){
+    //初始化banner
+    private void initBanner() {
         bannerImg = new ArrayList<>();
         titles = new ArrayList<>();
         bannerImg.add("http://img2.imgtn.bdimg.com/it/u=3003105586,231331792&fm=26&gp=0.jpg");
@@ -211,16 +226,17 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         banner.start();
     }
 
+    //初始化标签卡
     private void initTabLayout(){
         tabLayoutListener = new TabLayoutListener();
         tabLayout.setOnTabSelectedListener(tabLayoutListener);
         tabLayout.addTab(tabLayout.newTab().setText("玩具").setTag(0));
         tabLayout.addTab(tabLayout.newTab().setText("书籍").setTag(1));
 
-        //recyclerView = view.findViewById(R.id.recyclerView);
-        //recyclerView.setAdapter(new MyRecyclerAdapter(getContext(),images,introductions,price,icon,userName,mListStyle));
     }
 
+
+    //初始化RecyclerView
     private void initRecyclerView() {
         Resources resources = getActivity().getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
@@ -235,7 +251,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.LEFT_DECORATION,leftDecoration);
         stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.RIGHT_DECORATION,leftDecoration);
 
-        myRecyclerAdapter = new MyRecyclerAdapter(getActivity(),images,introductions,price,icon,userName,userId,mListStyle,userName.size() > 0 ? true : false);
+        myRecyclerAdapter = new MyRecyclerAdapter(getActivity(),commodityId,images,introductions,price,icon,userName,userId,attr,showLike,mListStyle,userName.size() > 0 ? true : false);
         recyclerView.setAdapter(myRecyclerAdapter);
         myRecyclerAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
             @Override
@@ -263,9 +279,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             @Override
                             public void run() {
                                 if(mListStyle == 0){
-                                    loadMoreData("toys");
+                                    loadMoreData("toy");
                                 }else{
-                                    loadMoreData("books");
+                                    loadMoreData("book");
                                 }
 
                             }
@@ -278,21 +294,23 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                    lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-                }
-            });
+                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            }
+        });
 
     }
 
 
+    //更新用于RecyclerView的数据
     private void updateRecyclerView() {
         if (userName.size() > 0) {
-            myRecyclerAdapter.updateList(images,introductions,price,icon,userName,userId, true);
+            myRecyclerAdapter.updateList(commodityId,images,introductions,price,icon,userName,userId,attr,showLike, true);
         } else {
-            myRecyclerAdapter.updateList(null,null,null,null,null, null,false);
+            myRecyclerAdapter.updateList(null,null,null,null,null, null,null,null,null,false);
         }
     }
 
+    //下拉刷新方法，清空原有数据
     @Override
     public void onRefresh() {
         refreshLayout.setRefreshing(true);
@@ -301,9 +319,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             @Override
             public void run() {
                 if(mListStyle == 0){
-                    loadMoreData("toys");
+                    loadMoreData("toy");
                 }else{
-                    loadMoreData("books");
+                    loadMoreData("book");
                 }
             }
         }, 500);
@@ -311,6 +329,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         updateRecyclerView();
     }
 
+
+    //TabLayout选中事件
     class TabLayoutListener implements TabLayout.OnTabSelectedListener{
 
         @Override
@@ -345,7 +365,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 //Request(Post、FormBody）
 
                 FormBody formBody = new FormBody.Builder()
-                        .add("type", "toys")
+                        .add("type", "toy")
                         .build();
                 request = new Request.Builder()
                         .url("http://"+hostIp+":8080/XianWan/HomeForAndroid")
@@ -362,12 +382,14 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     String message =  response.body().string();
                     wrapperMessage(message);
                 } catch (IOException e) {
-                        e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }.start();
     }
 
+
+    //加载更多数据
     private void loadMoreData(final String type){
         Resources resources = getResources();
         final String hostIp = resources.getString(R.string.hostStr);
@@ -378,9 +400,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Log.e("jinlaile", "haha");
                 Request request;
-                if(type.equals("toys")){
+                if(type.equals("toy")){
                     FormBody formBody = new FormBody.Builder()
-                            .add("type", "toys")
+                            .add("type", "toy")
                             .build();
                     request = new Request.Builder()
                             .url("http://"+hostIp+":8080/XianWan/HomeForAndroid")
@@ -388,7 +410,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             .build();
                 }else{
                     FormBody formBody = new FormBody.Builder()
-                            .add("type", "books")
+                            .add("type", "book")
                             .build();
                     request = new Request.Builder()
                             .url("http://"+hostIp+":8080/XianWan/HomeForAndroid")

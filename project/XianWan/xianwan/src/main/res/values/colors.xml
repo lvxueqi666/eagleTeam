@@ -11,4 +11,5 @@
     <color name="blue">#0000FE</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGrey">#e6e6e6</color>
+    <color name="colorGray">#b7b3b4</color>
 </resources>

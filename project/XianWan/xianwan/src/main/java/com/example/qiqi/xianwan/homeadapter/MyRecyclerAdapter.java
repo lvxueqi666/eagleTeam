@@ -1,11 +1,13 @@
 package com.example.qiqi.xianwan.homeadapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.qiqi.xianwan.DetailActivity;
 import com.example.qiqi.xianwan.R;
 
 import java.util.ArrayList;
@@ -22,12 +25,15 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private int mListStyle;
     //数据源
+    private List<String> commodityId;
     private List<String> images;
     private List<String> introductions;
     private List<String> price;
     private List<String> icon;
     private List<String> userName;
     private List<String> userId;
+    private List<String> attr;
+    private List<String> showLike;
 
     private Context mContext;
     private LayoutInflater inflater;
@@ -53,14 +59,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         void onItemClick(View v, int position);
     }
 
-    public MyRecyclerAdapter(Context context,List<String> images,List<String> introductions,List<String> price,List<String> icon,List<String> userName,List<String> userId,int listStyle,boolean hasMore){
+    public MyRecyclerAdapter(Context context,List<String> commoId,List<String> images,List<String> introductions,List<String> price,List<String> icon,List<String> userName,List<String> userId,List<String> attribute,List<String> showLikes,int listStyle,boolean hasMore){
         this.mContext = context;
+        this.commodityId = commoId;
         this.images = images;
         this.introductions = introductions;
         this.price = price;
         this.icon = icon;
         this.userName = userName;
         this.userId = userId;
+        this.attr = attribute;
+        this.showLike = showLikes;
         this.mListStyle = listStyle;
         inflater = LayoutInflater.from(mContext);
     }
@@ -83,6 +92,19 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             public void onClick(View v) {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, position);
+                    Intent intent = new Intent();
+                    String name = commodityId.get(position);
+                    Log.e("commoId",name);
+                    intent.putExtra("commodityId",commodityId.get(position));
+                    intent.putExtra("images",images.get(position));
+                    intent.putExtra("introductions",introductions.get(position));
+                    intent.putExtra("price",price.get(position));
+                    intent.putExtra("icon",icon.get(position));
+                    intent.putExtra("userName",userName.get(position));
+                    intent.putExtra("userId",userId.get(position));
+                    intent.putExtra("showLike",showLike.get(position));
+                    intent.setClass(mContext, DetailActivity.class);
+                    mContext.startActivity(intent);
                 }
             }
         });
@@ -190,24 +212,30 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     // 暴露接口，下拉刷新时，通过暴露方法将数据源置为空
     public void resetDatas() {
+        commodityId = new ArrayList<>();
         images = new ArrayList<>();
         introductions = new ArrayList<>();
         price = new ArrayList<>();
         icon = new ArrayList<>();
         userName = new ArrayList<>();
         userId = new ArrayList<>();
+        attr = new ArrayList<>();
+        showLike = new ArrayList<>();
     }
 
     // 暴露接口，更新数据源，并修改hasMore的值，如果有增加数据，hasMore为true，否则为false
-    public void updateList(List<String> image,List<String> introduction,List<String> prices,List<String> icons,List<String> name,List<String> id, boolean hasMore) {
+    public void updateList(List<String> commoId,List<String> image,List<String> introduction,List<String> prices,List<String> icons,List<String> name,List<String> id, List<String> attribute,List<String> showLikes,boolean hasMore) {
         // 在原有的数据之上增加新数据
         if (name != null) {
+            commodityId.addAll(commoId);
             images.addAll(image);
             introductions.addAll(introduction);
             price.addAll(prices);
             icon.addAll(icons);
             userName.addAll(name);
             userId.addAll(id);
+            attr.addAll(attribute);
+            showLike.addAll(showLikes);
         }
         this.hasMore = hasMore;
         notifyDataSetChanged();
