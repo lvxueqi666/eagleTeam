@@ -10,10 +10,24 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2019-11-29 18:43:07
+Date: 2019-12-02 19:24:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `collect`
+-- ----------------------------
+DROP TABLE IF EXISTS `collect`;
+CREATE TABLE `collect` (
+  `commodityId` int(255) DEFAULT NULL,
+  `userId` int(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of collect
+-- ----------------------------
+INSERT INTO `collect` VALUES ('222', '111');
 
 -- ----------------------------
 -- Table structure for `commodity`
@@ -45,5 +59,19 @@ INSERT INTO `commodity` VALUES ('777777', 'http://49.233.142.163:8080/images/dsa
 INSERT INTO `commodity` VALUES ('888888', 'http://49.233.142.163:8080/images/dsfsfd.jpg', '888', '800', null, '88888888', null, '888', 'toy', '175');
 INSERT INTO `commodity` VALUES ('999999', 'http://49.233.142.163:8080/images/dskahdh.jpg', '999', '90', null, '99999999', null, '999', 'toy', '2444');
 INSERT INTO `commodity` VALUES ('753753', 'http://49.233.142.163:8080/images/gfjs.jpg', '753', '775', null, '78373555', null, '544', 'toy', '442');
-INSERT INTO `commodity` VALUES ('735357', 'http://49.233.142.163:8080/images/liudao.jpg', '722', '787', null, '44344245', null, '425', 'toy', '543');
+INSERT INTO `commodity` VALUES ('735357', 'http://49.233.142.163:8080/images/liudao.jpg', '722', '787', null, '44344245', null, '425', 'toy', '544');
 INSERT INTO `commodity` VALUES ('444425', 'http://49.233.142.163:8080/images/sdas.jpg', '544', '776', null, '54337537', null, '284', 'toy', '42');
+
+-- ----------------------------
+-- Table structure for `showlike`
+-- ----------------------------
+DROP TABLE IF EXISTS `showlike`;
+CREATE TABLE `showlike` (
+  `commodityId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of showlike
+-- ----------------------------
+INSERT INTO `showlike` VALUES ('222', '111');
