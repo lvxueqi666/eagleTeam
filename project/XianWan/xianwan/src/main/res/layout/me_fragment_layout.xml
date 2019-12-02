@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zsg="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smartfresh" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/background"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/backgroud"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/head_img_zay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/sss" />
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:src="@drawable/user_head" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="dev晴天"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="20sp"-->
+                <!--tools:ignore="HardcodedText" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="卖在闲鱼" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <!--我发布的-->
+
+                        <RelativeLayout
+                            android:id="@+id/rl_fabu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+
+                                android:id="@+id/iv_fabu"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="15dp"
+                                android:src="@drawable/add" />
+
+                            <TextView
+                                android:id="@+id/tv_wofabu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_fabu"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+
+                                android:text="我发布的" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="50dp"
+                                android:layout_toRightOf="@id/tv_wofabu"
+                                android:text="0" />
+                        </RelativeLayout>
+                        <!--我卖出的-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/iv_maichu"
+
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="15dp"
+                                android:src="@drawable/sale" />
+
+                            <TextView
+                                android:id="@+id/tv_womaichu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_maichu"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:text="我卖出的" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="50dp"
+                                android:layout_toRightOf="@id/tv_womaichu"
+                                android:text="0" />
+                        </RelativeLayout>
+
+                        <!--我买到的-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/iv_maidao"
+
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="15dp"
+                                android:src="@drawable/buy" />
+
+                            <TextView
+                                android:id="@+id/tv_womaidao"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_maidao"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:text="我买到的" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="50dp"
+                                android:layout_toRightOf="@id/tv_womaidao"
+                                android:text="0" />
+                        </RelativeLayout>
+                        <!--我收藏的-->
+                        <RelativeLayout
+                            android:id="@+id/ilike"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/iv_shoucang"
+
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="15dp"
+                                android:src="@drawable/favourite" />
+
+                            <TextView
+                                android:id="@+id/tv_woshoucang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_shoucang"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:text="我收藏的" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="50dp"
+                                android:layout_toRightOf="@id/tv_woshoucang"
+                                android:text="0" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.example.qiqi.xianwan.meadapter.item_view
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                zsg:show_bottomline="true"
+                zsg:show_leftimg="@drawable/add"
+                zsg:show_text="我的收藏" />
+
+            <com.example.qiqi.xianwan.meadapter.item_view
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                zsg:show_bottomline="true"
+                zsg:show_leftimg="@drawable/add"
+                zsg:show_text="历史记录" />
+
+            <com.example.qiqi.xianwan.meadapter.item_view
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                zsg:show_bottomline="false"
+                zsg:show_leftimg="@drawable/add"
+                zsg:show_text="离线缓存" />
+
+            <com.example.qiqi.xianwan.meadapter.item_view
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                zsg:show_bottomline="true"
+                zsg:show_leftimg="@drawable/add"
+                zsg:show_text="版本更新" />
+
+            <com.example.qiqi.xianwan.meadapter.item_view
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                zsg:fontFamily="Type"
+                zsg:show_bottomline="false"
+                zsg:show_leftimg="@drawable/add"
+                zsg:show_text="关于" />
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>
+
+
+
+
+
