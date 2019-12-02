@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">XianWan</string>
-    <string name="hostStr">49.233.142.163</string>
+    <string name="hostStr">192.168.43.33</string>
 </resources>

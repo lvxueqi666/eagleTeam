@@ -57,7 +57,9 @@
         <activity android:name=".meadapter.womaichu.womaichu"></activity>
         <activity android:name=".meadapter.womaidao.womaidao"></activity>
         <activity android:name=".meadapter.wofabu.content_fabu"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity
             android:name=".SplashActivity"
             android:windowSoftInputMode="adjustPan|stateHidden">

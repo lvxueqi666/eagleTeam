@@ -200,9 +200,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private void initBanner() {
         bannerImg = new ArrayList<>();
         titles = new ArrayList<>();
-        bannerImg.add("http://img2.imgtn.bdimg.com/it/u=3003105586,231331792&fm=26&gp=0.jpg");
-        bannerImg.add("http://img2.imgtn.bdimg.com/it/u=3003105586,231331792&fm=26&gp=0.jpg");
-        bannerImg.add("http://img2.imgtn.bdimg.com/it/u=3003105586,231331792&fm=26&gp=0.jpg");
+        bannerImg.add("http://img4.imgtn.bdimg.com/it/u=4078564255,2150323891&fm=26&gp=0.jpg");
+        bannerImg.add("http://img4.imgtn.bdimg.com/it/u=1380751069,2379422871&fm=26&gp=0.jpg");
+        bannerImg.add("http://img1.imgtn.bdimg.com/it/u=2276673180,3353400665&fm=26&gp=0.jpg");
         titles.add("1");
         titles.add("2");
         titles.add("3");
@@ -256,7 +256,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         myRecyclerAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Log.e("pos",position+"");
             }
         });
 
@@ -368,7 +367,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         .add("type", "toy")
                         .build();
                 request = new Request.Builder()
-                        .url("http://"+hostIp+":8080/XianWan/HomeForAndroid")
+                        .url("http://"+hostIp+":8080/XianWanService/HomeForAndroid")
                         .post(formBody)
                         .build();
 
@@ -405,7 +404,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             .add("type", "toy")
                             .build();
                     request = new Request.Builder()
-                            .url("http://"+hostIp+":8080/XianWan/HomeForAndroid")
+                            .url("http://"+hostIp+":8080/XianWanService/HomeForAndroid")
                             .post(formBody)
                             .build();
                 }else{
@@ -413,7 +412,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             .add("type", "book")
                             .build();
                     request = new Request.Builder()
-                            .url("http://"+hostIp+":8080/XianWan/HomeForAndroid")
+                            .url("http://"+hostIp+":8080/XianWanService/HomeForAndroid")
                             .post(formBody)
                             .build();
                 }
@@ -430,12 +429,15 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         for(int i = 0; i < jsonArray.length();i++){
                             String objStr = jsonArray.getString(i);
                             JSONObject jsonObject = new JSONObject(objStr);
+                            commodityId.add(jsonObject.getString("id"));
                             images.add(jsonObject.getString("image"));
                             introductions.add(jsonObject.getString("introduce"));
                             price.add(jsonObject.getString("price"));
                             icon.add(jsonObject.getString("icon"));
                             userName.add(jsonObject.getString("userName"));
                             userId.add(jsonObject.getString("userId"));
+                            attr.add(jsonObject.getString("attr"));
+                            showLike.add(jsonObject.getString("showLike"));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
