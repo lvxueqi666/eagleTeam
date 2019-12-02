@@ -2,6 +2,7 @@ package com.xianwan.home.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.xianwan.util.DBUtil;
@@ -28,5 +29,60 @@ public class ShowLikeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addShowLike(int commodityId,int userId) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String sql = "insert into showlike values(?,?)";
+		
+		conn = DBUtil.getConn();
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, commodityId);
+			pstm.setInt(2, userId);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void cancelShowLike(int commodityId,int userId) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String sql = "delete from showlike where commodityId = '" + commodityId + "' and userId = '" + userId + "'";
+		
+		conn = DBUtil.getConn();
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean adjustIfExistShowLike(int commodityId,int userId) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String sql = "select * from showlike where commodityId = '" + commodityId + "' and userId = '" + userId + "'";
+		conn = DBUtil.getConn();
+		try {
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
 	}
 }
