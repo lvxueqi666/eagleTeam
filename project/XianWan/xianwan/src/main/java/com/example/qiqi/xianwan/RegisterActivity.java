@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText ed_psw_again;
     private EditText ed_checked;
     private ImageView iv_checked;
+    private ImageView iv_registerBack;
     private Button btn_register;
     private TextView tv_checked;
     private CustomOnClickListenrer listener;
@@ -53,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         listener = new CustomOnClickListenrer();
         btn_register.setOnClickListener(listener);
         tv_checked.setOnClickListener(listener);
+        iv_registerBack.setOnClickListener(listener);
     }
 
     private void getViews() {
@@ -64,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         iv_checked = findViewById(R.id.iv_checked);
         btn_register = findViewById(R.id.btn_register);
         tv_checked = findViewById(R.id.tv_checked);
+        iv_registerBack = findViewById(R.id.iv_registerback);
     }
 
     class CustomOnClickListenrer implements View.OnClickListener{
@@ -105,6 +108,9 @@ public class RegisterActivity extends AppCompatActivity {
                             "验证码已刷新",
                             Toast.LENGTH_SHORT
                     ).show();
+                    break;
+                case R.id.iv_registerback:
+                    finish();
                     break;
             }
         }
