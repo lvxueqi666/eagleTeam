@@ -29,25 +29,12 @@ public class ShowLikeOperate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String commodityId = request.getParameter("commodityId");
-		String currentId = request.getParameter("currentId");
-		String addOrCancel = request.getParameter("addOrCancel");
+		String id = request.getParameter("commodityId");
 		String operate = request.getParameter("operate");
 		ShowLikeService sls = new ShowLikeService();
-		if(commodityId != null) {
-			if(operate.equals("add")) {
-				sls.modifyLikeCount(commodityId,addOrCancel);
-				sls.addShowLike(Integer.parseInt(commodityId), Integer.parseInt(currentId));
-			}else if(operate.equals("cancel")) {
-				sls.cancelShowLike(Integer.parseInt(commodityId), Integer.parseInt(currentId));
-			}else {
-				if(sls.adjustIfExistShowLike(Integer.parseInt(commodityId), Integer.parseInt(currentId))) {
-					response.getWriter().print("exist");
-				}else {
-					response.getWriter().print("unexist");
-				}
-			}
-			
+		if(id != null) {
+			System.out.println("进来了");
+			sls.modifyLikeCount(id,operate);
 		}
 		
 	}
