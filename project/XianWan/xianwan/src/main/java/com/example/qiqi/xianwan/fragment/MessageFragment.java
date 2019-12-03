@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.qiqi.xianwan.LoginActivity;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Message;
 import com.example.qiqi.xianwan.messageadapter.ActivitiesActivity;
@@ -141,7 +142,7 @@ public class MessageFragment extends Fragment {
                     break;
                 case R.id.iv_activity:
                     Intent intent_activities = new Intent();
-                    intent_activities.setClass(getActivity(),ActivitiesActivity.class);
+                    intent_activities.setClass(getActivity(),LoginActivity.class);
                     startActivity(intent_activities);
                     break;
             }
