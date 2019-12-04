@@ -24,7 +24,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.example.qiqi.xianwan.fragment.HomeFragment.hostIp;
 //import static com.example.qiqi.xianwan.LoginActivity.i;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -79,6 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
     class CustomOnClickListenrer implements View.OnClickListener{
         @Override
         public void onClick(View v) {
+            Resources resources = getResources();
+            final String hostIp = resources.getString(R.string.hostStr);
             switch (v.getId()){
                 case R.id.btn_register:
                     checked = ed_checked.getText().toString().trim().toLowerCase();

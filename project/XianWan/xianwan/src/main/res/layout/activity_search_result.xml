@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#f2f2f2"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="#6888e7"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingRight="16dp">
 
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/result_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:gravity="center"
-            android:text="闲玩"
-            android:textSize="20sp" />
+            android:padding="5dp"
+            android:src="@drawable/back"/>
 
         <TextView
             android:id="@+id/tv_search"
@@ -30,7 +30,7 @@
             android:drawablePadding="8dp"
             android:gravity="left|center_vertical"
             android:layout_gravity="center_vertical"
-            android:hint=" 输入查询的关键字"
+            android:hint=" 输入查询关键字"
             android:background="@drawable/radius"
             android:singleLine="true"
             android:textSize="16sp" />
@@ -45,51 +45,22 @@
 
     </LinearLayout>
 
-
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:elevation="0dp">
-
-            <com.youth.banner.Banner
-                android:id="@+id/banner"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:layout_scrollFlags="scroll|enterAlways"></com.youth.banner.Banner>
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:layout_scrollFlags="scroll|enterAlways"></android.support.design.widget.TabLayout>
-
-        </android.support.design.widget.AppBarLayout>
-
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refreshLayout"
+            android:id="@+id/refreshLayoutForSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recyclerViewForSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:divider="#ffff0000" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </android.support.design.widget.CoordinatorLayout>
+
 </LinearLayout>
-
-
-
-
-
-
-
-
-

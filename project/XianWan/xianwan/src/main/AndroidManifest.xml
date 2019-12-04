@@ -77,6 +77,10 @@
         <activity android:name=".meadapter.womaidao.womaidao" />
         <activity android:name=".meadapter.wofabu.content_fabu" />
         <activity android:name=".DetailActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".SearchResultActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -134,9 +138,6 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="5xjqsxbtkI1wIgnGrCbA2c30ysWPEsfI" />
-
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

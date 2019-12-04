@@ -1,6 +1,7 @@
 package com.example.qiqi.xianwan;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +24,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.example.qiqi.xianwan.fragment.HomeFragment.hostIp;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText ed_loginAccount;
@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView iv_login;
     private TextView tv_registerActivity;
     private CustomOnClickListener listener;
-//    public static int i = 0;
 
     private String userAccount;
     private String userPassword;
@@ -78,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     class CustomOnClickListener implements View.OnClickListener {
+        Resources resources = getResources();
+        final String hostIp = resources.getString(R.string.hostStr);
         @Override
         public void onClick(View v) {
             switch (v.getId()){
