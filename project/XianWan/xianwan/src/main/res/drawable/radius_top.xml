@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" >
-    //这里是Linearlayout布局的背景颜色
-    <solid android:color="#ffffff" />
-    <corners android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"
-        />
-
-</shape>
