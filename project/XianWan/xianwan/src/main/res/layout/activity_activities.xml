@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrey"
+    tools:context=".messageadapter.ActivitiesActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:paddingTop="10dp"
+        android:background="@color/colorWhite"
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:background="@mipmap/back"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="活动"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="#2c2c2c"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
