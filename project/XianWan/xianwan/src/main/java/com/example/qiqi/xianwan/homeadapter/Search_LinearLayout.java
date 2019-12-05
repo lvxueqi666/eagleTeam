@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.SearchActivity;
 import com.example.qiqi.xianwan.SearchResultActivity;
 
 /**
@@ -41,6 +42,7 @@ public class Search_LinearLayout extends LinearLayout {
     private EditText et_search;//搜索框
     private TextView tv_tip;//搜索提示，eg:"搜索历史"或"搜索结果"
     private ImageView iv_search;//搜索按钮
+    private ImageView back;//返回按钮
     private ScrollView scroll_showSearchResult;
 
     /*列表及其适配器*/
@@ -93,20 +95,7 @@ public class Search_LinearLayout extends LinearLayout {
             }
         });
 
-        //搜索框获得焦点时，显示搜索历史
-        et_search.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                //获得焦点，显示搜索历史
-                if (b){
-                    scroll_showSearchResult.setVisibility(VISIBLE);
-                    queryData("");
-                }else {//失去焦点，隐藏搜索历史
-                    scroll_showSearchResult.setVisibility(INVISIBLE);
-                }
-
-            }
-        });
+        scroll_showSearchResult.setVisibility(VISIBLE);
 
         //搜索框的文本变化实时监听
         et_search.addTextChangedListener(new TextWatcher() {
@@ -210,7 +199,6 @@ public class Search_LinearLayout extends LinearLayout {
             }
         });
 
-
     }
 
     /**
@@ -263,12 +251,13 @@ public class Search_LinearLayout extends LinearLayout {
      * */
     private void initView() {
         LayoutInflater.from(context).inflate(R.layout.search_layout,this);
-        et_search = (EditText) findViewById(R.id.et_search);
-        tv_clear = (TextView) findViewById(R.id.tv_clear);
-        tv_tip = (TextView) findViewById(R.id.tv_tip);
-        listView = (Search_ListView) findViewById(R.id.listView);
-        iv_search = (ImageView) findViewById(R.id.iv_search);
-        scroll_showSearchResult = (ScrollView) findViewById(R.id.scrllView_search);
+        et_search = findViewById(R.id.et_search);
+        tv_clear = findViewById(R.id.tv_clear);
+        tv_tip = findViewById(R.id.tv_tip);
+        listView = findViewById(R.id.listView);
+        iv_search = findViewById(R.id.iv_search);
+        back = findViewById(R.id.back);
+        scroll_showSearchResult = findViewById(R.id.scrllView_search);
         scroll_showSearchResult.setVisibility(INVISIBLE);
     }
 

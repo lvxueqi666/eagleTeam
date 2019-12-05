@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.qiqi.xianwan.DetailActivity;
+import com.example.qiqi.xianwan.MainActivity;
 import com.example.qiqi.xianwan.R;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<String> price;
     private List<String> icon;
     private List<String> userName;
-    private List<String> userId;
+    private List<String> userAccount;
     private List<String> attr;
     private List<String> showLike;
 
@@ -59,7 +60,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         void onItemClick(View v, int position);
     }
 
-    public MyRecyclerAdapter(Context context,List<String> commoId,List<String> images,List<String> introductions,List<String> price,List<String> icon,List<String> userName,List<String> userId,List<String> attribute,List<String> showLikes,int listStyle,boolean hasMore){
+    public MyRecyclerAdapter(Context context,List<String> commoId,List<String> images,List<String> introductions,List<String> price,List<String> icon,List<String> userName,List<String> userAccount,List<String> attribute,List<String> showLikes,int listStyle,boolean hasMore){
         this.mContext = context;
         this.commodityId = commoId;
         this.images = images;
@@ -67,7 +68,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.price = price;
         this.icon = icon;
         this.userName = userName;
-        this.userId = userId;
+        this.userAccount = userAccount;
         this.attr = attribute;
         this.showLike = showLikes;
         this.mListStyle = listStyle;
@@ -92,16 +93,16 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             public void onClick(View v) {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, position);
+                    Log.e("size::::::::::::",price.size() + "");
+                    Log.e("position:::::::",position+"");
                     Intent intent = new Intent();
-                    String name = commodityId.get(position);
-                    Log.e("commoId",name);
                     intent.putExtra("commodityId",commodityId.get(position));
                     intent.putExtra("images",images.get(position));
                     intent.putExtra("introductions",introductions.get(position));
                     intent.putExtra("price",price.get(position));
                     intent.putExtra("icon",icon.get(position));
                     intent.putExtra("userName",userName.get(position));
-                    intent.putExtra("userId",userId.get(position));
+                    intent.putExtra("userAccount",userAccount.get(position));
                     intent.putExtra("showLike",showLike.get(position));
                     intent.setClass(mContext, DetailActivity.class);
                     mContext.startActivity(intent);
@@ -218,13 +219,13 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         price = new ArrayList<>();
         icon = new ArrayList<>();
         userName = new ArrayList<>();
-        userId = new ArrayList<>();
+        userAccount = new ArrayList<>();
         attr = new ArrayList<>();
         showLike = new ArrayList<>();
     }
 
     // 暴露接口，更新数据源，并修改hasMore的值，如果有增加数据，hasMore为true，否则为false
-    public void updateList(List<String> commoId,List<String> image,List<String> introduction,List<String> prices,List<String> icons,List<String> name,List<String> id, List<String> attribute,List<String> showLikes,boolean hasMore) {
+    public void updateList(List<String> commoId,List<String> image,List<String> introduction,List<String> prices,List<String> icons,List<String> name,List<String> account, List<String> attribute,List<String> showLikes,boolean hasMore) {
         // 在原有的数据之上增加新数据
         if (name != null) {
             commodityId.addAll(commoId);
@@ -233,7 +234,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             price.addAll(prices);
             icon.addAll(icons);
             userName.addAll(name);
-            userId.addAll(id);
+            userAccount.addAll(account);
             attr.addAll(attribute);
             showLike.addAll(showLikes);
         }

@@ -25,7 +25,7 @@ public class List_job extends Activity{
     private ArrayList<HashMap<String,String>> listItem;//需求的数据结构
     private ListView mListView;//列表对象
     MessageEvent mObjEvent;
-private Button job_back;
+    private Button job_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

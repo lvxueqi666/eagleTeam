@@ -13,11 +13,12 @@
 		android:paddingRight="16dp">
 
 		<ImageView
+			android:id="@+id/back"
 			android:layout_width="35dp"
 			android:layout_height="35dp"
 			android:layout_gravity="center_vertical"
 			android:padding="10dp"
-			android:src="@drawable/back" />
+			android:src="@drawable/back"/>
 
 		<EditText
 			android:id="@+id/et_search"

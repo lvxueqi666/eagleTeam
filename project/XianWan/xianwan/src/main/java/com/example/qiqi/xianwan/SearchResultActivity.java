@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.qiqi.xianwan.homeadapter.RecyclerViewSpacesItemDecoration;
 import com.example.qiqi.xianwan.homeadapter.SearchRecyclerAdapter;
@@ -49,6 +50,7 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
     private List<String> userName;
     private List<String> attr;
     private List<String> showLike;
+    private TextView result;
     private SwipeRefreshLayout refreshLayout;
     private Handler handler;
     private Handler mHandler = new Handler(Looper.getMainLooper());
@@ -60,12 +62,12 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
 
         Intent intent  = getIntent();
         content = intent.getStringExtra("content");
+
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 String json = (String) msg.obj;
-                Log.e("jsonjsonjson",json);
                 try {
                     JSONArray jsonArray = new JSONArray(json);
                     for(int i = 0; i < jsonArray.length();i++){
@@ -92,6 +94,7 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
         findView();
         loadSearchData();
         initRefreshLayout();
+        result.setText(content);
     }
 
     private void initData(){
@@ -109,6 +112,7 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
     private void findView(){
         recyclerView = findViewById(R.id.recyclerViewForSearch);
         refreshLayout = findViewById(R.id.refreshLayoutForSearch);
+        result = findViewById(R.id.result_search);
     }
 
     private void initRefreshLayout() {

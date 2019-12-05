@@ -25,7 +25,7 @@ public class List_jobname extends Activity{
     private String[] names;//模拟数据源
     private ArrayList<HashMap<String,String>> listItem;//需求的数据结构
     private ListView mListView;//列表对象
-private Button jobname_back;
+    private Button jobname_back;
     MessageEvent mObjEvent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
