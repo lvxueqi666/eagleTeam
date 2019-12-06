@@ -1,5 +1,6 @@
 package com.example.qiqi.xianwan.messageadapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +67,18 @@ public class NoticeActivity extends AppCompatActivity {
         });
     }
 
+    private Notice ReceiverMsg() {
+        Intent noticeIntent = getIntent();
+        String action = noticeIntent.getAction();
+        if("notice".equals(action)) {
+            String noticeMsg = noticeIntent.getStringExtra("content");
+            String noticeTitle = noticeIntent.getStringExtra("title");
+            String noticeDate = noticeIntent.getStringExtra("date");
+            return new Notice(noticeDate, noticeTitle, noticeMsg, R.drawable.product);
+        }
+        return null;
+    }
+
     private void refreshData() {
         noticeList.clear();
         noticeList.addAll(initDatas());
@@ -74,9 +87,12 @@ public class NoticeActivity extends AppCompatActivity {
 
     private List<Notice> initDatas() {
         List<Notice> noticeList = new ArrayList<>();
-        noticeList.add(new Notice("2017年12月17日 08:33","请完成实名认证","5555555555555555511111111111111111115555>>",R.drawable.touxiang));
-        noticeList.add(new Notice("2018年11月17日 14:33","请完成实名认证","66666666666666666666666666666666666666666666>>",R.drawable.touxiang));
-        noticeList.add(new Notice("2019年07月28日 23:33","请完成实名认证","55588888888888888888777777777777777777755>>",R.drawable.touxiang));
+        noticeList.add(new Notice("2017年12月17日 08:33","请完成实名认证","按照相关规定，用户需要在规定时间内完善相关信息,查看详细信息>>",R.drawable.notice));
+        noticeList.add(new Notice("2018年11月17日 14:33","请完善个人信息","为了您更好的用户体验，请用户完善个人相关信息，以便之后使用，查看详细信息>>",R.drawable.qianbi));
+        noticeList.add(new Notice("2019年07月28日 23:33","商品更新","您有新的宝贝已上架，看看这些心仪之物吧！查看详细信息>>",R.drawable.product));
+        if(ReceiverMsg() != null) {
+            noticeList.add(ReceiverMsg());
+        }
         return  noticeList;
     }
 }

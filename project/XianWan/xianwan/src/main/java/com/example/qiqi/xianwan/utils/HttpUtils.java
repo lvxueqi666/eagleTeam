@@ -22,12 +22,25 @@ public class HttpUtils {
     }
 
     //注册
-    public static  void registerWithOkHttp(String address,String name,String account,String password,Callback callback){
+    public static  void registerWithOkHttp(String address,String account,String password,String name,Callback callback){
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("userName",name)
                 .add("userAccount",account)
                 .add("userPassword",password)
+                .build();
+        Request request = new Request.Builder()
+                .url(address)
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+
+    //注册查重
+    public static  void registerAccounWithOkHttp(String address,String account,Callback callback){
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("registerAccount",account)
                 .build();
         Request request = new Request.Builder()
                 .url(address)

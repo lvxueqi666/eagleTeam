@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2019-12-03 14:28:11
+Date: 2019-12-06 20:10:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,17 +53,19 @@ INSERT INTO `commodity` VALUES ('444425', 'http://49.233.142.163:8080/images/sda
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `userId` bigint(11) NOT NULL,
-  `userName` varchar(255) DEFAULT NULL,
+  `userAccount` varchar(11) NOT NULL,
   `userPassword` varchar(255) DEFAULT NULL,
-  `userAccount` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`userId`)
+  `userName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`userAccount`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('123', '李同', '123456', '1403062814');
-INSERT INTO `user` VALUES ('124', '王天伟', '123456', '123456789');
-INSERT INTO `user` VALUES ('651169644211601408', '1', '1', '1');
-INSERT INTO `user` VALUES ('651366596689788928', '2', '2', '2');
+INSERT INTO `user` VALUES ('123456789', '123456', '王天伟');
+INSERT INTO `user` VALUES ('1403062814', '123456', '李同');
+INSERT INTO `user` VALUES ('15232198004', '123456', '徐航');
+INSERT INTO `user` VALUES ('15232198005', '123456', '张傲阳');
+INSERT INTO `user` VALUES ('15232198006', '123456', 'huoxuerui');
+INSERT INTO `user` VALUES ('15232198007', '123456', 'lvxueqi');
+INSERT INTO `user` VALUES ('buu000', '123456', 'buu');
