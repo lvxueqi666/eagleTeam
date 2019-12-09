@@ -25,14 +25,15 @@
 			android:layout_width="0dp"
 			android:layout_height="40dp"
 			android:layout_weight="264"
-
 			android:drawablePadding="8dp"
 			android:gravity="left|center_vertical"
 			android:layout_gravity="center_vertical"
 			android:hint=" 输入查询的关键字"
 			android:imeOptions="actionSearch"
 			android:singleLine="true"
-			android:textSize="16sp" />
+			android:textSize="16sp"
+			android:background="@drawable/radius"
+			android:textCursorDrawable="@color/colorGray"/>
 
 		<ImageView
 			android:layout_width="30dp"

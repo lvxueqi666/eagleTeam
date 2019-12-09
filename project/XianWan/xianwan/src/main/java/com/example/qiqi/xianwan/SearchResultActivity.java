@@ -15,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.qiqi.xianwan.homeadapter.RecyclerViewSpacesItemDecoration;
@@ -51,6 +53,7 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
     private List<String> attr;
     private List<String> showLike;
     private TextView result;
+    private ImageView back;
     private SwipeRefreshLayout refreshLayout;
     private Handler handler;
     private Handler mHandler = new Handler(Looper.getMainLooper());
@@ -95,6 +98,12 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
         loadSearchData();
         initRefreshLayout();
         result.setText(content);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchResultActivity.this.finish();
+            }
+        });
     }
 
     private void initData(){
@@ -113,6 +122,7 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
         recyclerView = findViewById(R.id.recyclerViewForSearch);
         refreshLayout = findViewById(R.id.refreshLayoutForSearch);
         result = findViewById(R.id.result_search);
+        back = findViewById(R.id.result_back);
     }
 
     private void initRefreshLayout() {
