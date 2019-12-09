@@ -20,14 +20,14 @@ public class LoginDao {
 			psmt.setString(2, userPassword);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
-				return "true";
+				return rs.getString(3);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			conn.close();
 		}
-		return "false";
+		return "";
 	}
 
 }

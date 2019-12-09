@@ -19,8 +19,6 @@ import com.example.qiqi.xianwan.ConversationActivity;
 import com.example.qiqi.xianwan.LoginActivity;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Message;
-import com.example.qiqi.xianwan.messageadapter.ActivitiesActivity;
-import com.example.qiqi.xianwan.messageadapter.InteractionActivity;
 import com.example.qiqi.xianwan.messageadapter.MessageAdapter;
 import com.example.qiqi.xianwan.messageadapter.MessageChatActivity;
 import com.example.qiqi.xianwan.messageadapter.NoticeActivity;
@@ -34,6 +32,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MessageFragment extends Fragment {
     private ImageView iv_notice;

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 import com.xianwan.util.DBUtil;
 
 public class RegisterDao {
@@ -18,13 +19,16 @@ public class RegisterDao {
 			psmt.setString(1, userAccount);
 			psmt.setString(2, userPassword);
 			psmt.setString(3, userName);
-			psmt.executeUpdate();
+			int n = psmt.executeUpdate();
+			if(n > 0) {
+				return "true";
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			conn.close();
 		}
-		return "true";
+		return "false";
 	}
 
 	public String accountCheck(String account) throws SQLException {
