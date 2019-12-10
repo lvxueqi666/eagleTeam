@@ -30,4 +30,31 @@ public class LoginDao {
 		return "";
 	}
 
+	public String insertAccountAndName(String userAccount, String result) throws SQLException {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		String sql = "insert into userdetail values(?,?,?,?,?,?,?,?)";
+		conn = DBUtil.getConn();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, userAccount);
+			psmt.setString(2, result);
+			psmt.setString(3, "");
+			psmt.setString(4, "");
+			psmt.setString(5, "");
+			psmt.setString(6, "");
+			psmt.setString(7, "");
+			psmt.setString(8, "");
+			int n = psmt.executeUpdate();
+			if(n > 0) {
+				return "true";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			conn.close();
+		}
+		return "false";
+	}
+
 }
