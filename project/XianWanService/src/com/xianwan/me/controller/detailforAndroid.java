@@ -11,22 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xianwan.home.entity.Commodity;
-import com.xianwan.me.service.CollectService;
+import com.xianwan.me.entity.UserDetail;
+import com.xianwan.me.service.SearchService;
 
 import net.sf.json.JSONArray;
 
 /**
- * Servlet implementation class CollectForMe
+ * Servlet implementation class detailforAndroid
  */
-@WebServlet("/CollectForMe")
-public class CollectForMe extends HttpServlet {
+@WebServlet("/detailforAndroid")
+public class detailforAndroid extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CollectForMe() {
+    public detailforAndroid() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -35,13 +37,12 @@ public class CollectForMe extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String userAccount = request.getParameter("userAccount");
-		userAccount = "11111111";
-		List<Commodity> listCommodity = new ArrayList<>();
-		CollectService cs = new CollectService();
-		if(userAccount != null) {
-			listCommodity = cs.queryCommodityIdByUserAccount(userAccount);
-			JSONArray jsonArray = JSONArray.fromObject( listCommodity );
+		String chaxun = request.getParameter("userAccount");
+		SearchService ss=new SearchService();
+		List<UserDetail> userDetails = new ArrayList<>();
+		if(chaxun != null) {
+			userDetails = ss.queryUserDetail(chaxun);
+			JSONArray jsonArray = JSONArray.fromObject( userDetails );
 			System.out.println(jsonArray.size());
 			response.getWriter().print(jsonArray.toString());
 		}
