@@ -11,7 +11,6 @@ public class MyApplication extends Application {
         super.onCreate();
 
         EaseUI.getInstance().init(this,null);
-        EMClient.getInstance().setDebugMode(true);
 //        opptions.setAcceptInvitationAlways(false);
     }
 }
