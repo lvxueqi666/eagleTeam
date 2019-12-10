@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.SearchActivity;
+import com.example.qiqi.xianwan.TagsActivity;
 import com.example.qiqi.xianwan.homeadapter.BookRecyclerAdapter;
 import com.example.qiqi.xianwan.homeadapter.GlideImageLoader;
 import com.example.qiqi.xianwan.homeadapter.MyRecyclerAdapter;
@@ -139,7 +140,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(),SearchActivity.class);
+                    Intent intent = new Intent(getActivity(),TagsActivity.class);
                     startActivity(intent);
                 }
             });

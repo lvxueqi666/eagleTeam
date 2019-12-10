@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView iv_login;
     private TextView tv_registerActivity;
     private CustomOnClickListener listener;
-
+    public static String USERNAME;
+    public static String USERACCOUNT;
     private String userAccount;
     private String userPassword;
 
@@ -113,7 +114,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         Log.e("hahahaha",responseData);
 
-                        if(responseData.equals("true")){
+                        if(!responseData.equals("")){
+                            USERNAME = responseData;
+                            USERACCOUNT = userAccount;
                             Login(userAccount,userPassword);
                             Toast.makeText(
                                     LoginActivity.this,

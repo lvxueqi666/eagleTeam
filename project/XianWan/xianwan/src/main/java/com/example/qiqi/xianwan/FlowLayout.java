@@ -4,17 +4,14 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author:      lin
- * date:        2018/10/15 16:56
- * description: 流式标签，自动换行,支持设置padding属性
- */
 
 public class FlowLayout extends ViewGroup {
+    List<String> tags = new ArrayList<>();
 
     public FlowLayout(Context context) {
         super(context, null);
@@ -66,6 +63,7 @@ public class FlowLayout extends ViewGroup {
         //记录当前行的子view
         List<View> lineViews = new ArrayList<>();
 
+
         //获取FlowTagLayout中子view的个数
         int childCount = getChildCount();
         //遍历子View
@@ -116,6 +114,15 @@ public class FlowLayout extends ViewGroup {
                 //记录行高，最终的高度
                 height += lineHeight;
             }
+            child.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView tv = (TextView) view;
+                    tv.setBackgroundColor(getResources().getColor(R.color.blue));
+                    String tag = tv.getText().toString().trim();
+                    tags.add(tag);
+                }
+            });
         }
         //wrap_content
         setMeasuredDimension(modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width,
@@ -150,12 +157,6 @@ public class FlowLayout extends ViewGroup {
         }
     }
 
-    /**
-     * 指定ViewGroup的LayoutParams
-     *
-     * @param attrs
-     * @return
-     */
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);

@@ -2,7 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bank_bg01">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:text="请最多选择3类您喜欢的"
+        android:textSize="23sp"
+        android:textColor="#ffffff" />
 
 
     <com.example.qiqi.xianwan.FlowLayout
@@ -10,14 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/radius"
-            android:padding="5dp"
-            android:text="欧美影视"
-            android:textColor="@color/colorAccent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,8 +27,9 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="婚姻育儿"
-            android:textColor="@color/colorAccent" />
+            android:text="拼图玩具类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,8 +37,19 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="散文"
-            android:textColor="@color/colorAccent" />
+            android:text="游戏玩具类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:text="数字算盘文字类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
 
         <TextView
@@ -44,8 +58,9 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="程序员"
-            android:textColor="@color/colorAccent" />
+            android:text="工具类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,8 +68,9 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="大学生生活"
-            android:textColor="@color/colorAccent" />
+            android:text="益智组合类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,8 +78,9 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="运营互助帮"
-            android:textColor="@color/colorAccent" />
+            android:text="积木类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,8 +88,9 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="设计"
-            android:textColor="@color/colorAccent" />
+            android:text="交通玩具类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,8 +98,29 @@
             android:layout_margin="8dp"
             android:background="@drawable/radius"
             android:padding="5dp"
-            android:text="读书"
-            android:textColor="@color/colorAccent" />
+            android:text="拖拉类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:text="拼板玩具类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/radius"
+            android:padding="5dp"
+            android:text="卡通玩偶类"
+            android:textSize="23sp"
+            android:textColor="#ffffff" />
 
     </com.example.qiqi.xianwan.FlowLayout>
 
