@@ -140,7 +140,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(),TagsActivity.class);
+                    Intent intent = new Intent(getActivity(),SearchActivity.class);
                     startActivity(intent);
                 }
             });

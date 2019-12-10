@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class FlowLayout extends ViewGroup {
     List<String> tags = new ArrayList<>();
+    int count = 0;
 
     public FlowLayout(Context context) {
         super(context, null);
@@ -118,7 +120,21 @@ public class FlowLayout extends ViewGroup {
                 @Override
                 public void onClick(View view) {
                     TextView tv = (TextView) view;
-                    tv.setBackgroundColor(getResources().getColor(R.color.blue));
+                    if(count < 3){
+                        if(tv.getBackground().getCurrent().getConstantState().equals(getResources().getDrawable(R.drawable.radius).getConstantState())){
+                            tv.setBackgroundResource(R.drawable.shape);
+                            count++;
+                        }else{
+                            tv.setBackgroundResource(R.drawable.radius);
+                            count--;
+                        }
+                    }else{
+                        if(tv.getBackground().getCurrent().getConstantState().equals(getResources().getDrawable(R.drawable.shape).getConstantState())){
+                            tv.setBackgroundResource(R.drawable.radius);
+                            count--;
+                        }
+                    }
+
                     String tag = tv.getText().toString().trim();
                     tags.add(tag);
                 }
