@@ -31,7 +31,7 @@
 
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -100,6 +100,7 @@
                 android:textColor="#050000"
                 android:textSize="17sp" />
             <EditText
+                android:id="@+id/et_username"
                 android:cursorVisible="true"
                 android:textCursorDrawable="@null"
                 android:background="@null"
@@ -143,7 +144,7 @@
             <TextView
                 android:id="@+id/tv_sex"
                 android:layout_width="wrap_content"
-                android:text="weitainxie"
+                android:text=""
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@id/back_sex"
                 android:layout_height="wrap_content" />
@@ -181,7 +182,7 @@
             <TextView
                 android:id="@+id/tv_birth"
                 android:layout_width="wrap_content"
-                android:text="weitainxie"
+                android:text=""
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@id/back_birth"
                 android:layout_height="wrap_content" />
@@ -219,7 +220,7 @@
             <TextView
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
-                android:text="weitainxie"
+                android:text=""
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@id/back_location"
                 android:layout_height="wrap_content" />
@@ -257,7 +258,7 @@
             <TextView
                 android:id="@+id/tv_jianjie"
                 android:layout_width="wrap_content"
-                android:text="weitainxie"
+                android:text=""
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@id/back_jianjie"
                 android:layout_height="wrap_content" />
@@ -295,7 +296,7 @@
             <TextView
                 android:id="@+id/tv_job"
                 android:layout_width="wrap_content"
-                android:text="weitainxie"
+                android:text=""
                 android:layout_toLeftOf="@id/back_job"
                 android:layout_marginTop="15dp"
                 android:layout_height="wrap_content" />
@@ -333,7 +334,7 @@
             <TextView
                 android:id="@+id/tv_jobname"
                 android:layout_width="wrap_content"
-                android:text="weitainxie"
+                android:text=""
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@id/back_jobname"
                 android:layout_height="wrap_content" />
@@ -355,10 +356,18 @@
         android:layout_width="360dp"
         android:text="晚上细腻"
         android:background="@drawable/radius"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="360dp"
+        android:text="zhuxiao"
+        android:background="@drawable/radius"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
 </LinearLayout>
 
 

@@ -2,6 +2,7 @@ package com.example.qiqi.xianwan.meadapter.xianwanpic;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -32,7 +33,7 @@ public class UpLoadFileTask extends AsyncTask<String, Void, String> {
         OkHttpClient client = new OkHttpClient();
         //2. 创建Request对象
         //2.1 得到对应的mime类型
-        MediaType type = MediaType.parse("application/jpg");
+        MediaType type = MediaType.parse("images/jpg");
         //2.2 创建RequestBody的对象
         File file = new File(filePath);
         RequestBody body = RequestBody.create(
@@ -42,11 +43,12 @@ public class UpLoadFileTask extends AsyncTask<String, Void, String> {
         //2.3 创建请求对象
         Request request = new Request.Builder()
                 //设置请求头发送用户识别id，用于服务器端创建唯一图片名
-                .header("userId","")
+                .header("userId","123")
                 .url(strings[0])
                 .post(body)
                 .build();
         //3. 创建Call对象
+        Log.i("zay","adad");
         Call call = client.newCall(request);
         //4. 发起请求并接收响应
         Response response = null;

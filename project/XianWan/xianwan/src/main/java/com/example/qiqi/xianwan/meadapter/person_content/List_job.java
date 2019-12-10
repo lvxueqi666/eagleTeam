@@ -10,8 +10,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.xianwanpic.headpicoption;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,7 +26,7 @@ public class List_job extends Activity{
     private ArrayList<HashMap<String,String>> listItem;//需求的数据结构
     private ListView mListView;//列表对象
     MessageEvent mObjEvent;
-    private Button job_back;
+private Button job_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class List_job extends Activity{
             public void onClick(View view) {
                 if (null != mObjEvent) {
 
-                    Intent intent = new Intent(List_job.this, person_content.class);
+                    Intent intent = new Intent(List_job.this,headpicoption .class);
                     intent.putExtra("job", mObjEvent.getMessage());
                     setResult(2, intent);
                     finish();
@@ -52,7 +53,7 @@ public class List_job extends Activity{
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
 
-                Intent intent=new Intent(List_job.this,person_content.class);
+                Intent intent=new Intent(List_job.this,headpicoption.class);
 
                 //给message起一个名字，并传给另一个activity
                 intent.putExtra("job",names[arg2]);

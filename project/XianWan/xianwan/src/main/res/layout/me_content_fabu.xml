@@ -30,6 +30,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btn_fabu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,6 +44,7 @@
         android:layout_height="100dp">
 
         <EditText
+            android:id="@+id/ed_introductions"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="top"
@@ -93,88 +95,88 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <RelativeLayout
+        <RelativeLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-
-        <ImageView
-            android:id="@+id/iv_yunfei"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/add" />
-
-
-        <TextView
-            android:id="@+id/tv_yunfei"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/iv_yunfei"
-            android:gravity="center_vertical"
-            android:hint="价格 ￥"
-            android:textColor="#050000"
-            android:textSize="17sp" />
+            android:layout_marginRight="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_yunfei"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/add" />
 
 
-        <EditText
-            android:id="@+id/ed_yunfei"
-            android:layout_width="wrap_content"
-            android:hint="开个价"
-            android:background="@null"
-            android:digits="1234567890"
-            android:gravity="center"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_height="match_parent" />
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/item_price"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-
-        <ImageView
-            android:id="@+id/item_img"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/add" />
+            <TextView
+                android:id="@+id/tv_yunfei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iv_yunfei"
+                android:gravity="center_vertical"
+                android:hint="价格 ￥"
+                android:textColor="#050000"
+                android:textSize="17sp" />
 
 
-        <TextView
-            android:id="@+id/item_text"
+            <EditText
+                android:id="@+id/ed_price"
+                android:layout_width="wrap_content"
+                android:hint="开个价"
+                android:background="@null"
+                android:digits="1234567890"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/item_attr"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/item_img"
-            android:gravity="center_vertical"
-            android:hint="运费 ￥"
-            android:textColor="#050000"
-            android:textSize="17sp" />
+            android:layout_marginRight="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/item_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/add" />
 
 
-        <EditText
-            android:id="@+id/ed_price"
-            android:layout_width="wrap_content"
-            android:hint="开个价"
-            android:background="@null"
-            android:digits="1234567890"
-            android:gravity="center"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/item_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/item_img"
+                android:gravity="center_vertical"
+                android:hint="商品类型"
+                android:textColor="#050000"
+                android:textSize="17sp" />
 
-    </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_attr"
+                android:layout_width="wrap_content"
+
+                android:background="@null"
+                android:digits="1234567890"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>
