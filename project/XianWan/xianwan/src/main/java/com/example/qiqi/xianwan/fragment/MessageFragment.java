@@ -19,6 +19,7 @@ import com.example.qiqi.xianwan.ConversationActivity;
 import com.example.qiqi.xianwan.LoginActivity;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Message;
+import com.example.qiqi.xianwan.messageadapter.ActivitiesActivity;
 import com.example.qiqi.xianwan.messageadapter.MessageAdapter;
 import com.example.qiqi.xianwan.messageadapter.MessageChatActivity;
 import com.example.qiqi.xianwan.messageadapter.NoticeActivity;
@@ -222,7 +223,7 @@ public class MessageFragment extends Fragment {
                     break;
                 case R.id.iv_activity:
                     Intent intent_activities = new Intent();
-                    intent_activities.setClass(getActivity(),LoginActivity.class);
+                    intent_activities.setClass(getActivity(),ActivitiesActivity.class);
                     startActivity(intent_activities);
                     break;
             }

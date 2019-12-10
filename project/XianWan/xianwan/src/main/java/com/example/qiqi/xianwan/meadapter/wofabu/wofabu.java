@@ -117,12 +117,11 @@ private SmartRefreshLayout wofabu_srl;
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.me_wofabu);
-if(USERACCOUNT!=null) {
-    asyncFormOp();
-    getViews();
-    regListener();
-
-}
+        if(USERACCOUNT!=null) {
+            asyncFormOp();
+            getViews();
+            regListener();
+        }
 
 
     }
@@ -131,18 +130,20 @@ if(USERACCOUNT!=null) {
         listener = new CustomeClickListener();
         fabu.setOnClickListener(listener);
         btn_wofabu_back.setOnClickListener(listener);
-wofabu_srl.setOnRefreshListener(new OnRefreshListener() {
-    @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-asyncFormOp();
-        wofabu_srl.finishRefresh();
-        Toast.makeText(getApplicationContext(),
-                "刷新完成",
-                Toast.LENGTH_SHORT).show();
+        wofabu_srl.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                asyncFormOp();
+                wofabu_srl.finishRefresh();
+                Toast.makeText(
+                        getApplicationContext(),
+                        "刷新完成",
+                        Toast.LENGTH_SHORT
+                ).show();
 
-    }
+            }
 
-});
+        });
     }
 
 
@@ -183,18 +184,11 @@ asyncFormOp();
     }
 
 
-
-
-
-
-
-
-
     private void getViews() {
         fabu=findViewById(R.id.fabu);
         btn_wofabu_back=findViewById(R.id.btn_wofabu_back);
-wofabu_srl=findViewById(R.id.wofabu_srl);
-listView=findViewById(R.id.fabu_listview);
+        wofabu_srl=findViewById(R.id.wofabu_srl);
+        listView=findViewById(R.id.fabu_listview);
     }
 
     private class CustomeClickListener implements View.OnClickListener {
