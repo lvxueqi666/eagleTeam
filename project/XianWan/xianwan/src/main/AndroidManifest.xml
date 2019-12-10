@@ -144,7 +144,8 @@
             android:value="5xjqsxbtkI1wIgnGrCbA2c30ysWPEsfI" />
 
         <activity android:name=".ChatActivity" />
-        <activity android:name=".ConversationActivity"></activity>
+        <activity android:name=".ConversationActivity" />
+        <activity android:name=".TagsActivity"></activity>
     </application>
 
 </manifest>
