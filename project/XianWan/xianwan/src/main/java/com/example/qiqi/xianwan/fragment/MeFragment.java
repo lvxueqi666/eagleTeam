@@ -108,9 +108,9 @@ public class MeFragment extends Fragment {
             switch (msg.what){
                 case 1:
                     RequestOptions requestOptions = new RequestOptions()
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .error(R.drawable.ic_launcher_background)
-                            .fallback(R.drawable.ic_launcher_background)
+                            .placeholder(R.drawable.add)
+                            .error(R.mipmap.sss)
+                            .fallback(R.drawable.backgroud)
                             .override(400)
                             .circleCrop()
                             .skipMemoryCache(true)
@@ -140,27 +140,9 @@ public class MeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
-
-       if (USERNAME!=null) {
-           final View view = inflater.inflate(R.layout.me_fragment_layout, container, false);
-           srl = view.findViewById(R.id.srl);
-           fabu = view.findViewById(R.id.iv_fabu);
-           maichu = view.findViewById(R.id.iv_maichu);
-           maidao = view.findViewById(R.id.iv_maidao);
-           head_img_zay = view.findViewById(R.id.head_img_zay);
-           rl_fabu = view.findViewById(R.id.rl_fabu);
-           ilike = view.findViewById(R.id.ilike);
-           background = view.findViewById(R.id.background);
-           fabu_size = view.findViewById(R.id.fabu_size);
-           ilike_size = view.findViewById(R.id.ilike_size);
-           asyncFormOp();
-           asyncFormOpilike();
-           InitHeadPic();
-
-       }
         final View view = inflater.inflate(R.layout.me_fragment_layout, container, false);
+
+
         srl = view.findViewById(R.id.srl);
         fabu = view.findViewById(R.id.iv_fabu);
         maichu = view.findViewById(R.id.iv_maichu);
@@ -172,7 +154,19 @@ public class MeFragment extends Fragment {
         fabu_size = view.findViewById(R.id.fabu_size);
         ilike_size = view.findViewById(R.id.ilike_size);
 
-        InitHeadPic();
+       if (USERNAME!=null) {
+           Log.i("zay","userId:"+USERACCOUNT);
+           asyncFormOp();
+           asyncFormOpilike();
+           InitHeadPic();
+       }
+        else {
+           Log.i("zay","123431");
+           InitHeadPic2();
+       }
+
+
+
 
         head_img_zay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,9 +257,24 @@ public class MeFragment extends Fragment {
 
         }
 
+    private void InitHeadPic2() {
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.add)
+                .error(R.drawable.back)
+                .fallback(R.drawable.backgroud)
+                .override(400)
+                .circleCrop()
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
+        Glide.with(getContext())
+                .load(R.mipmap.sss)
+                .apply(requestOptions)
+                .into(head_img_zay);
+
+    }
 
 
-        private void asyncFormOp () {
+    private void asyncFormOp () {
             Resources resources = getResources();
             final String hostIp = resources.getString(R.string.hostStr);
             new Thread() {
@@ -351,45 +360,14 @@ public class MeFragment extends Fragment {
             public void run() {
                 if (USERACCOUNT!=null) {
                     dowm();
-                }
-                Message message = new Message();
-                message.what = 1;
-                handler3.sendMessage(message);
 
+                    Message message = new Message();
+                    message.what = 1;
+                    handler3.sendMessage(message);
+                }
             }
         }.start();
 
-    int i = 1;
-            while (flag != true) {
-                i++;
-                Log.i("zayabab", "111:" + i + flag);
-                if (i > 2000) {
-                    break;
-                }
-            }
-            // Log.i("zayabab","111:"+i+flag);
-            RequestOptions requestOptions = new RequestOptions()
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_background)
-                    .fallback(R.drawable.ic_launcher_background)
-                    .override(400)
-                    .circleCrop()
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE);
-            Log.i("zaybbbbb", "" + getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg");
-            if (new File(getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg").exists()) {
-                Glide.with(this)
-                        .load(getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg")
-                        .apply(requestOptions)
-                        .into(head_img_zay);
-                Log.i("zayabab", "错1");
-            } else {
-                Glide.with(this)
-                        .load(R.mipmap.sss)
-                        .apply(requestOptions)
-                        .into(head_img_zay);
-                Log.i("zayabab", "错2");
-            }
 
         }
 

@@ -51,11 +51,11 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("登录账号：" + userAccount + ",登录密码：" + userPassword + ",登录结果：" + result);
 			if(!result.equals("")) {
 				checked = loginService.insertAccountAndName(userAccount,result);
-				if(checked.equals("true")) {
+			
 					response.setCharacterEncoding("utf-8");
 					PrintWriter writer = response.getWriter();
 					writer.print(result);
-				}
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

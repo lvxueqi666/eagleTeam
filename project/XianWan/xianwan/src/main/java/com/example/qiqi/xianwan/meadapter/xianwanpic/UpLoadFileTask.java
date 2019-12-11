@@ -15,6 +15,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+
 public class UpLoadFileTask extends AsyncTask<String, Void, String> {
     private Context context;
     private String filePath;
@@ -43,7 +45,7 @@ public class UpLoadFileTask extends AsyncTask<String, Void, String> {
         //2.3 创建请求对象
         Request request = new Request.Builder()
                 //设置请求头发送用户识别id，用于服务器端创建唯一图片名
-                .header("userId","123")
+                .header("userId",USERACCOUNT)
                 .url(strings[0])
                 .post(body)
                 .build();

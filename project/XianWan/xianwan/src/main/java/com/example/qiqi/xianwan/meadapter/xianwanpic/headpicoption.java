@@ -84,7 +84,7 @@ public class headpicoption extends AppCompatActivity {
     private TextView tv_job;
     private TextView tv_jobname;
     private TextView tv_location;
-    private EditText et_username;
+    private TextView et_username;
     private Button cancle;
     private String[] sexArry = new String[]{"MM", "GG"};
     private Calendar cal;
@@ -116,22 +116,15 @@ public class headpicoption extends AppCompatActivity {
                             jsonObject.getString("userJob"),
                             jsonObject.getString("userJobName"),
                             jsonObject.getString("userPicture")
-                    );
-                    if (jsonObject.getString("userAccount").equals(userAccount)) {
-                        //刷新UI
 
+                    );
+                    et_username.setText(jsonObject.getString("userName"));
                         tv_sex.setText(jsonObject.getString("userSex"));
-                        et_username.setText(jsonObject.getString("userName"));
                         tv_birth.setText(jsonObject.getString("userBirth"));
                         tv_location.setText(jsonObject.getString("userLocation"));
                         tv_jianjie.setText(jsonObject.getString("userJianjie"));
                         tv_job.setText(jsonObject.getString("userJob"));
                         tv_jobname.setText(jsonObject.getString("userJob"));
-                        break;
-                    }
-                    else{
-
-                    }
                     userDetails.add(userDetail);
                 }
             } catch (JSONException e) {
@@ -163,7 +156,8 @@ public class headpicoption extends AppCompatActivity {
         imgzay_headPic = findViewById(R.id.imgzay_headPic);
 
 
-
+asyncFormOp();
+asyncDownOp();
         InitHeadPic();
         //接收数据
         jieshoumesssage();
@@ -503,7 +497,7 @@ public class headpicoption extends AppCompatActivity {
             file.delete();
         }
         Request request = new Request.Builder()
-                .header("userId","123")
+                .header("userId",USERACCOUNT)
                 .url("http://"+hostIp+":8080/XianWanService/HeadPicSendToAndroidController")
                 .build();
         Call call = okHttpClient.newCall(request);

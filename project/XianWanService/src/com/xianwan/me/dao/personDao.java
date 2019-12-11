@@ -13,25 +13,25 @@ public class personDao {
 			String userJianjie, String userJob, String userJobName) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
-		String sql = "insert into userdetail values (?,?,?,?,?,?,?,?)";
+		String sql = "update userdetail set userSex= ? , userBirth =? , userLocation= ? , userJianjie= ? , userJob = ? , userJobName = ? where userAccount =?";
 		
 		conn = DBUtil.getConn();
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, userAccount);
-			pstm.setString(2, userName);
-			pstm.setString(3, userSex);
-			pstm.setString(4, userBirth);
-			pstm.setString(5, userLocaton);
-			pstm.setString(6,userJianjie);
-			pstm.setString(7, userJob);
-			pstm.setString(8, userJobName);
 			
+			
+			pstm.setString(1, userSex);
+			pstm.setString(2, userBirth);
+			pstm.setString(3, userLocaton);
+			pstm.setString(4,userJianjie);
+			pstm.setString(5, userJob);
+			pstm.setString(6, userJobName);
+			pstm.setString(7, userAccount);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("插入完成");
+		System.out.println("更新完成");
 	}
 		
 		

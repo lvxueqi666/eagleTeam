@@ -48,8 +48,15 @@ public class HeadPicSendToAndroidController extends HttpServlet {
 		String userId = request.getHeader("userId");
 		String address = headPicService.queryHeadPic(userId);
 		System.out.println("address:"+address);
+		System.out.println("id:"+userId);
 		//将头像发送给android
-		URL url = new URL(address);
+		URL url = null;
+		if (address!=null) {
+			url = new URL(address);
+		}
+		else {
+			url = new URL("http://49.233.142.163:8080/images/lvgoudan.jpg");
+		}
 		URLConnection conn = url.openConnection();
 		InputStream in = conn.getInputStream();																																						
 		OutputStream out = response.getOutputStream();
@@ -61,7 +68,7 @@ public class HeadPicSendToAndroidController extends HttpServlet {
 		}
 		in.close();
 		out.close();
-
+		
 
 	}
 	

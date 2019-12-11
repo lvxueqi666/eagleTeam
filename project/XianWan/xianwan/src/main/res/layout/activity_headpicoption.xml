@@ -99,13 +99,13 @@
                 android:text="会员名"
                 android:textColor="#050000"
                 android:textSize="17sp" />
-            <EditText
+            <TextView
                 android:id="@+id/et_username"
                 android:cursorVisible="true"
                 android:textCursorDrawable="@null"
                 android:background="@null"
                 android:layout_width="wrap_content"
-                android:hint="起一个好听的名字吧"
+
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@id/back_name"
                 android:layout_height="wrap_content" />

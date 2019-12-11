@@ -193,7 +193,12 @@ public class content_fabu extends AppCompatActivity
                     if (ContextCompat.checkSelfPermission(content_fabu.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(content_fabu.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                     } else {
-                        openAlbum();//打开相册
+                        if (index < 9)
+                            openAlbum();//打开相册
+
+                        else {
+                            Toast.makeText(getApplicationContext(), "亲，已达到最大发布数了呢！", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     break;
                 case R.id.btn_contentfabu_back:

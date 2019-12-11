@@ -43,18 +43,12 @@ public class addCommi extends HttpServlet {
 		System.out.println(userAccount);
 		Commi commi=new Commi();
 		String address;
-		try {
-			address=commi.findAddressByAccount(userAccount);
-			System.out.println("zzzzzzzzzzzzzzz"+address);
-			 if(userAccount!=null&&address!=null){
+		address=commi.findAddressByAccount(userAccount);
+		System.out.println("zzzzzzzzzzzzzzz"+address);
+			if(userAccount!=null&&address!=null){
 				commi.addCommi(address,introduce, price,attr,userAccount,userName);
 				System.out.println("cg");
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
 
 	/**

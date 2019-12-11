@@ -12,11 +12,11 @@ import com.xianwan.util.DBUtil;
 
 
 public class FabuPicDao {
-	public void addPicToSQL(String id,String userId,String address,Date uploadTime,int frequency) {
+	public void addPicToSQL(String id,String userId,String address,Date uploadTime,int frequency,String firstUrl) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 	
-		String sql = "insert fabupic values(?,?,?,?,?)";
+		String sql = "insert fabupic values(?,?,?,?,?,?)";
 		
 		try {
 			conn = DBUtil.getConn();
@@ -29,6 +29,7 @@ public class FabuPicDao {
 			pstm.setString(3, address);
 			pstm.setDate(4, uploadTime);
 			pstm.setInt(5, frequency);
+			pstm.setString(6, firstUrl);
 			pstm.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -39,35 +40,39 @@ public class FabuPicDao {
 		
 	}
 	
+	/*
 	public String queryPicGetFirst(String userId) {
-		System.out.println("xxxxxxxxxxxx");
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-
-		String sql = "select * from fabupic where userId = ?";
+		String sql = "select address from fabupic where userId = ?";
 		int count = queryRrequency(userId);
-		System.out.println("yyyyyyyyyyyyyyy"+count);
 		try {
 			conn = DBUtil.getConn();
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, userId);
 			rs = pstm.executeQuery();
-			int number0 = 10;//最多上传9张图片
 			if(rs.next()) {
-				return rs.getString(3);
+				if(rs.getString(1).contains("http://49.233.142.163:8080/images/0FD"+userId+"N"+count+".jpg")) {
+					return rs.getString(1);
+				}	
 			}
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return null;
+		return "";
 	}
+	*/
+
+	public String getFakeName(String userId) {
+		return "http://49.233.142.163:8080/images/0FD"+userId+"N"+queryRrequency(userId)+".jpg";
+	}
+	
 	public int queryRrequency(String userId) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String address = null;
 		int m = 0;
 		String sql = "select frequency from fabupic where userId = ?";
 		try {

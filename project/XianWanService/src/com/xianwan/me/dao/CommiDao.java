@@ -37,6 +37,8 @@ public class CommiDao {
 		System.out.println("插入完成");
 	}
 
+	
+	/*
 	public String findAddress(String userAccount) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -57,5 +59,6 @@ public class CommiDao {
 		}
 		return null;
 	}
+	*/
 	
 }

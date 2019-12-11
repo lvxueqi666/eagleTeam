@@ -66,7 +66,9 @@ public class FabuPicSaveController extends HttpServlet {
 		int frequency = 0;
 		PrintWriter pw = response.getWriter();
 		String userId = "";
-		
+		//设置第一张图片地址
+		boolean flag=false;
+		String firstUrl=null;
 		 System.out.println("11111");
 		//设置系统环境
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -93,6 +95,10 @@ public class FabuPicSaveController extends HttpServlet {
 					String id = fileName +"FD"+userId+"N"+frequency;
 					//设置存放地址
 					String address = "http://49.233.142.163:8080/images/"+id+".jpg";
+					if (flag!=true) {
+						firstUrl=address;
+						flag=true;
+					}
 					System.out.println("id"+id);
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
 					byte[] pic = null;
@@ -105,7 +111,7 @@ public class FabuPicSaveController extends HttpServlet {
 					sendPic(id,pic);
 					//添加
 					java.sql.Date uploadTime = new java.sql.Date(new java.util.Date().getTime());
-					fabuPicService.addPicToSQL(id, userId, address,uploadTime, frequency);
+					fabuPicService.addPicToSQL(id, userId, address,uploadTime, frequency,firstUrl);
 					System.out.println("nnnnnnnnnnnn");
 					in.close();
 					out.close();
