@@ -4,16 +4,27 @@
     android:layout_height="match_parent"
     android:background="@drawable/xiongmao">
 
-    <ProgressBar
-        android:layout_marginTop="10dp"
+    <!--<ProgressBar-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:id="@+id/progressBarLarge"-->
+        <!--style="?android:attr/progressBarStyleLarge"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:progressDrawable="@android:color/holo_green_light"-->
+        <!--android:progressTint="@color/colorPrimary"/>-->
+
+    <TextView
+        android:id="@+id/skip"
+        android:textSize="16sp"
+        android:textColor="#ff0000"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
-        android:id="@+id/progressBarLarge"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:progressDrawable="@android:color/holo_green_light"
-        android:progressTint="@color/colorPrimary"/>
+        android:text="haha"
+        android:layout_width="70dp"
+        android:layout_height="40dp" />
 
 
 </RelativeLayout>

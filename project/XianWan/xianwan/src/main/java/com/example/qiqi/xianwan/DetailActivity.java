@@ -38,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView dianzancount;
     private ImageView shoucang;
     private Button want;
+    private ImageView back;
 
 
     private String commodityId;
@@ -123,6 +124,13 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailActivity.this.finish();
+            }
+        });
+
     }
 
     private void getView() {
@@ -136,6 +144,7 @@ public class DetailActivity extends AppCompatActivity {
         shoucang = findViewById(R.id.shoucang);
         dianzancount = findViewById(R.id.likeCount);
         want = findViewById(R.id.detail_want);
+        back = findViewById(R.id.detail_back);
     }
 
     private void modifyShowLikeCount(final String userId, final String commodityId,final String addOrCancel,final String operate){
