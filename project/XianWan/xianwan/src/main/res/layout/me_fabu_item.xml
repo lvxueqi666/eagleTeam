@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/fabu_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:layout_toRightOf="@+id/fabu_img"
+        android:id="@+id/fabu_introduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="000"
+        android:textSize="25dp"
+        android:maxEms="6"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/pricee"
+        android:layout_toRightOf="@+id/fabu_img"
+        android:layout_marginTop="45dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="价格(￥)：" />
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/pricee"
+        android:layout_marginTop="45dp"
+        android:textSize="20dp"
+        android:textColor="@color/orange"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,5 +1,4 @@
 package com.xianwan.me.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import com.xianwan.home.entity.Commodity;
 import com.xianwan.util.DBUtil;
-
 public class CollectDao {
 	public List<Commodity> queryCommodityIdByUserAccount(String userAccount) {
 		List<Commodity> coms = new ArrayList<>();
@@ -29,7 +27,7 @@ public class CollectDao {
 				com.setIntroduce(rs.getString(3));
 				com.setPrice(rs.getString(4));
 				com.setTag(rs.getString(5));
-				com.setUserAccount(rs.getString(6));
+				//com.setUserAccount(rs.getString(6));
 				com.setIcon(rs.getString(7));
 				com.setUserName(rs.getString(8));
 				com.setAttr(rs.getString(9));

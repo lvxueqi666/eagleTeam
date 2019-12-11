@@ -32,7 +32,7 @@ public class item_view extends LinearLayout {
        /* LayoutInflater mInflater = LayoutInflater.from(context);
         View myView = mInflater.inflate(R.layout.item_view, null);
         addView(myView);*/
-        TypedArray ta=context.obtainStyledAttributes(attrs,R.styleable.item_view);
+        TypedArray ta=context.obtainStyledAttributes(attrs, R.styleable.item_view);
 
         isbootom=ta.getBoolean(R.styleable.item_view_show_bottomline,true);
         bottomview=findViewById(R.id.item_bottom);
@@ -41,7 +41,7 @@ public class item_view extends LinearLayout {
 
         textView.setText(ta.getString(R.styleable.item_view_show_text));
 
-        imageView.setBackgroundResource(ta.getResourceId(R.styleable.item_view_show_leftimg,R.drawable.add));
+        imageView.setBackgroundResource(ta.getResourceId(R.styleable.item_view_show_leftimg, R.drawable.add));
 
         ta.recycle();
         initview();

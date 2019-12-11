@@ -13,8 +13,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

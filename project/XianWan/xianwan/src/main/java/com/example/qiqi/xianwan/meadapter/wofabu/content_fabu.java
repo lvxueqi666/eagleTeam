@@ -1,10 +1,12 @@
 package com.example.qiqi.xianwan.meadapter.wofabu;
+
 import android.Manifest;
 import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,21 +29,45 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.LoginActivity.USERNAME;
+
 public class content_fabu extends AppCompatActivity
 {
+
+    private List<String> pathList = new ArrayList<>();
 
     private Button btn_contentfabu_back;
     private GridLayout LL_fabuzay;
@@ -51,7 +77,12 @@ public class content_fabu extends AppCompatActivity
     private CustomOnClickListener listener;
     private String imagePath;
     private EditText ed_price;
-    private EditText ed_yunfei;
+
+    private EditText ed_introductions;
+    private Button btn_fabu;
+    private RelativeLayout item_attr;
+    private TextView tv_attr;
+    private String[] attrArry=new String[]{"toy","book"};
     private int index = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +107,8 @@ public class content_fabu extends AppCompatActivity
         listener = new CustomOnClickListener();
         btn_newFabuzay.setOnClickListener(listener);
         btn_contentfabu_back.setOnClickListener(listener);
+        btn_fabu.setOnClickListener(listener);
+        item_attr.setOnClickListener(listener);
     }
 
     private void InitSendAddress() {
@@ -138,12 +171,17 @@ public class content_fabu extends AppCompatActivity
     private void getView() {
         ed_price=findViewById(R.id.ed_price);
         ed_price.setRawInputType(Configuration.KEYBOARD_QWERTY);
-        ed_yunfei=findViewById(R.id.ed_yunfei);
-        ed_yunfei.setRawInputType(Configuration.KEYBOARD_QWERTY);
+
+
         btn_contentfabu_back=findViewById(R.id.btn_contentfabu_back);
         LL_fabuzay = findViewById(R.id.LL_fabuzay);
         tv_fahuodizay = findViewById(R.id.tv_fahuodizay);
         btn_newFabuzay = findViewById(R.id.btn_newFabuzay);
+        btn_fabu=findViewById(R.id.btn_fabu);
+        ed_introductions=findViewById(R.id.ed_introductions);
+        tv_attr=findViewById(R.id.tv_attr);
+        item_attr=findViewById(R.id.item_attr);
+
     }
 
 
@@ -161,8 +199,104 @@ public class content_fabu extends AppCompatActivity
                 case R.id.btn_contentfabu_back:
                     showCustomMessageDialog();
                     break;
+                case R.id.btn_fabu:
+
+                    String introduce=ed_introductions.getText().toString();
+                    String price=ed_price.getText().toString();
+                    String operate="add";
+                    String attr=tv_attr.getText().toString();
+                    Toast.makeText(content_fabu.this, "发布成功!", Toast.LENGTH_LONG).show();
+                    addOrCancelCollection(introduce,price,attr);
+                    Log.i("zay","zga");
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            Log.i("zay","zgaaa");
+                            fabu();
+                        }
+                    }.start();
+                    break;
+                case R.id.item_attr:
+                    showAttrChooseDialog();
+                    break;
             }
         }
+
+        private void addOrCancelCollection(final String introduce, final String price,final String attr ) {
+            Resources resources = getResources();
+            final String hostIp = resources.getString(R.string.hostStr);
+            new Thread() {
+                @Override
+                public void run() {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    Request request;
+                    FormBody formBody = new FormBody.Builder()
+                            .add("userAccount",USERACCOUNT)
+                            .add("userName",USERNAME)
+                            .add("introduce", introduce)
+                            .add("price",price)
+                            .add("attr",attr)
+                            .build();
+                    request = new Request.Builder()
+                            .url("http://" + hostIp + ":8080/XianWanService/addCommi")
+                            .post(formBody)
+                            .build();
+                    Call call = okHttpClient.newCall(request);
+                    try {
+                        call.execute();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        }
+    }
+
+    private void fabu() {
+        Resources resources = getResources();
+        final String hostIp = resources.getString(R.string.hostStr);
+        Log.i("dddd","ddd");
+        //设置响应超时时间
+        OkHttpClient client = new OkHttpClient.Builder()
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .build();
+        //设置文件传输类型及编码格式
+        MediaType mediaType = MediaType.parse("multipart/from-data;charser=utf-8");
+        MultipartBody.Builder builder = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("userId",USERACCOUNT);
+
+        for(int i = 0;i < pathList.size();i++){
+            builder.addFormDataPart("img",""+i, RequestBody.create(new File(pathList.get(i)),mediaType));
+        }
+        RequestBody body = builder.build();
+        Request request = new Request.Builder()
+                .url("http://"+hostIp+":8080/XianWanService/FabuPicSaveController")
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        //4. 发起请求并接收响应
+        Response response = null;
+        try {
+            response = call.execute();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAttrChooseDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(content_fabu.this);// 自定义对话框
+        builder.setSingleChoiceItems(attrArry, 0, new DialogInterface.OnClickListener() {// 2默认的选中
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {// which是被选中的位置
+
+                tv_attr.setText(attrArry[which]);
+                dialog.dismiss();// 随便点击一个item消失对话框，不用点击确认取消
+            }});
+        builder.show();
     }
 
     private void showCustomMessageDialog() {
@@ -183,7 +317,7 @@ public class content_fabu extends AppCompatActivity
         builder.setPositiveButton("发布", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//发布事件
+            dialog.dismiss();
 
             }
         });
@@ -191,6 +325,8 @@ public class content_fabu extends AppCompatActivity
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
+
 
     private void openAlbum() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -242,6 +378,10 @@ public class content_fabu extends AppCompatActivity
     }
     //动态添加Button控件
     private void addButton(final String imagePath) {
+        //将地址存放到list集合中,便于一起提交
+        Log.i("zayhh",":"+imagePath);
+        final Uri suolue = makePicSmaller(imagePath);
+        pathList.add(suolue.getPath());
 
         //图像点击按钮
         final Button button = new Button(content_fabu.this);
@@ -263,13 +403,14 @@ public class content_fabu extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(content_fabu.this,BigPic_fabu.class);
-                intent.putExtra("path",imagePath);
+                intent.putExtra("path",suolue.getPath());
                 MessageEvent messageEvent = new MessageEvent(button);
                 EventBus.getDefault().postSticky(messageEvent);
                 startActivity(intent);
             }
         });
     }
+
 
     @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
     public void onMoonEvent(MessageEvent objEvent) {
@@ -295,5 +436,20 @@ public class content_fabu extends AppCompatActivity
         }
         return path;
     }
+    public Uri makePicSmaller(String originalPic){
+        File file = new File(getExternalCacheDir(),"suolue_image.jpg");
+        Uri suolue = Uri.fromFile(file);
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            BitmapFactory.Options ops = new BitmapFactory.Options();
+            ops.inSampleSize = 8;
+            //ops.inJustDecodeBounds = true;
+            Bitmap bitmap2 = BitmapFactory.decodeFile(originalPic,ops);
+            bitmap2.compress(Bitmap.CompressFormat.JPEG,100,out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        return suolue;
+    }
 }

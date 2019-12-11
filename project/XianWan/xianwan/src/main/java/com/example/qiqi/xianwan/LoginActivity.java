@@ -97,12 +97,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
     //实现登录
     private void loginWithOkHttp(String loginAddress, String userAccount, String userPassword) {
         HttpUtils.loginWithOkHttp(loginAddress,userAccount,userPassword, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
+                Toast.makeText(
+                        LoginActivity.this,
+                        "账户或密码错误",
+                        Toast.LENGTH_SHORT
+                ).show();
             }
 
             @Override

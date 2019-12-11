@@ -11,6 +11,5 @@ public class MyApplication extends Application {
         super.onCreate();
 
         EaseUI.getInstance().init(this,null);
-//        opptions.setAcceptInvitationAlways(false);
     }
 }

@@ -69,7 +69,7 @@
         <activity android:name=".meadapter.person_content.Et_jianjie" />
         <activity android:name=".meadapter.person_content.List_job" />
         <activity android:name=".meadapter.person_content.List_jobname" />
-        <activity android:name=".meadapter.person_content.person_content" />
+
         <activity android:name=".meadapter.wofabu.BigPic_fabu" />
         <activity android:name=".meadapter.xianwanpic.headpicoption" />
         <activity android:name=".meadapter.wofabu.wofabu" />

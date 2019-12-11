@@ -1,16 +1,15 @@
 package com.example.qiqi.xianwan.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.qiqi.xianwan.LoginActivity;
 import com.example.qiqi.xianwan.R;
 
+import com.example.qiqi.xianwan.entity.Commodity;
 import com.example.qiqi.xianwan.meadapter.ilike.Ilike;
-import com.example.qiqi.xianwan.meadapter.person_content.person_content;
 import com.example.qiqi.xianwan.meadapter.wofabu.wofabu;
 import com.example.qiqi.xianwan.meadapter.womaichu.womaichu;
 import com.example.qiqi.xianwan.meadapter.womaidao.womaidao;
@@ -34,9 +34,29 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.LoginActivity.USERNAME;
 
 public class MeFragment extends Fragment {
+    private boolean flag = false;
     private SmartRefreshLayout srl;
     private ImageView fabu;
     private ImageView maichu;
@@ -45,36 +65,144 @@ public class MeFragment extends Fragment {
     private RelativeLayout rl_fabu;
     private RelativeLayout ilike;
     private LinearLayout background;
+    private TextView ilike_size;
+    List<Commodity> commodities = new ArrayList<>();
+    private TextView fabu_size;
+    private OkHttpClient okHttpClient = new OkHttpClient();
+    private String hostStr = "10.7.89.139";
+    private String email;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            String json = (String) msg.obj;
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            fabu_size.setText(jsonArray.length() + "");
+        }
+
+    };
+    private Handler handler2 = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            String json = (String) msg.obj;
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            ilike_size.setText(jsonArray.length() + "");
+        }
+
+    };
+    private Handler handler3 = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    RequestOptions requestOptions = new RequestOptions()
+                            .placeholder(R.drawable.ic_launcher_background)
+                            .error(R.drawable.ic_launcher_background)
+                            .fallback(R.drawable.ic_launcher_background)
+                            .override(400)
+                            .circleCrop()
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE);
+                    Log.i("zaybbbbb",""+getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg");
+                    if(new File(getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg").exists()){
+                        Glide.with(getContext())
+                                .load(getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg")
+                                .apply(requestOptions)
+                                .into(head_img_zay);
+                        Log.i("zayabab","错1");
+                    }
+                    else {
+                        Glide.with(getContext())
+                                .load(R.mipmap.sss)
+                                .apply(requestOptions)
+                                .into(head_img_zay);
+                        Log.i("zayabab","错2");
+                    }
+                    //head_img_zay.setImageResource(R.mipmap.back);
+                    break;
+            }
+        }
+    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.me_fragment_layout,container,false);
+
+
+
+
+       if (USERNAME!=null) {
+           final View view = inflater.inflate(R.layout.me_fragment_layout, container, false);
+           srl = view.findViewById(R.id.srl);
+           fabu = view.findViewById(R.id.iv_fabu);
+           maichu = view.findViewById(R.id.iv_maichu);
+           maidao = view.findViewById(R.id.iv_maidao);
+           head_img_zay = view.findViewById(R.id.head_img_zay);
+           rl_fabu = view.findViewById(R.id.rl_fabu);
+           ilike = view.findViewById(R.id.ilike);
+           background = view.findViewById(R.id.background);
+           fabu_size = view.findViewById(R.id.fabu_size);
+           ilike_size = view.findViewById(R.id.ilike_size);
+           asyncFormOp();
+           asyncFormOpilike();
+           InitHeadPic();
+
+       }
+        final View view = inflater.inflate(R.layout.me_fragment_layout, container, false);
         srl = view.findViewById(R.id.srl);
-        fabu=view.findViewById(R.id.iv_fabu);
-        maichu=view.findViewById(R.id.iv_maichu);
-        maidao=view.findViewById(R.id.iv_maidao);
+        fabu = view.findViewById(R.id.iv_fabu);
+        maichu = view.findViewById(R.id.iv_maichu);
+        maidao = view.findViewById(R.id.iv_maidao);
         head_img_zay = view.findViewById(R.id.head_img_zay);
-        rl_fabu=view.findViewById(R.id.rl_fabu);
-        ilike=view.findViewById(R.id.ilike);
-        background= view.findViewById(R.id.background);
+        rl_fabu = view.findViewById(R.id.rl_fabu);
+        ilike = view.findViewById(R.id.ilike);
+        background = view.findViewById(R.id.background);
+        fabu_size = view.findViewById(R.id.fabu_size);
+        ilike_size = view.findViewById(R.id.ilike_size);
+
         InitHeadPic();
+
         head_img_zay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(),headpicoption.class);
-                startActivity(intent);
-
+                if (USERNAME!=null&&USERACCOUNT!=null) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), headpicoption.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         //我发布的点击事件
         rl_fabu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),wofabu.class);
-                startActivity(intent);
+                if (USERNAME!=null&&USERACCOUNT!=null) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), wofabu.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -82,10 +210,15 @@ public class MeFragment extends Fragment {
         background.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),person_content.class);
-                startActivity(intent);
-
+                if (USERNAME!=null&&USERACCOUNT!=null) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), headpicoption.class);
+                    startActivity(intent);
+                }  else{
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -93,77 +226,222 @@ public class MeFragment extends Fragment {
         ilike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),Ilike.class);
-                startActivity(intent);
+                if (USERNAME!=null&&USERACCOUNT!=null) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), Ilike.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         srl.setReboundDuration(1000);
         srl.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshData();
+                if (USERNAME!=null&&USERACCOUNT!=null) {
+                    refreshData();
+                }
+                else{
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
                 srl.finishRefresh();
                 /*
                  * shuaxin
                  * */
             }
         });
-        fabu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),wofabu.class);
-                startActivity(intent);
-            }
-        });
-        maichu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),womaichu.class);
-                startActivity(intent);
-            }
-        });
-        maidao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),womaidao.class);
-                startActivity(intent);
-            }
-        });
 
-        return view;
-    }
 
+
+            return view;
+
+        }
+
+
+
+        private void asyncFormOp () {
+            Resources resources = getResources();
+            final String hostIp = resources.getString(R.string.hostStr);
+            new Thread() {
+                @Override
+                public void run() {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    Log.e("shuaxin", "shuaxin");
+                    Request request;
+                    //Request(Post、FormBody）
+                    FormBody formBody = new FormBody.Builder()
+                            .add("userAccount", USERACCOUNT)
+                            .build();
+                    request = new Request.Builder()
+                            .url("http://" + hostIp + ":8080/XianWanService/fabuforAndroid")
+                            .post(formBody)
+                            .build();
+
+                    //Call
+                    Call call = okHttpClient.newCall(request);
+
+                    Response response;
+
+                    try {
+                        response = call.execute();
+                        String message = response.body().string();
+                        wrapperMessage(message);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+
+
+        }
+        private void asyncFormOpilike () {
+            Resources resources = getResources();
+            final String hostIp = resources.getString(R.string.hostStr);
+            new Thread() {
+                @Override
+                public void run() {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    Request request;
+
+                    FormBody formBody = new FormBody.Builder()
+                            .add("userAccount", USERACCOUNT)
+                            .build();
+                    request = new Request.Builder()
+                            .url("http://" + hostIp + ":8080/XianWanService/collectForAndroid")
+                            .post(formBody)
+                            .build();
+
+                    //Call
+                    Call call = okHttpClient.newCall(request);
+
+                    Response response;
+
+                    try {
+                        response = call.execute();
+                        String message = response.body().string();
+                        wrapperMessage2(message);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }.start();
+        }
+        private void wrapperMessage (String info){
+
+            Message msg = Message.obtain();
+            msg.obj = info;
+            handler.sendMessage(msg);
+        }
+        private void wrapperMessage2 (String message){
+            Message msg = Message.obtain();
+            msg.obj = message;
+            handler2.sendMessage(msg);
+        }
     private void InitHeadPic() {
-        RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
-                .fallback(R.drawable.ic_launcher_background)
-                .override(400)
-                .circleCrop();
-        if(new File(getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg").exists()){
-            Glide.with(this)
-                    .load(getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg")
-                    .apply(requestOptions)
-                    .into(head_img_zay);
+        new Thread() {
+            @Override
+            public void run() {
+                if (USERACCOUNT!=null) {
+                    dowm();
+                }
+                Message message = new Message();
+                message.what = 1;
+                handler3.sendMessage(message);
+
+            }
+        }.start();
+
+    int i = 1;
+            while (flag != true) {
+                i++;
+                Log.i("zayabab", "111:" + i + flag);
+                if (i > 2000) {
+                    break;
+                }
+            }
+            // Log.i("zayabab","111:"+i+flag);
+            RequestOptions requestOptions = new RequestOptions()
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
+                    .fallback(R.drawable.ic_launcher_background)
+                    .override(400)
+                    .circleCrop()
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE);
+            Log.i("zaybbbbb", "" + getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg");
+            if (new File(getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg").exists()) {
+                Glide.with(this)
+                        .load(getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg")
+                        .apply(requestOptions)
+                        .into(head_img_zay);
+                Log.i("zayabab", "错1");
+            } else {
+                Glide.with(this)
+                        .load(R.mipmap.sss)
+                        .apply(requestOptions)
+                        .into(head_img_zay);
+                Log.i("zayabab", "错2");
+            }
+
         }
-        else {
-            Glide.with(this)
-                    .load(R.mipmap.sss)
-                    .apply(requestOptions)
-                    .into(head_img_zay);
+
+
+        private void refreshData () {
+        if (USERACCOUNT!=null) {
+            InitHeadPic();
+            //刷新我发布的数量
+            asyncFormOp();
+            //刷新我的收藏数量
+            asyncFormOpilike();
+        }
+        }
+
+        public void dowm () {
+            Resources resources = getResources();
+            final String hostIp = resources.getString(R.string.hostStr);
+            File file = new File(getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg");
+            if (file.exists()) {
+                file.delete();
+            }
+            Request request = new Request.Builder()
+                    .header("userId", USERACCOUNT)
+                    .url("http://" + hostIp + ":8080/XianWanService/HeadPicSendToAndroidController")
+                    .build();
+            Call call = okHttpClient.newCall(request);
+            Response response = null;
+            try {
+                response = call.execute();
+                InputStream in = response.body().byteStream();
+                OutputStream out = new FileOutputStream(
+                        file
+                );
+                byte[] bytes = new byte[1024];
+                int n = -1;
+                while ((n = in.read(bytes)) != -1) {
+                    out.write(bytes, 0, n);
+                    out.flush();
+                }
+                flag = true;
+                Log.i("zayabab", "错3");
+                in.close();
+                out.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }
 
-    private void refreshData() {
-       InitHeadPic();
-    }
-
-}
 
 
 

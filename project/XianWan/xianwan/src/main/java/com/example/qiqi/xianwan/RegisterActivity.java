@@ -269,7 +269,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void run() {
                         if(responseData.equals("true")){
                             ToastUtils.showToast(RegisterActivity.this,"注册成功！",Toast.LENGTH_SHORT);
-                            Intent intentRegister = new Intent(RegisterActivity.this,LoginActivity.class);
+                            Intent intentRegister = new Intent(RegisterActivity.this,TagsActivity.class);
                             startActivity(intentRegister);
                         }else {
                             ToastUtils.showToast(RegisterActivity.this,"注册错误！",Toast.LENGTH_SHORT);

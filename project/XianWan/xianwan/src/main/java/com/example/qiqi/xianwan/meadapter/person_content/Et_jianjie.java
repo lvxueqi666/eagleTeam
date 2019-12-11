@@ -1,4 +1,5 @@
 package com.example.qiqi.xianwan.meadapter.person_content;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +9,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.meadapter.MessageEvent;
+import com.example.qiqi.xianwan.meadapter.xianwanpic.headpicoption;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,7 +45,7 @@ private EditText edit_jianjie;
 //重写物理返回按钮
 @Override
 public void onBackPressed() {
-    Intent intent = new Intent(Et_jianjie.this,person_content.class);
+    Intent intent = new Intent(Et_jianjie.this,headpicoption.class);
     intent.putExtra("EXTRA_MESSAGE","");
     setResult(1, intent);
     finish();
@@ -64,7 +66,7 @@ public void onBackPressed() {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.jianjie_back:
-                    Intent intent = new Intent(Et_jianjie.this,person_content.class);
+                    Intent intent = new Intent(Et_jianjie.this,headpicoption.class);
                     intent.putExtra("EXTRA_MESSAGE","");
                     setResult(1, intent);
                     finish();
@@ -95,7 +97,7 @@ public void onBackPressed() {
     }
 
     private void sendMessage(View view) {
-        Intent intent = new Intent(this,person_content.class);
+        Intent intent = new Intent(this,headpicoption.class);
         //声明一个编辑框和布局文件中id为edit_message的编辑框链接起来。
         EditText editText = (EditText) findViewById(R.id.edit_jianjie);
         //把编辑框获取的文本赋值给String类型的message
