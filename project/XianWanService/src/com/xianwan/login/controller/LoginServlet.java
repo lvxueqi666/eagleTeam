@@ -43,19 +43,18 @@ public class LoginServlet extends HttpServlet {
 		String userAccount = request.getParameter("userAccount");
 		String userPassword = request.getParameter("userPassword");
 		String result;
-		String checked;
 		
 		LoginService loginService = new LoginService();
 		try {
 			result = loginService.loginCheck(userAccount,userPassword);
 			System.out.println("登录账号：" + userAccount + ",登录密码：" + userPassword + ",登录结果：" + result);
 			if(!result.equals("")) {
-				checked = loginService.insertAccountAndName(userAccount,result);
-			
-					response.setCharacterEncoding("utf-8");
-					PrintWriter writer = response.getWriter();
-					writer.print(result);
-				
+
+				loginService.insertAccountAndName(userAccount,result);
+				response.setCharacterEncoding("utf-8");
+				PrintWriter writer = response.getWriter();
+				writer.print(result);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

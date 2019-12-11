@@ -9,8 +9,8 @@ public class LoginService {
 		return new LoginDao().checkUser(userAccount,userPassword);
 	}
 
-	public String insertAccountAndName(String userAccount, String result) throws SQLException {
+	public void insertAccountAndName(String userAccount, String result) throws SQLException {
 		LoginDao loginDao = new LoginDao();
-		return loginDao.insertAccountAndName(userAccount,result);
+		loginDao.insertAccountAndName(userAccount,result);
 	}
 }
