@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.hyphenate.easeui.EaseConstant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -120,7 +121,7 @@ public class DetailActivity extends AppCompatActivity {
         want.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //startChat(userId);
             }
         });
 
@@ -145,6 +146,15 @@ public class DetailActivity extends AppCompatActivity {
         dianzancount = findViewById(R.id.likeCount);
         want = findViewById(R.id.detail_want);
         back = findViewById(R.id.detail_back);
+    }
+
+    /**
+     * 跳转至与卖家的聊天界面
+     */
+    private void startChat(String userId){
+        Intent intent = new Intent(DetailActivity.this,ChatActivity.class);
+        intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
+        startActivity(intent);
     }
 
     private void modifyShowLikeCount(final String userId, final String commodityId,final String addOrCancel,final String operate){
