@@ -328,9 +328,7 @@ public class MeFragment extends Fragment {
 
                     //Call
                     Call call = okHttpClient.newCall(request);
-
                     Response response;
-
                     try {
                         response = call.execute();
                         String message = response.body().string();
@@ -339,8 +337,6 @@ public class MeFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-
-
             }.start();
         }
         private void wrapperMessage (String info){
