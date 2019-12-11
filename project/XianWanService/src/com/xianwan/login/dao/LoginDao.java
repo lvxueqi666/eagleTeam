@@ -30,7 +30,7 @@ public class LoginDao {
 		return "";
 	}
 
-	public String insertAccountAndName(String userAccount, String result) throws SQLException {
+	public void insertAccountAndName(String userAccount, String result) throws SQLException {
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		String sql = "insert into userdetail values(?,?,?,?,?,?,?,?)";
@@ -45,16 +45,11 @@ public class LoginDao {
 			psmt.setString(6, "");
 			psmt.setString(7, "");
 			psmt.setString(8, "");
-			int n = psmt.executeUpdate();
-			if(n > 0) {
-				return "true";
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			conn.close();
 		}
-		return "false";
 	}
 
 }
