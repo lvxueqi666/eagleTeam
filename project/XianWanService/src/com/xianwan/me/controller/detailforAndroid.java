@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.xianwan.home.entity.Commodity;
 import com.xianwan.me.entity.UserDetail;
 import com.xianwan.me.service.SearchService;
 
