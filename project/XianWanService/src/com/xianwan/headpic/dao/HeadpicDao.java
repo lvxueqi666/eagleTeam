@@ -22,7 +22,7 @@ public class HeadpicDao {
 		ResultSet rs = pstm.executeQuery();
 		while(rs.next()){
 			Headpic headpic = new Headpic();
-			headpic.setUserId(rs.getString(3));
+			headpic.setUserAccount(rs.getString(3));
 			headpic.setAddress(rs.getString(2));
 			list.add(headpic);
 		}

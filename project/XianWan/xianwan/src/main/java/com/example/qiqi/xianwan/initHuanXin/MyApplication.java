@@ -1,8 +1,10 @@
 package com.example.qiqi.xianwan.initHuanXin;
 
 import android.app.Application;
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Headpic;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseUI;
@@ -33,17 +35,17 @@ public class MyApplication extends Application {
         EaseUI.getInstance().init(this,null);
 
     }
-    public static EaseUser getUserInfo(String username){
+    public EaseUser getUserInfo(String username){
         EaseUser user = null;
         q++;
 //          Log.i("hxr","我执行了第"+q+"次,名字是"+username+"数组长为"+list.size()+"111 de url:"+list.get(0).getUrl());
         if(Headpiclist.size()==0){
             Log.i("hxr","wuxiao");
         }else{
-            Log.i("hxr","数"+Headpiclist.get(0).getUserId());
+            Log.i("hxr","数"+Headpiclist.get(0).getUserAccount());
         }
         for(int i=0;i<Headpiclist.size();i++){
-            if(username.equals(Headpiclist.get(i).getUserId())){
+            if(username.equals(Headpiclist.get(i).getUserAccount())){
                 user = new EaseUser(username);
                 user.setAvatar(Headpiclist.get(i).getAddress());
                 return user;
@@ -52,7 +54,7 @@ public class MyApplication extends Application {
         return null;
     }
 
-    public static void setEaseUIProviders(){
+    public void setEaseUIProviders(){
         easeUI.setUserProfileProvider(new EaseUI.EaseUserProfileProvider() {
             @Override
             public EaseUser getUser(String username) {
@@ -61,13 +63,15 @@ public class MyApplication extends Application {
         });
     }
 
-    public static void headpic(){
+    public void headpic(){
+        Resources resources = getResources();
+        final String hostIp = resources.getString(R.string.hostStr);
         new Thread(){
             @Override
             public void run() {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://10.7.89.18:8080/XianWanService/Android4Headpic")
+                        .url("http://"+hostIp+":8080/XianWanService/Android4Headpic")
                         .build();
                 Call call = okHttpClient.newCall(request);
                 try {
@@ -80,8 +84,7 @@ public class MyApplication extends Application {
                             String objStr = jsonArray.getString(i);
                             JSONObject jsonObject = new JSONObject(objStr);
                             Headpic pic = new Headpic();
-                            pic.setUserId(jsonObject.getString("userId"));
-                            Log.i("bbb",""+pic.getId());
+                            pic.setUserAccount(jsonObject.getString("userAccount"));
                             pic.setAddress(jsonObject.getString("address"));
                             Headpiclist.add(pic);
                         }

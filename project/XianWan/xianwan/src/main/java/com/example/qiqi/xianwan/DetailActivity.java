@@ -69,11 +69,8 @@ public class DetailActivity extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String icons = intent.getStringExtra("icon");
         String userName = intent.getStringExtra("userName");
-<<<<<<< HEAD
-        userId = intent.getStringExtra("userAccount");
-=======
+
         userAccount = intent.getStringExtra("userAccount");
->>>>>>> 03b324790dbdbd2d69ba0dba1a0e08d91c37bc3c
         showLikes = intent.getStringExtra("showLike");
 
         handler = new Handler() {
@@ -157,7 +154,7 @@ public class DetailActivity extends AppCompatActivity {
         want.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startChat(userId);
+                startChat(userAccount);
             }
         });
 
@@ -167,8 +164,8 @@ public class DetailActivity extends AppCompatActivity {
                 DetailActivity.this.finish();
             }
         });
-        MyApplication.headpic();
-        MyApplication.setEaseUIProviders();
+        new MyApplication().headpic();
+        new MyApplication().setEaseUIProviders();
     }
 
     private void getView() {

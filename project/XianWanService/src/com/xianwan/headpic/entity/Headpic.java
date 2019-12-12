@@ -3,7 +3,7 @@ package com.xianwan.headpic.entity;
 public class Headpic {
     private String id;
     private String address;
-    private String userId;
+    private String userAccount;
     
 	public String getId() {
 		return id;
@@ -17,11 +17,11 @@ public class Headpic {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUserAccount() {
+		return userAccount;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserAccount(String userAccount) {
+		this.userAccount = userAccount;
 	}
     
 }
