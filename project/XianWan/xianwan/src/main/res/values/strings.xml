@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">XianWan</string>
-<<<<<<< HEAD
     <string name="hostStr">10.7.85.250</string>
-=======
-    <string name="hostStr">192.168.43.252</string>
->>>>>>> 2eeb0aea9a31960a99fc1243b7686de41e784831
 </resources>
