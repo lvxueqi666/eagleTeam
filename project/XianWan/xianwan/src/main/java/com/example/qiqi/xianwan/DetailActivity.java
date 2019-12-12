@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.qiqi.xianwan.initHuanXin.MyApplication;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 
 import org.json.JSONArray;
@@ -67,6 +69,7 @@ public class DetailActivity extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String icons = intent.getStringExtra("icon");
         String userName = intent.getStringExtra("userName");
+
         userAccount = intent.getStringExtra("userAccount");
         showLikes = intent.getStringExtra("showLike");
 
@@ -151,7 +154,7 @@ public class DetailActivity extends AppCompatActivity {
         want.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startChat(userId);
+                startChat(userAccount);
             }
         });
 
@@ -161,6 +164,12 @@ public class DetailActivity extends AppCompatActivity {
                 DetailActivity.this.finish();
             }
         });
+
+
+
+        MyApplication myApplication = new MyApplication();
+        myApplication.headpic();
+        myApplication.setEaseUIProviders();
 
     }
 
@@ -184,6 +193,7 @@ public class DetailActivity extends AppCompatActivity {
     private void startChat(String userId){
         Intent intent = new Intent(DetailActivity.this,ChatActivity.class);
         intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
+        intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
         startActivity(intent);
     }
 
