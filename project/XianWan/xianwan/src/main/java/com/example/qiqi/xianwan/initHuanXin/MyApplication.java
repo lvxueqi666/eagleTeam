@@ -27,7 +27,7 @@ public class MyApplication extends Application {
     public static List<Headpic> Headpiclist = new ArrayList<>();
     private static EaseUI easeUI = EaseUI.getInstance();
     private static int q = 0;
-    Resources resources = getResources();
+    Resources resources = getApplicationContext().getResources();
     final String hostIp = resources.getString(R.string.hostStr);
 
 
