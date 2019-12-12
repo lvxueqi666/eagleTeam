@@ -34,6 +34,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.LoginActivity.USERNAME;
+
 
 public class MessageFragment extends Fragment {
     private ImageView iv_notice;
@@ -71,15 +74,21 @@ public class MessageFragment extends Fragment {
         lv_message.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Message message = messageList.get(position);
-                Toast.makeText(
-                        getActivity(),
-                        message.getUserName(),
-                        Toast.LENGTH_SHORT
-                ).show();
-                Intent intent = new Intent(getActivity(), MessageChatActivity.class);
-                intent.putExtra("name",message.getUserName());
-                startActivity(intent);
+                if(USERNAME != null && USERACCOUNT != null) {
+                    Message message = messageList.get(position);
+                    Toast.makeText(
+                            getActivity(),
+                            message.getUserName(),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    Intent intent = new Intent(getActivity(), MessageChatActivity.class);
+                    intent.putExtra("name", message.getUserName());
+                    startActivity(intent);
+                }else{
+                    Intent intent_notice = new Intent();
+                    intent_notice.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent_notice);
+                }
             }
         });
 
@@ -176,7 +185,6 @@ public class MessageFragment extends Fragment {
         Log.i("wtw","取消注册消息监听器");
     }
 
-
     //下拉
     private void refreshData() {
         messageList.clear();
@@ -212,19 +220,37 @@ public class MessageFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_notice:
-                    Intent intent_notice = new Intent();
-                    intent_notice.setClass(getActivity(),NoticeActivity.class);
-                    startActivity(intent_notice);
+                    if(USERNAME != null && USERACCOUNT != null){
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), NoticeActivity.class);
+                        startActivity(intent_notice);
+                    }else{
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent_notice);
+                    }
                     break;
                 case R.id.iv_interaction:
-                    Intent intent_interaction = new Intent();
-                    intent_interaction.setClass(getActivity(),ConversationActivity.class);
-                    startActivity(intent_interaction);
+                    if(USERNAME != null && USERACCOUNT != null) {
+                        Intent intent_interaction = new Intent();
+                        intent_interaction.setClass(getActivity(), ConversationActivity.class);
+                        startActivity(intent_interaction);
+                    }else{
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent_notice);
+                    }
                     break;
                 case R.id.iv_activity:
-                    Intent intent_activities = new Intent();
-                    intent_activities.setClass(getActivity(),ActivitiesActivity.class);
-                    startActivity(intent_activities);
+                    if(USERNAME != null && USERACCOUNT != null) {
+                        Intent intent_activities = new Intent();
+                        intent_activities.setClass(getActivity(), ActivitiesActivity.class);
+                        startActivity(intent_activities);
+                    }else{
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent_notice);
+                    }
                     break;
             }
         }
