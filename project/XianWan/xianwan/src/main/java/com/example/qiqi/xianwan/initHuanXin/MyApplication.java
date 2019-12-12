@@ -27,9 +27,6 @@ public class MyApplication extends Application {
     public static List<Headpic> Headpiclist = new ArrayList<>();
     private static EaseUI easeUI = EaseUI.getInstance();
     private static int q = 0;
-    Resources resources = getApplicationContext().getResources();
-    final String hostIp = resources.getString(R.string.hostStr);
-
 
     @Override
     public void onCreate() {
@@ -64,41 +61,5 @@ public class MyApplication extends Application {
                 return getUserInfo(username);
             }
         });
-    }
-
-    public void headpic(){
-        Resources resources = getResources();
-        final String hostIp = resources.getString(R.string.hostStr);
-        new Thread(){
-            @Override
-            public void run() {
-                OkHttpClient okHttpClient = new OkHttpClient();
-                Request request = new Request.Builder()
-                        .url("http://"+ hostIp +":8080/XianWanService/Android4Headpic")
-                        .build();
-                Call call = okHttpClient.newCall(request);
-                try {
-                    Response response = call.execute();
-                    String message = response.body().string();
-                    Log.i("aaa","a"+message);
-                    if(message != null){
-                        JSONArray jsonArray = new JSONArray(message);
-                        for(int i = 0; i < jsonArray.length();i++) {
-                            String objStr = jsonArray.getString(i);
-                            JSONObject jsonObject = new JSONObject(objStr);
-                            Headpic pic = new Headpic();
-                            pic.setUserAccount(jsonObject.getString("userAccount"));
-                            pic.setAddress(jsonObject.getString("address"));
-                            Headpiclist.add(pic);
-                        }
-                    }
-                    Log.i("picture","头像遍历完毕");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
     }
 }
