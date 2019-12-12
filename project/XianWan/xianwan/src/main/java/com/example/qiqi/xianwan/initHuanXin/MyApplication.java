@@ -27,6 +27,9 @@ public class MyApplication extends Application {
     public static List<Headpic> Headpiclist = new ArrayList<>();
     private static EaseUI easeUI = EaseUI.getInstance();
     private static int q = 0;
+    Resources resources = getResources();
+    final String hostIp = resources.getString(R.string.hostStr);
+
 
     @Override
     public void onCreate() {
@@ -71,7 +74,7 @@ public class MyApplication extends Application {
             public void run() {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://"+hostIp+":8080/XianWanService/Android4Headpic")
+                        .url("http://"+ hostIp +":8080/XianWanService/Android4Headpic")
                         .build();
                 Call call = okHttpClient.newCall(request);
                 try {

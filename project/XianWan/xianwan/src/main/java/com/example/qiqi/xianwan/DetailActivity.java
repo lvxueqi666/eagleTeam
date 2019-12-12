@@ -164,8 +164,12 @@ public class DetailActivity extends AppCompatActivity {
                 DetailActivity.this.finish();
             }
         });
-        new MyApplication().headpic();
-        new MyApplication().setEaseUIProviders();
+
+
+        MyApplication myApplication = new MyApplication();
+        myApplication.headpic();
+        myApplication.setEaseUIProviders();
+
     }
 
     private void getView() {
