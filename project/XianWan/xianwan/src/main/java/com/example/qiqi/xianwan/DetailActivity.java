@@ -3,12 +3,15 @@ package com.example.qiqi.xianwan;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -35,17 +40,18 @@ public class DetailActivity extends AppCompatActivity {
     private TextView name;
     private TextView detailPrice;
     private TextView introdu;
-    private ImageView img1;
-    private ImageView img2;
     private ImageView showLike;
     private TextView dianzancount;
     private ImageView shoucang;
     private Button want;
     private ImageView back;
+    private LinearLayout linearLayout;
+    private Handler handler;
+    private List<String> detailImage;
 
 
     private String commodityId;
-    private String userId;
+    private String userAccount;
 
     private String showLikes;
 
@@ -63,15 +69,43 @@ public class DetailActivity extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String icons = intent.getStringExtra("icon");
         String userName = intent.getStringExtra("userName");
+<<<<<<< HEAD
         userId = intent.getStringExtra("userAccount");
+=======
+        userAccount = intent.getStringExtra("userAccount");
+>>>>>>> 03b324790dbdbd2d69ba0dba1a0e08d91c37bc3c
         showLikes = intent.getStringExtra("showLike");
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                String json = (String) msg.obj;
+                Log.e("jsonjsonjson",json);
+                try {
+                    JSONArray jsonArray = new JSONArray(json);
+                    for(int i = 0; i < jsonArray.length();i++){
+                        String objStr = jsonArray.getString(i);
+                        detailImage.add(objStr);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for(int i = 0; i < detailImage.size(); i++) {
+                    ImageView imageView = new ImageView(getApplicationContext());
+                    imageView.setPadding(30,30,30,30);
+                    Glide.with(getApplicationContext()).load(detailImage.get(i)).into(imageView);
+                    linearLayout.addView(imageView);
+                }
+            }
+        };
+
+        getImages("11111111","http://49.233.142.163:8080/images/111.jpg");
 
         Glide.with(this).load(icons).into(icon);
         name.setText(userName);
         detailPrice.setText("￥" + price);
         introdu.setText(introductions);
-        Glide.with(this).load(images).into(img1);
-        Glide.with(this).load(images).into(img2);
         dianzancount.setText(showLikes);
         adjustShowLikeStatus("111","222","adjust");
         adjustCollectionStatus("111","222","adjust");
@@ -142,13 +176,13 @@ public class DetailActivity extends AppCompatActivity {
         name = findViewById(R.id.detail_name);
         detailPrice = findViewById(R.id.detail_price);
         introdu = findViewById(R.id.detail_introduce);
-        img1 = findViewById(R.id.detail_img1);
-        img2 = findViewById(R.id.detail_img2);
         showLike = findViewById(R.id.dianzan);
         shoucang = findViewById(R.id.shoucang);
         dianzancount = findViewById(R.id.likeCount);
         want = findViewById(R.id.detail_want);
         back = findViewById(R.id.detail_back);
+        linearLayout = findViewById(R.id.linearContent);
+        detailImage = new ArrayList<>();
     }
 
     /**
@@ -161,7 +195,7 @@ public class DetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void modifyShowLikeCount(final String userId, final String commodityId,final String addOrCancel,final String operate){
+    private void modifyShowLikeCount(final String userAccount, final String commodityId,final String addOrCancel,final String operate){
         Resources resources = getResources();
         final String hostIp = resources.getString(R.string.hostStr);
         new Thread() {
@@ -171,7 +205,7 @@ public class DetailActivity extends AppCompatActivity {
                 Request request;
                 FormBody formBody = new FormBody.Builder()
                         .add("commodityId", commodityId)
-                        .add("currentId",userId)
+                        .add("userAccount",userAccount)
                         .add("addOrCancel",addOrCancel)
                         .add("operate",operate)
                         .build();
@@ -189,7 +223,7 @@ public class DetailActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void addOrCancelCollection(final String userId, final String commodityId, final String operate) {
+    private void addOrCancelCollection(final String userAccount, final String commodityId, final String operate) {
         Resources resources = getResources();
         final String hostIp = resources.getString(R.string.hostStr);
         new Thread() {
@@ -198,7 +232,7 @@ public class DetailActivity extends AppCompatActivity {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request;
                 FormBody formBody = new FormBody.Builder()
-                        .add("currentId", userId)
+                        .add("userAccount", userAccount)
                         .add("commodityId",commodityId)
                         .add("operate",operate)
                         .build();
@@ -216,7 +250,7 @@ public class DetailActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void adjustCollectionStatus(final String userId, final String commodityId, final String operate){
+    private void adjustCollectionStatus(final String userAccount, final String commodityId, final String operate){
         Resources resources = getResources();
         final String hostIp = resources.getString(R.string.hostStr);
         new Thread() {
@@ -225,7 +259,7 @@ public class DetailActivity extends AppCompatActivity {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request;
                 FormBody formBody = new FormBody.Builder()
-                        .add("currentId", userId)
+                        .add("userAccount", userAccount)
                         .add("commodityId",commodityId)
                         .add("operate",operate)
                         .build();
@@ -254,7 +288,7 @@ public class DetailActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void adjustShowLikeStatus(final String userId, final String commodityId, final String operate){
+    private void adjustShowLikeStatus(final String userAccount, final String commodityId, final String operate){
         Resources resources = getResources();
         final String hostIp = resources.getString(R.string.hostStr);
         new Thread() {
@@ -263,7 +297,7 @@ public class DetailActivity extends AppCompatActivity {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request;
                 FormBody formBody = new FormBody.Builder()
-                        .add("currentId", userId)
+                        .add("userAccount", userAccount)
                         .add("commodityId",commodityId)
                         .add("operate",operate)
                         .build();
@@ -290,5 +324,45 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         }.start();
+    }
+
+    private void getImages(String userAccount,String  firstUrl) {
+        Resources resources = getResources();
+        final String hostIp = resources.getString(R.string.hostStr);
+        new Thread() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Request request;
+
+                FormBody formBody = new FormBody.Builder()
+                        .add("userAccount", userAccount)
+                        .add("firstUrl",firstUrl)
+                        .build();
+                request = new Request.Builder()
+                        .url("http://" + hostIp + ":8080/XianWanService/DetailImageOperate")
+                        .post(formBody)
+                        .build();
+
+                //Call
+                Call call = okHttpClient.newCall(request);
+
+                Response response;
+
+                try {
+                    response = call.execute();
+                    String message =  response.body().string();
+                    wrapperMessage(message);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void wrapperMessage(String info){
+        Message msg = Message.obtain();
+        msg.obj = info;
+        handler.sendMessage(msg);
     }
 }

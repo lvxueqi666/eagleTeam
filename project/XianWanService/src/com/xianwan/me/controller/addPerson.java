@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.xianwan.me.service.Commi;
 import com.xianwan.me.service.personService;
 
 /**

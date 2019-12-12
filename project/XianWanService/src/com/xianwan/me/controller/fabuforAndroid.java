@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xianwan.home.entity.Commodity;
-import com.xianwan.home.service.HomeService;
 import com.xianwan.me.service.FabuService;
 
 import net.sf.json.JSONArray;
