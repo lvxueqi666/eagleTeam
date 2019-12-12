@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.qiqi.xianwan.entity.Headpic;
 import com.example.qiqi.xianwan.initHuanXin.MyApplication;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
@@ -33,6 +34,8 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static com.example.qiqi.xianwan.initHuanXin.MyApplication.Headpiclist;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -165,12 +168,8 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-
-        MyApplication myApplication = new MyApplication();
-        myApplication.headpic();
-        myApplication.setEaseUIProviders();
-
     }
+
 
     private void getView() {
         icon = findViewById(R.id.detail_icon);
@@ -190,6 +189,7 @@ public class DetailActivity extends AppCompatActivity {
      * 跳转至与卖家的聊天界面
      */
     private void startChat(String userId){
+        String abc = "111";
         Intent intent = new Intent(DetailActivity.this,ChatActivity.class);
         intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
         intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);

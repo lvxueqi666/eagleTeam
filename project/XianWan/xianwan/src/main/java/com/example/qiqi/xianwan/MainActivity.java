@@ -1,20 +1,36 @@
 package com.example.qiqi.xianwan;
 
+import android.content.res.Resources;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.example.qiqi.xianwan.entity.Headpic;
 import com.example.qiqi.xianwan.fragment.HomeFragment;
 import com.example.qiqi.xianwan.fragment.MeFragment;
 import com.example.qiqi.xianwan.fragment.MessageFragment;
+import com.example.qiqi.xianwan.initHuanXin.MyApplication;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static com.example.qiqi.xianwan.initHuanXin.MyApplication.Headpiclist;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        headpic();
+        MyApplication myApplication = new MyApplication();
+        myApplication.setEaseUIProviders();
 
         FragmentTabHost fragmentTabHost = findViewById(android.R.id.tabhost);
         fragmentTabHost.setup(this,
@@ -86,5 +105,40 @@ public class MainActivity extends AppCompatActivity {
         textViewMap.put(tag,textView);
         return view;
 
+    }
+    public void headpic(){
+        Resources resources = getResources();
+        final String hostIp = resources.getString(R.string.hostStr);
+        new Thread(){
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://"+ hostIp +":8080/XianWanService/Android4Headpic")
+                        .build();
+                Call call = okHttpClient.newCall(request);
+                try {
+                    Response response = call.execute();
+                    String message = response.body().string();
+                    Log.i("aaa","a"+message);
+                    if(message != null){
+                        JSONArray jsonArray = new JSONArray(message);
+                        for(int i = 0; i < jsonArray.length();i++) {
+                            String objStr = jsonArray.getString(i);
+                            JSONObject jsonObject = new JSONObject(objStr);
+                            Headpic pic = new Headpic();
+                            pic.setUserAccount(jsonObject.getString("userAccount"));
+                            pic.setAddress(jsonObject.getString("address"));
+                            Headpiclist.add(pic);
+                        }
+                    }
+                    Log.i("picture","头像遍历完毕");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 }
