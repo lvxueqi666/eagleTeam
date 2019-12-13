@@ -41,6 +41,8 @@ import com.example.qiqi.xianwan.meadapter.person_content.Et_jianjie;
 import com.example.qiqi.xianwan.meadapter.person_content.List_job;
 import com.example.qiqi.xianwan.meadapter.person_content.List_jobname;
 import com.example.qiqi.xianwan.meadapter.wofabu.wofabu;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 import com.lljjcoder.citypickerview.widget.CityPicker.OnCityItemClickListener;
 
@@ -420,6 +422,8 @@ asyncDownOp();
                     break;
                 case R.id.cancel:
                     USERACCOUNT=null;
+                    String name =EMClient.getInstance().getCurrentUser();
+                    outchat(name);
                     Intent intent4 = new Intent();
                     intent4.setClass(headpicoption.this, LoginActivity.class);
                     startActivity(intent4);
@@ -700,6 +704,26 @@ asyncDownOp();
         }
 
         return suolue;
+    }
+    //环信退出
+    public void outchat(String userAccount){
+        EMClient.getInstance().logout(false, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                Log.i("aaa","用户"+userAccount+"退出成功！！！！！");
+                finish();
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                Log.i("aaa","用户"+userAccount+"退出失败:"+i+".."+s);
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
     }
 
 }

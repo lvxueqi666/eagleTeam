@@ -1,6 +1,8 @@
-package com.xianwan.me.controller;
+package com.xianwan.headpic.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,22 +12,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.xianwan.me.entity.UserDetail;
-import com.xianwan.me.service.SearchService;
+import com.xianwan.headpic.entity.Headpic;
+import com.xianwan.headpic.service.HeadpicService;
 
 import net.sf.json.JSONArray;
 
 /**
- * Servlet implementation class detailforAndroid
+ * Servlet implementation class Android4Headpic
  */
-@WebServlet("/detailforAndroid")
-public class detailforAndroid extends HttpServlet {
+@WebServlet("/Android4Headpic")
+public class Android4Headpic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public detailforAndroid() {
+    public Android4Headpic() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,16 +36,20 @@ public class detailforAndroid extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String chaxun = request.getParameter("userAccount");
-		SearchService ss=new SearchService();
-		List<UserDetail> userDetails = new ArrayList<>();
-		if(chaxun != null) {
-			userDetails = ss.queryUserDetail(chaxun);
-			JSONArray jsonArray = JSONArray.fromObject( userDetails );
-			System.out.println(jsonArray.size());
-			response.getWriter().print(jsonArray.toString());
+		List<Headpic> list = new ArrayList<Headpic>();
+		PrintWriter writer = response.getWriter();
+		try {
+			list = new HeadpicService().querytoHeadpic();
+			JSONArray jsonArray = new JSONArray();
+			jsonArray = JSONArray.fromObject(list);
+			System.out.println(jsonArray.toString());
+			writer.print(jsonArray.toString());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

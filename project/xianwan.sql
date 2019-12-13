@@ -1,7 +1,7 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : localhost
 Source Server Version : 50506
 Source Host           : localhost:3306
 Source Database       : xianwan

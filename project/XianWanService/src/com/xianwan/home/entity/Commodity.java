@@ -1,7 +1,7 @@
 package com.xianwan.home.entity;
 
 public class Commodity {
-	private long id;
+	private String id;
 	private String image;
 	private String introduce;
 	private String price;
@@ -48,10 +48,10 @@ public class Commodity {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getImage() {

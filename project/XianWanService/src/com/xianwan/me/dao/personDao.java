@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import com.xianwan.me.entity.UserDetail;
 import com.xianwan.util.DBUtil;
-import com.xianwan.util.SnowflakeIdWorker;
 
 public class personDao {
 

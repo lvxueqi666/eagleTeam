@@ -7,6 +7,7 @@
     android:background="@drawable/radius">
 
     <ImageView
+        android:scaleType="matrix"
         android:id="@+id/showIv"
         android:layout_width="170dp"
         android:layout_height="160dp" />

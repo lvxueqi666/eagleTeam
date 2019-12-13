@@ -115,12 +115,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Glide.with(mContext).load(images.get(position)).into(((NormalHolder) holder).showIv);
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
+                //Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
                 ((NormalHolder) holder).mIcon.setImageResource(R.drawable.xinming);
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }else{
                 Glide.with(mContext).load(images.get(position)).into(((NormalHolder) holder).showIv);
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
+                //Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
                 ((NormalHolder) holder).mIcon.setImageResource(R.drawable.qzuozhu);
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }
