@@ -16,11 +16,14 @@ public class SearchDao {
 		List<UserDetail> details = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstm = null;
+		
 		ResultSet rs = null;
 		String sql = "select * from userdetail where userAccount = ?";
+		
 		conn = DBUtil.getConn();
 		try {
 			pstm = conn.prepareStatement(sql);
+		
 			pstm.setString(1, detail);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
@@ -35,6 +38,7 @@ public class SearchDao {
 				userDetail.setUserJobName(rs.getString(8));
 				
 				details.add(userDetail);
+			
 			}
 			conn.close();
 		} catch (SQLException e) {
