@@ -27,9 +27,9 @@ private String userPicture;
         this.userPicture = userPicture;
     }
 
-    public UserDetail(String userAccount, String userName, String userSex, String userBirth, String userLocation, String userJianjie, String userJob, String userJobName, String userPicture) {
+    public UserDetail(String userAccount, String userSex, String userBirth, String userLocation, String userJianjie, String userJob, String userJobName, String userPicture) {
         this.userAccount = userAccount;
-        this.userName = userName;
+
         this.userSex = userSex;
         this.userBirth =userBirth;
         this.userLocation = userLocation;
