@@ -34,6 +34,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.LoginActivity.USERNAME;
+
 
 public class MessageFragment extends Fragment {
     private ImageView iv_notice;
@@ -65,21 +68,31 @@ public class MessageFragment extends Fragment {
         registerListenrs();
 
         //数据初始化
-        messageList = initData();
+        if(USERNAME != null && USERACCOUNT != null) {
+            messageList = initData();
+        }else{
+            messageList = Data();
+        }
 
         //列表点击事件
         lv_message.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Message message = messageList.get(position);
-                Toast.makeText(
-                        getActivity(),
-                        message.getUserName(),
-                        Toast.LENGTH_SHORT
-                ).show();
-                Intent intent = new Intent(getActivity(), MessageChatActivity.class);
-                intent.putExtra("name",message.getUserName());
-                startActivity(intent);
+                if(USERNAME != null && USERACCOUNT != null) {
+                    Message message = messageList.get(position);
+                    Toast.makeText(
+                            getActivity(),
+                            message.getUserName(),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    Intent intent = new Intent(getActivity(), MessageChatActivity.class);
+                    intent.putExtra("name", message.getUserName());
+                    startActivity(intent);
+                }else{
+                    Intent intent_notice = new Intent();
+                    intent_notice.setClass(getActivity(), LoginActivity.class);
+                    startActivity(intent_notice);
+                }
             }
         });
 
@@ -176,7 +189,6 @@ public class MessageFragment extends Fragment {
         Log.i("wtw","取消注册消息监听器");
     }
 
-
     //下拉
     private void refreshData() {
         messageList.clear();
@@ -187,14 +199,14 @@ public class MessageFragment extends Fragment {
     //数据插入
     private List<Message> initData() {
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message("李小同","信誉良好","七天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("徐小航","信誉良好","一天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("吕小齐","信誉良好","五天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("霍小瑞","信誉良好","七天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("王小胖","信誉良好","七天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("张小阳","信誉良好","八天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("李小宵","信誉良好","一个月",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("朱小辰","信誉良好","已失联",R.drawable.touxiang,R.drawable.iphone));
+        messageList.add(new Message("闲玩","信誉良好","七天前",R.drawable.aa,R.drawable.tubiao));
+        return messageList;
+    }
+
+    //默认数据插入
+    private List<Message> Data() {
+        List<Message> messageList = new ArrayList<>();
+        messageList.add(new Message("闲玩","信誉良好","七天前",R.drawable.aa,R.drawable.tubiao));
         return messageList;
     }
 
@@ -212,19 +224,37 @@ public class MessageFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_notice:
-                    Intent intent_notice = new Intent();
-                    intent_notice.setClass(getActivity(),NoticeActivity.class);
-                    startActivity(intent_notice);
+                    if(USERNAME != null && USERACCOUNT != null){
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), NoticeActivity.class);
+                        startActivity(intent_notice);
+                    }else{
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent_notice);
+                    }
                     break;
                 case R.id.iv_interaction:
-                    Intent intent_interaction = new Intent();
-                    intent_interaction.setClass(getActivity(),ConversationActivity.class);
-                    startActivity(intent_interaction);
+                    if(USERNAME != null && USERACCOUNT != null) {
+                        Intent intent_interaction = new Intent();
+                        intent_interaction.setClass(getActivity(), ConversationActivity.class);
+                        startActivity(intent_interaction);
+                    }else{
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent_notice);
+                    }
                     break;
                 case R.id.iv_activity:
-                    Intent intent_activities = new Intent();
-                    intent_activities.setClass(getActivity(),ActivitiesActivity.class);
-                    startActivity(intent_activities);
+                    if(USERNAME != null && USERACCOUNT != null) {
+                        Intent intent_activities = new Intent();
+                        intent_activities.setClass(getActivity(), ActivitiesActivity.class);
+                        startActivity(intent_activities);
+                    }else{
+                        Intent intent_notice = new Intent();
+                        intent_notice.setClass(getActivity(), LoginActivity.class);
+                        startActivity(intent_notice);
+                    }
                     break;
             }
         }

@@ -9,15 +9,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:paddingTop="10dp"
+        android:background="#FFE7A0">
+        <ImageView
+            android:id="@+id/loginBack"
+            android:background="@drawable/back"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/symbol"
-            android:src="@drawable/home"
-            android:layout_gravity="center"
+            android:src="@mipmap/tubiao"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
             />
 
         <TextView
