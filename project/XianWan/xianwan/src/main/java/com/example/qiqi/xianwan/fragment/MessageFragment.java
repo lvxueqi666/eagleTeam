@@ -68,7 +68,11 @@ public class MessageFragment extends Fragment {
         registerListenrs();
 
         //数据初始化
-        messageList = initData();
+        if(USERNAME != null && USERACCOUNT != null) {
+            messageList = initData();
+        }else{
+            messageList = Data();
+        }
 
         //列表点击事件
         lv_message.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -195,14 +199,14 @@ public class MessageFragment extends Fragment {
     //数据插入
     private List<Message> initData() {
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message("李小同","信誉良好","七天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("徐小航","信誉良好","一天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("吕小齐","信誉良好","五天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("霍小瑞","信誉良好","七天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("王小胖","信誉良好","七天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("张小阳","信誉良好","八天前",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("李小宵","信誉良好","一个月",R.drawable.touxiang,R.drawable.iphone));
-        messageList.add(new Message("朱小辰","信誉良好","已失联",R.drawable.touxiang,R.drawable.iphone));
+        messageList.add(new Message("闲玩","信誉良好","七天前",R.drawable.aa,R.drawable.tubiao));
+        return messageList;
+    }
+
+    //默认数据插入
+    private List<Message> Data() {
+        List<Message> messageList = new ArrayList<>();
+        messageList.add(new Message("闲玩","信誉良好","七天前",R.drawable.aa,R.drawable.tubiao));
         return messageList;
     }
 

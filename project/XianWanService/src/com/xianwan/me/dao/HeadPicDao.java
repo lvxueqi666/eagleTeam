@@ -27,6 +27,7 @@ public class HeadPicDao {
 			while(rs.next()) {
 				address = rs.getString(1);
 			}
+			conn.close();
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -58,7 +59,7 @@ public class HeadPicDao {
 			pstm.setDate(4, uploadTime);
 			pstm.executeUpdate();
 		
-			
+			conn.close();
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

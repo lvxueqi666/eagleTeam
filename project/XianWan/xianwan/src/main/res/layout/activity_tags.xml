@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@color/bank_bg01">
+    android:background="#FFE7A0">
 
         <TextView
             android:layout_width="fill_parent"
@@ -11,7 +11,7 @@
             android:layout_marginTop="20dp"
             android:padding="5dp"
             android:text="请最多选择3类您喜欢的"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:textSize="23sp" />
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:padding="5dp"
                 android:text="拼图玩具类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                 android:padding="5dp"
                 android:text="游戏玩具类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 android:padding="5dp"
                 android:text="数字算盘文字类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
 
             <TextView
@@ -63,7 +63,7 @@
                 android:padding="5dp"
                 android:text="工具类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
                 android:padding="5dp"
                 android:text="益智组合类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                 android:padding="5dp"
                 android:text="积木类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                 android:padding="5dp"
                 android:text="交通玩具类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                 android:padding="5dp"
                 android:text="拖拉类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                 android:padding="5dp"
                 android:text="拼板玩具类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
                 android:padding="5dp"
                 android:text="卡通玩偶类"
                 android:textSize="23sp"
-                android:textColor="#ffffff" />
+                android:textColor="#929292" />
 
         </com.example.qiqi.xianwan.FlowLayout>
 

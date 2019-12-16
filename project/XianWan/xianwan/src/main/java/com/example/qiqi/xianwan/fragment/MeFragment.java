@@ -66,6 +66,7 @@ public class MeFragment extends Fragment {
     private RelativeLayout ilike;
     private LinearLayout background;
     private TextView ilike_size;
+    private String icon;
     List<Commodity> commodities = new ArrayList<>();
     private TextView fabu_size;
     private OkHttpClient okHttpClient = new OkHttpClient();
@@ -83,7 +84,11 @@ public class MeFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            fabu_size.setText(jsonArray.length() + "");
+            if (jsonArray!=null){
+                fabu_size.setText(jsonArray.length() + "");}
+            else {
+                fabu_size.setText(0+"");
+            }
         }
 
     };
@@ -98,7 +103,12 @@ public class MeFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            ilike_size.setText(jsonArray.length() + "");
+           if (jsonArray!=null){
+                ilike_size.setText(jsonArray.length() + "");}
+                else {
+                ilike_size.setText(0+"");
+           }
+
         }
 
     };
@@ -190,6 +200,7 @@ public class MeFragment extends Fragment {
                 if (USERNAME!=null&&USERACCOUNT!=null) {
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), wofabu.class);
+
                     startActivity(intent);
                 }
                 else{
@@ -250,9 +261,6 @@ public class MeFragment extends Fragment {
                  * */
             }
         });
-
-
-
             return view;
 
         }
@@ -328,9 +336,7 @@ public class MeFragment extends Fragment {
 
                     //Call
                     Call call = okHttpClient.newCall(request);
-
                     Response response;
-
                     try {
                         response = call.execute();
                         String message = response.body().string();
@@ -339,8 +345,6 @@ public class MeFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-
-
             }.start();
         }
         private void wrapperMessage (String info){

@@ -15,6 +15,7 @@
     </LinearLayout>
 
     <ScrollView
+        android:layout_marginBottom="70dp"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -68,16 +69,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"/>
 
-            <ImageView
-                android:id="@+id/detail_img1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:id="@+id/detail_img2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

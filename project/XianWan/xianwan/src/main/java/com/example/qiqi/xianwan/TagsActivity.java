@@ -17,8 +17,9 @@ public class TagsActivity extends AppCompatActivity {
         btn_tags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TagsActivity.this,MainActivity.class);
+                Intent intent = new Intent(TagsActivity.this,LoginActivity.class);
                 startActivity(intent);
+                TagsActivity.this.finish();
             }
         });
     }

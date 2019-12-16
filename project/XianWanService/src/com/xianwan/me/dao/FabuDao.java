@@ -25,7 +25,7 @@ public class FabuDao {
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				Commodity com = new Commodity();
-				com.setId(rs.getLong(1));
+				com.setId(rs.getString(1));
 				com.setImage(rs.getString(2));
 				com.setIntroduce(rs.getString(3));
 				com.setPrice(rs.getString(4));

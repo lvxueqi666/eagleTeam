@@ -8,17 +8,18 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:background="#6888e7"
+        android:background="#FFE7A0"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingRight="16dp">
 
         <ImageView
             android:id="@+id/result_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:gravity="center"
             android:padding="5dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/back"/>
 
         <TextView
@@ -30,7 +31,7 @@
             android:gravity="left|center_vertical"
             android:layout_gravity="center_vertical"
             android:hint=" 输入查询关键字"
-            android:background="@drawable/radius"
+            android:background="@drawable/textviewserch"
             android:singleLine="true"
             android:textSize="16sp" />
 
