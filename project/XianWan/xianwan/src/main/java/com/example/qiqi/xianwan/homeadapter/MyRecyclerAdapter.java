@@ -2,10 +2,13 @@ package com.example.qiqi.xianwan.homeadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.qiqi.xianwan.DetailActivity;
 import com.example.qiqi.xianwan.MainActivity;
 import com.example.qiqi.xianwan.R;
@@ -112,14 +119,34 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         // 如果是正常的item，直接设置TextView的值
         if (holder instanceof NormalHolder) {
             if(mListStyle == 0){
-                Glide.with(mContext).load(images.get(position)).into(((NormalHolder) holder).showIv);
+                RequestOptions options = new RequestOptions().transform(new CenterCrop());
+                Glide.with(mContext).asBitmap().load(images.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        super.setResource(resource);
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                        circularBitmapDrawable.setCornerRadius(30); //设置圆角弧度
+                        ((NormalHolder) holder).showIv.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
                 //Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
                 ((NormalHolder) holder).mIcon.setImageResource(R.drawable.xinming);
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }else{
-                Glide.with(mContext).load(images.get(position)).into(((NormalHolder) holder).showIv);
+                RequestOptions options = new RequestOptions().transform(new CenterCrop());
+                Glide.with(mContext).asBitmap().load(images.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        super.setResource(resource);
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                        circularBitmapDrawable.setCornerRadius(20); //设置圆角弧度
+                        ((NormalHolder) holder).showIv.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
                 //Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
