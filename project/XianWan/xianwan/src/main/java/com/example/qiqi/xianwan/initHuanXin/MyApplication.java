@@ -43,12 +43,12 @@ public class MyApplication extends Application {
             Log.i("hxr","wuxiao");
         }else{
             Log.i("hxr","数"+Headpiclist.get(0).getUserAccount());
-        }
-        for(int i=0;i<Headpiclist.size();i++){
-            if(username.equals(Headpiclist.get(i).getUserAccount())){
-                user = new EaseUser(username);
-                user.setAvatar(Headpiclist.get(i).getAddress());
-                return user;
+            for(int i=0;i<Headpiclist.size();i++){
+                if(username.equals(Headpiclist.get(i).getUserAccount())){
+                    user = new EaseUser(username);
+                    user.setAvatar(Headpiclist.get(i).getAddress());
+                    return user;
+                }
             }
         }
         return null;

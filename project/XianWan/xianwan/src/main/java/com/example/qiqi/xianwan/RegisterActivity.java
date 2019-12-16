@@ -213,6 +213,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }else {
                         ToastUtils.showToast(RegisterActivity.this,"验证码错误",Toast.LENGTH_SHORT);
                     }
+                    RegisterActivity.this.finish();
                     break;
                 case R.id.tv_checked:
                     bitmap = CodeUtils.getInstance().createBitmap();
