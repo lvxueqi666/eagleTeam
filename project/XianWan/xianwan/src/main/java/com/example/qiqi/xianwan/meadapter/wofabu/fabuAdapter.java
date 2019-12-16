@@ -1,6 +1,8 @@
 package com.example.qiqi.xianwan.meadapter.wofabu;
 
 import android.content.Context;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Commodity;
 
@@ -63,10 +66,11 @@ public class fabuAdapter extends BaseAdapter {
        TextView textView=convertView.findViewById(R.id.tv_price);
 
 Commodity commodity=commodities.get(position);
-        Glide.with(context).load(commodity.getImage()).into(imageView);
+        Glide.with(context).load(commodity.getImage()).transform(new GlideRoundTransform(context,10)).into(imageView);
+
+
        introduce.setText(commodity.getIntroduce());
        textView.setText(commodity.getPrice());
         return convertView;
     }
-
 }

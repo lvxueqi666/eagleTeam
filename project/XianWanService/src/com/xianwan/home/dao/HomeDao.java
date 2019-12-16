@@ -19,12 +19,14 @@ public class HomeDao {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sql = "select * from commodity as t1 join (select round(rand() * (select max(id) from commodity)) as id) as t2 where t1.id >= t2.id and attr = '" + type + "'order by t1.id limit 8";
+		String sql = "select * from commodity as t1 join (select round(rand() * (select max(id) from commodity)) as id) as t2 where t1.id >= t2.id and attr = '" + type + "'order by t1.id limit 20";
 		//String sql = "select * from commodity where attr = '" + type + "' and id >= (select floor(RAND() * (select MAX(id) from commodity))) order by id limit 10";
 		String sql2 = "select address from headpic where userAccount = ?";
+		String sql3 = "SELECT * FROM commodity WHERE id >= ((SELECT MAX(id) FROM commodity)-(SELECT MIN(id) FROM commodity)) * RAND() + (SELECT MIN(id) FROM commodity) LIMIT 10"; 
+		String sql4 = "select * from commodity order by rand() limit 10";
 		conn = DBUtil.getConn();
 		try {
-			pstm = conn.prepareStatement(sql);
+			pstm = conn.prepareStatement(sql4);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				pstm = conn.prepareStatement(sql2);

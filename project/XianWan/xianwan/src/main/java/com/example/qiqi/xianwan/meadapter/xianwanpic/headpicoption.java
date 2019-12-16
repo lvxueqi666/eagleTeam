@@ -34,6 +34,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.qiqi.xianwan.LoginActivity;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.entity.User;
 import com.example.qiqi.xianwan.entity.UserDetail;
 import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.meadapter.person_content.Et_jianjie;
@@ -91,9 +92,45 @@ public class headpicoption extends AppCompatActivity {
     private String[] sexArry = new String[]{"MM", "GG"};
     private Calendar cal;
     List<UserDetail> userDetails = new ArrayList<>();
+    List<User> users = new ArrayList<>();
     private int year, month, day;
     //用来赋值传递过来的对象
     MessageEvent mObjEvent;
+    private Handler handler2 = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            String json = (String) msg.obj;
+            if (users.size() > 0) {
+                users.removeAll(users);
+            }
+            try {
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    String objStr = jsonArray.getString(i);
+                    JSONObject jsonObject = new JSONObject(objStr);
+
+                    User user = new User(
+                            jsonObject.getString("userAccount"),
+
+                            jsonObject.getString("userName")
+
+
+                    );
+
+                        et_username.setText(jsonObject.getString("userName"));
+                    users.add(user);
+                    Log.e("name", jsonObject.getString("userName"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+
+    };
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -110,7 +147,7 @@ public class headpicoption extends AppCompatActivity {
 
                     UserDetail userDetail = new UserDetail(
                             jsonObject.getString("userAccount"),
-                            jsonObject.getString("userName"),
+
                             jsonObject.getString("userSex"),
                             jsonObject.getString("userBirth"),
                             jsonObject.getString("userLocation"),
@@ -120,13 +157,13 @@ public class headpicoption extends AppCompatActivity {
                             jsonObject.getString("userPicture")
 
                     );
-                    et_username.setText(jsonObject.getString("userName"));
-                        tv_sex.setText(jsonObject.getString("userSex"));
-                        tv_birth.setText(jsonObject.getString("userBirth"));
-                        tv_location.setText(jsonObject.getString("userLocation"));
-                        tv_jianjie.setText(jsonObject.getString("userJianjie"));
-                        tv_job.setText(jsonObject.getString("userJob"));
-                        tv_jobname.setText(jsonObject.getString("userJob"));
+
+                    tv_sex.setText(jsonObject.getString("userSex"));
+                    tv_birth.setText(jsonObject.getString("userBirth"));
+                    tv_location.setText(jsonObject.getString("userLocation"));
+                    tv_jianjie.setText(jsonObject.getString("userJianjie"));
+                    tv_job.setText(jsonObject.getString("userJob"));
+                    tv_jobname.setText(jsonObject.getString("userJob"));
                     userDetails.add(userDetail);
                 }
             } catch (JSONException e) {
@@ -157,9 +194,10 @@ public class headpicoption extends AppCompatActivity {
 
         imgzay_headPic = findViewById(R.id.imgzay_headPic);
 
-
+        searchName();
 asyncFormOp();
 asyncDownOp();
+
         InitHeadPic();
         //接收数据
         jieshoumesssage();
@@ -180,6 +218,46 @@ asyncDownOp();
             }
         });
 
+    }
+
+    private void searchName() {
+        Resources resources = getResources();
+        final String hostIp = resources.getString(R.string.hostStr);
+        new Thread() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Log.e("userName", "userName");
+                Request request;
+                //Request(Post、FormBody）
+                FormBody formBody = new FormBody.Builder()
+                        .add("userAccount", USERACCOUNT)
+                        .build();
+                request = new Request.Builder()
+                        .url("http://" + hostIp + ":8080/XianWanService/nameForAndroid")
+                        .post(formBody)
+                        .build();
+
+                //Call
+                Call call = okHttpClient.newCall(request);
+
+                Response response;
+
+                try {
+                    response = call.execute();
+                    String message = response.body().string();
+                    wrapperMessage2(message);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void wrapperMessage2(String info) {
+        Message msg = Message.obtain();
+        msg.obj = info;
+        handler2.sendMessage(msg);
     }
 
     private void asyncFormOp() {
@@ -320,9 +398,11 @@ asyncDownOp();
                     }
                     break;
                 case R.id.finish:
-                    Uri cutImageUri = popupwindow.getCutImageUri();
-                    Uri suolue = makePicSmaller(cutImageUri.getPath());
-                    asyncUpOp(suolue.getPath());
+                    if (popupwindow!=null) {
+                        Uri cutImageUri = popupwindow.getCutImageUri();
+                        Uri suolue = makePicSmaller(cutImageUri.getPath());
+                        asyncUpOp(suolue.getPath());
+                    }
                     String operate = "addperson";
                     String userName = et_username.getText().toString();
                     String userSex = tv_sex.getText().toString();
@@ -331,9 +411,14 @@ asyncDownOp();
                     String userJianjie = tv_jianjie.getText().toString();
                     String userJob = tv_job.getText().toString();
                     String userJobName = tv_jobname.getText().toString();
-                    addPerson(userAccount,userName, userSex, userBirth, userLocation, userJianjie, userJob, userJobName, operate);
-                    Toast.makeText(headpicoption.this, "插入数据库!", Toast.LENGTH_LONG).show();
-                    finish();
+                    if (userName!=null&&userSex!=null&&userBirth!=null&&userLocation!=null&&userJianjie!=null&&userJob!=null&&userJobName!=null) {
+                        addPerson(userAccount, userName, userSex, userBirth, userLocation, userJianjie, userJob, userJobName, operate);
+                        Toast.makeText(headpicoption.this, "插入数据库!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(headpicoption.this, "请输入完整信息哇！!", Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case R.id.cancel:
                     USERACCOUNT=null;

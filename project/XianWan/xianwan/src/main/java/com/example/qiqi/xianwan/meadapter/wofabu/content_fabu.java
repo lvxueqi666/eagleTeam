@@ -208,7 +208,6 @@ public class content_fabu extends AppCompatActivity
 
                     String introduce=ed_introductions.getText().toString();
                     String price=ed_price.getText().toString();
-                    String operate="add";
                     String attr=tv_attr.getText().toString();
                     Toast.makeText(content_fabu.this, "发布成功!", Toast.LENGTH_LONG).show();
                     addOrCancelCollection(introduce,price,attr);

@@ -36,6 +36,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
+import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+
+
 public class DetailActivity extends AppCompatActivity {
 
     private ImageView icon;
@@ -156,7 +159,12 @@ public class DetailActivity extends AppCompatActivity {
         want.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startChat(userAccount);
+                if(USERACCOUNT == null){
+                    Intent intent1 = new Intent(getApplicationContext(),LoginActivity.class);
+                    startActivity(intent);
+                }else{
+                    startChat(userAccount);
+                }
             }
         });
 

@@ -7,17 +7,19 @@
 
 	<LinearLayout
 		android:layout_width="fill_parent"
-		android:layout_height="50dp"
-		android:background="#6888e7"
+		android:layout_height="40dp"
+		android:background="#FFE7A0"
 		android:orientation="horizontal"
+		android:gravity="center_vertical"
 		android:paddingRight="16dp">
 
 		<ImageView
 			android:id="@+id/back"
-			android:layout_width="35dp"
-			android:layout_height="35dp"
+			android:layout_width="38dp"
+			android:layout_height="38dp"
 			android:layout_gravity="center_vertical"
-			android:padding="10dp"
+			android:padding="5dp"
+			android:layout_marginRight="5dp"
 			android:src="@drawable/back"/>
 
 		<EditText
@@ -32,7 +34,7 @@
 			android:imeOptions="actionSearch"
 			android:singleLine="true"
 			android:textSize="16sp"
-			android:background="@drawable/radius"
+			android:background="@drawable/textviewserch"
 			android:textCursorDrawable="@color/colorGray"/>
 
 		<ImageView
