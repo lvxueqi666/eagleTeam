@@ -35,7 +35,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.example.qiqi.xianwan.initHuanXin.MyApplication.Headpiclist;
 
 public class DetailActivity extends AppCompatActivity {
 

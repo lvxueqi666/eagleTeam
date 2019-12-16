@@ -16,7 +16,7 @@ public class HeadPicDao {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String sql = "select address from HeadPic where userId = ?";
+		String sql = "select address from HeadPic where userAccount = ?";
 		String address = null;
 		
 		try {
@@ -42,7 +42,7 @@ public class HeadPicDao {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		String sql = "insert headpic values(?,?,?,?)";
-		String sql1 = "delete from headpic where userId = ?";
+		String sql1 = "delete from headpic where userAccount = ?";
 		try {
 			conn = DBUtil.getConn();
 			//删除
