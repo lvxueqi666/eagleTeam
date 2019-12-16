@@ -22,6 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -29,6 +30,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.bumptech.glide.Glide;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.fragment.MeFragment;
 import com.example.qiqi.xianwan.meadapter.MessageEvent;
@@ -392,32 +395,42 @@ public class content_fabu extends AppCompatActivity
         pathList.add(suolue.getPath());
 
         //图像点击按钮
-        final Button button = new Button(content_fabu.this);
+        final ImageView button = new ImageView(content_fabu.this);
         //动态添加Button按钮
         LL_fabuzay.addView(button,index);
         index++;
         //设置宽高属性
-        ViewGroup.LayoutParams params = new GridLayout.LayoutParams();
-        params.width = 320;
-        params.height= 320;
+        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+        params.width = ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 120, getResources().getDisplayMetrics()));
+        params.height= ((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 120, getResources().getDisplayMetrics()));
+        //params.setGravity(Gravity.CENTER);
+        int left = ((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 7, getResources().getDisplayMetrics()));
+        int top = ((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 7, getResources().getDisplayMetrics()));
+        params.setMargins(left,top,0,0);
         button.setLayoutParams(params);
+        button.setScaleType(ImageView.ScaleType.FIT_XY);
         //注入灵魂
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
         Log.i("zay111","path2:"+imagePath);
-        Drawable drawable = new BitmapDrawable(bitmap);
-        button.setBackground(drawable);
+        final Drawable drawable = new BitmapDrawable(bitmap);
+        final Drawable drawable1 = new BitmapDrawable(bitmap);
+
+        Glide.with(this)
+                .load(drawable1)
+                .transform(new GlideRoundTransform(this,20))
+                .into(button);
         //设置点击事件
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(content_fabu.this,BigPic_fabu.class);
-                intent.putExtra("path",suolue.getPath());
-                MessageEvent messageEvent = new MessageEvent(button);
+                MessageEvent messageEvent = new MessageEvent(button,drawable);
                 EventBus.getDefault().postSticky(messageEvent);
                 startActivity(intent);
             }
         });
     }
+
 
 
     @Subscribe(threadMode = ThreadMode.POSTING, sticky = true)
