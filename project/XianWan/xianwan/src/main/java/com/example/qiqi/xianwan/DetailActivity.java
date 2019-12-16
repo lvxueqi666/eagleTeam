@@ -37,6 +37,7 @@ import okhttp3.Response;
 
 
 import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.LoginActivity.USERNAME;
 
 
 public class DetailActivity extends AppCompatActivity {
@@ -102,15 +103,15 @@ public class DetailActivity extends AppCompatActivity {
             }
         };
 
-        getImages("11111111","http://49.233.142.163:8080/images/111.jpg");
+        getImages(userAccount,images);
 
         Glide.with(this).load(icons).into(icon);
         name.setText(userName);
         detailPrice.setText("￥" + price);
         introdu.setText(introductions);
         dianzancount.setText(showLikes);
-        adjustShowLikeStatus("111","222","adjust");
-        adjustCollectionStatus("111","222","adjust");
+        adjustShowLikeStatus(userAccount,commodityId,"adjust");
+        adjustCollectionStatus(userAccount,commodityId,"adjust");
 
         //点赞操作，需要在数据库中进行修改
 
@@ -125,14 +126,14 @@ public class DetailActivity extends AppCompatActivity {
                     count++;
                     showLikes = count + "";
                     dianzancount.setText(count + "");
-                    modifyShowLikeCount("111","222","add","add");
+                    modifyShowLikeCount(userAccount,commodityId,"add","add");
                 }else{
                     showLike.setImageResource(R.drawable.dianzan);
                     int count = Integer.parseInt(showLikes);
                     count--;
                     showLikes = count + "";
                     dianzancount.setText(count+"");
-                    modifyShowLikeCount("111","222","minus","add");
+                    modifyShowLikeCount(userAccount,commodityId,"minus","add");
                 }
             }
         });
@@ -145,11 +146,11 @@ public class DetailActivity extends AppCompatActivity {
                 if(shoucang.getDrawable().getCurrent().getConstantState().equals(getResources().getDrawable(R.drawable.shoucang).getConstantState())){
                     shoucang.setImageResource(R.drawable.shoucang1);
                     Toast.makeText(DetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
-                    addOrCancelCollection("111","222","add");
+                    addOrCancelCollection(userAccount,commodityId,"add");
                 }else{
                     shoucang.setImageResource(R.drawable.shoucang);
                     Toast.makeText(DetailActivity.this, "取消收藏", Toast.LENGTH_SHORT).show();
-                    addOrCancelCollection("111","222","cancel");
+                    addOrCancelCollection(userAccount,commodityId,"cancel");
                 }
             }
         });
@@ -159,9 +160,10 @@ public class DetailActivity extends AppCompatActivity {
         want.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(USERACCOUNT == null){
+                if(USERACCOUNT == null || USERNAME == null){
                     Intent intent1 = new Intent(getApplicationContext(),LoginActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(DetailActivity.this, "您还未登录", Toast.LENGTH_SHORT).show();
+                    startActivity(intent1);
                 }else{
                     startChat(userAccount);
                 }

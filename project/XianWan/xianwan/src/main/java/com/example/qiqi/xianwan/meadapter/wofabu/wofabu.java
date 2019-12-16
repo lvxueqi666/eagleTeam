@@ -44,7 +44,7 @@ import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
 public class wofabu extends AppCompatActivity
 {
     private ListView listView;
-    private LinearLayout fabu;
+    private Button fabu;
     private Button btn_wofabu_back;
 private SmartRefreshLayout wofabu_srl;
     private CustomeClickListener listener;

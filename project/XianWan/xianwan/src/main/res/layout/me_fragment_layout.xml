@@ -11,13 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <pl.droidsonroids.gif.GifImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/smartfresh" />
+
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -25,7 +22,7 @@
                 android:id="@+id/background"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@drawable/backgroud"
+                android:background="@color/yellow_ff"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -52,9 +49,10 @@
                         android:layout_height="20dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="卖在闲鱼" />
+                        android:text="卖在闲玩" />
 
                     <LinearLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <!--我发布的-->

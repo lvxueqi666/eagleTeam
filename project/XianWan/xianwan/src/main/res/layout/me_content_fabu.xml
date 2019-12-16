@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:background="@color/yellow_ff"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal">
@@ -15,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/white"
+            android:background="@color/yellow_ff"
             android:text="取消"
 
             />
@@ -31,10 +32,10 @@
 
         <Button
             android:id="@+id/btn_fabu"
-            android:layout_width="wrap_content"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/radius"
+            android:background="@color/yellow_ff"
             android:text="发布" />
 
     </LinearLayout>
@@ -108,7 +109,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/add" />
+                android:background="@drawable/price" />
 
 
             <TextView
@@ -149,7 +150,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:background="@drawable/add" />
+                android:background="@drawable/type" />
 
 
             <TextView

@@ -38,6 +38,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.fragment.MeFragment;
 import com.example.qiqi.xianwan.meadapter.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -219,6 +220,9 @@ public class content_fabu extends AppCompatActivity
                             fabu();
                         }
                     }.start();
+                    Intent intent = new Intent();
+                    intent.setClass(content_fabu.this, wofabu.class);
+                    startActivity(intent);
                     break;
                 case R.id.item_attr:
                     showAttrChooseDialog();
