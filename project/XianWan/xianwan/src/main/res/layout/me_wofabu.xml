@@ -8,13 +8,14 @@
 
 
     <LinearLayout
+        android:background="@color/yellow_ff"
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <Button
             android:id="@+id/btn_wofabu_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/previous"
+            android:background="@drawable/back"
             android:gravity="left"
             />
 
@@ -27,57 +28,24 @@
             android:textStyle="bold"
             android:text="我卖出的玩具" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
 
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="下架玩具" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+            <Button
 
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="25dp"
-                android:src="@drawable/add"
-                android:layout_height="25dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="15dp"
-                android:text="我的宝贝"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/fabu"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="25dp"
-                android:src="@drawable/add"
-                android:layout_height="25dp" />
-            <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/fabu"
+                android:layout_width="match_parent"
                 android:text="发布玩具"
-                android:layout_gravity="center"
-                android:background="@color/orange"
+                android:layout_gravity="right"
                 android:textStyle="bold"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-
+                android:textSize="20dp"
+                android:textColor="@color/orange"
+                android:background="@color/yellow_ff"
+                android:layout_height="30dp" />
     </LinearLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -86,7 +54,8 @@
         android:layout_height="match_parent">
 
         <ListView
-
+            android:divider="#00000000"
+            android:dividerHeight="18dp"
             android:id="@+id/fabu_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
