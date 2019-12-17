@@ -407,7 +407,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             .add("type", "book")
                             .build();
                     request = new Request.Builder()
-                            .url("http://"+hostIp+":8080/XianWanService/HomeForAndroid")
+                            .url("http://"+ hostIp +":8080/XianWanService/HomeForAndroid")
                             .post(formBody)
                             .build();
                 }

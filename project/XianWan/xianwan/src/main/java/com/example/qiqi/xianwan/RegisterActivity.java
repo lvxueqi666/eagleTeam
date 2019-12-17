@@ -289,7 +289,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.i("sss:","注册成功");
                 } catch (HyphenateException e) {
                     e.printStackTrace();
-                    Log.i("sss:","注册失败"+e.getMessage()+"--"+e.getErrorCode());
+                    Log.i("sss:","注册失败" + e.getMessage()+"--"+e.getErrorCode());
                 }
             }
         }).start();
