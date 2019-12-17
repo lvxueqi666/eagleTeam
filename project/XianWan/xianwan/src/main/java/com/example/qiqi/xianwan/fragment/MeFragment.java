@@ -118,7 +118,6 @@ public class MeFragment extends Fragment {
             switch (msg.what){
                 case 1:
                     RequestOptions requestOptions = new RequestOptions()
-                            .placeholder(R.drawable.add)
                             .error(R.mipmap.sss)
                             .fallback(R.drawable.backgroud)
                             .override(400)
@@ -401,6 +400,9 @@ public class MeFragment extends Fragment {
             Response response = null;
             try {
                 response = call.execute();
+                Log.i("zayas","1"+response.toString());
+                Log.i("zayas","2"+response.message());
+                Log.i("zayas","3"+response.body());
                 InputStream in = response.body().byteStream();
                 OutputStream out = new FileOutputStream(
                         file

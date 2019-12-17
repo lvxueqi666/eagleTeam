@@ -72,7 +72,7 @@ public class content_fabu extends AppCompatActivity
 {
 
     private List<String> pathList = new ArrayList<>();
-
+    private int count=0;
     private Button btn_contentfabu_back;
     private GridLayout LL_fabuzay;
     private Button btn_newFabuzay;
@@ -81,7 +81,6 @@ public class content_fabu extends AppCompatActivity
     private CustomOnClickListener listener;
     private String imagePath;
     private EditText ed_price;
-
     private EditText ed_introductions;
     private Button btn_fabu;
     private RelativeLayout item_attr;
@@ -437,7 +436,10 @@ public class content_fabu extends AppCompatActivity
     public void onMoonEvent(MessageEvent objEvent) {
         if(objEvent.getMessage() != null){
         if (objEvent.getMessage().equals("delete")) {
+            ImageView button = objEvent.getButton();
+            int location=((ViewGroup)button.getParent()).indexOfChild(button);
             LL_fabuzay.removeView(objEvent.getButton());
+            pathList.remove(location);
             index--;
         }
         }
@@ -458,7 +460,9 @@ public class content_fabu extends AppCompatActivity
         return path;
     }
     public Uri makePicSmaller(String originalPic){
-        File file = new File(getExternalCacheDir(),"suolue_image.jpg");
+        File file = new File(getExternalCacheDir(),"suolue_image"+count+".jpg");
+        count++;
+
         Uri suolue = Uri.fromFile(file);
         try {
             FileOutputStream out = new FileOutputStream(file);

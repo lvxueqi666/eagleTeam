@@ -4,6 +4,7 @@
     xmlns:zsg="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -22,15 +23,14 @@
                 android:id="@+id/background"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/yellow_ff"
+                android:background="@drawable/bannerthree"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/head_img_zay"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
 
             </LinearLayout>
