@@ -195,8 +195,8 @@ public class headpicoption extends AppCompatActivity {
         imgzay_headPic = findViewById(R.id.imgzay_headPic);
 
         searchName();
-asyncFormOp();
-asyncDownOp();
+        asyncFormOp();
+        asyncDownOp();
 
         InitHeadPic();
         //接收数据
@@ -585,9 +585,12 @@ asyncDownOp();
         if(file.exists()){
             file.delete();
         }
+        FormBody formBody = new FormBody.Builder()
+                .add("userId", USERACCOUNT)
+                .build();
         Request request = new Request.Builder()
-                .header("userId",USERACCOUNT)
                 .url("http://"+hostIp+":8080/XianWanService/HeadPicSendToAndroidController")
+                .post(formBody)
                 .build();
         Call call = okHttpClient.newCall(request);
         Response response = call.execute();

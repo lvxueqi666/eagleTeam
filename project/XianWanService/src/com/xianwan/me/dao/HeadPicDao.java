@@ -16,7 +16,7 @@ public class HeadPicDao {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String sql = "select address from HeadPic where userAccount = ?";
+		String sql = "select address from headpic where userAccount = ?";
 		String address = null;
 		
 		try {
@@ -65,5 +65,9 @@ public class HeadPicDao {
 			e.printStackTrace();
 		}
 	}
+	
+		
+		
+
 }
 
