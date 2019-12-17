@@ -392,9 +392,12 @@ public class MeFragment extends Fragment {
             if (file.exists()) {
                 file.delete();
             }
+            FormBody formBody = new FormBody.Builder()
+                    .add("userId", USERACCOUNT)
+                    .build();
             Request request = new Request.Builder()
-                    .header("userId", USERACCOUNT)
-                    .url("http://" + hostIp + ":8080/XianWanService/HeadPicSendToAndroidController")
+                    .url("http://"+hostIp+":8080/XianWanService/HeadPicSendToAndroidController")
+                    .post(formBody)
                     .build();
             Call call = okHttpClient.newCall(request);
             Response response = null;

@@ -206,7 +206,7 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.btn_register:
                     checked = ed_checked.getText().toString().trim().toLowerCase();
                     code = code.toString().trim().toLowerCase();
-                    if(checked.equals(code)){
+                    if(!checked.equals(code)){
                         String address = "http://"+hostIp+":8080/XianWanService/RegisterServlet";
                         Register(registerAccount,registerPassword);
                         registerWithOkHttp(address,registerAccount,registerPassword,registerName);
@@ -290,7 +290,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.i("sss:","注册成功");
                 } catch (HyphenateException e) {
                     e.printStackTrace();
-                    Log.i("sss:","注册失败"+e.getMessage()+"--"+e.getErrorCode());
+                    Log.i("sss:","注册失败" + e.getMessage()+"--"+e.getErrorCode());
                 }
             }
         }).start();

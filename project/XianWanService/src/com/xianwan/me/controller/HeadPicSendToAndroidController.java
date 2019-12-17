@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+
+import com.xianwan.me.dao.HeadPicDao;
 import com.xianwan.me.service.HeadPicService;
 
 import javax.servlet.ServletException;
@@ -37,16 +39,15 @@ public class HeadPicSendToAndroidController extends HttpServlet {
 		
 		HeadPicService headPicService = new HeadPicService();
 		//得到用户Id
-		String userId = request.getHeader("userId");
+		String userId = request.getParameter("userId");
 		String address = headPicService.queryHeadPic(userId);
-		System.out.println("address:"+address);
-		System.out.println("id:"+userId);
+		System.out.println("address:" + address);
+		System.out.println("id:" + userId);
 		//将头像发送给android
 		URL url = null;
-		if (address!=null) {
+		if (address != null) {
 			url = new URL(address);
-		}
-		else {
+		}else {
 			url = new URL("http://49.233.142.163:8080/images/lvgoudan.jpg");
 		}
 		URLConnection conn = url.openConnection();

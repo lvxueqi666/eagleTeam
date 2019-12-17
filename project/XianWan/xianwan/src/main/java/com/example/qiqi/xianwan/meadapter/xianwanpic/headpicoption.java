@@ -33,9 +33,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.qiqi.xianwan.LoginActivity;
+import com.example.qiqi.xianwan.MainActivity;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.entity.Headpic;
 import com.example.qiqi.xianwan.entity.User;
 import com.example.qiqi.xianwan.entity.UserDetail;
+import com.example.qiqi.xianwan.initHuanXin.MyApplication;
 import com.example.qiqi.xianwan.meadapter.MessageEvent;
 import com.example.qiqi.xianwan.meadapter.person_content.Et_jianjie;
 import com.example.qiqi.xianwan.meadapter.person_content.List_job;
@@ -68,6 +71,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.initHuanXin.MyApplication.Headpiclist;
 
 public class headpicoption extends AppCompatActivity {
 
@@ -195,8 +199,8 @@ public class headpicoption extends AppCompatActivity {
         imgzay_headPic = findViewById(R.id.imgzay_headPic);
 
         searchName();
-asyncFormOp();
-asyncDownOp();
+        asyncFormOp();
+        asyncDownOp();
 
         InitHeadPic();
         //接收数据
@@ -483,6 +487,7 @@ asyncDownOp();
 
 
 
+
     }
 
     private void selectAddress() {
@@ -585,9 +590,12 @@ asyncDownOp();
         if(file.exists()){
             file.delete();
         }
+        FormBody formBody = new FormBody.Builder()
+                .add("userId", USERACCOUNT)
+                .build();
         Request request = new Request.Builder()
-                .header("userId",USERACCOUNT)
                 .url("http://"+hostIp+":8080/XianWanService/HeadPicSendToAndroidController")
+                .post(formBody)
                 .build();
         Call call = okHttpClient.newCall(request);
         Response response = call.execute();
@@ -656,10 +664,7 @@ asyncDownOp();
                             .into(imgzay_headPic);
 
                     // }
-
-
                 }
-
                 break;
             case 4:
                 String sms = data.getStringExtra("EXTRA_MESSAGE");
@@ -725,6 +730,7 @@ asyncDownOp();
             }
         });
     }
+
 
 }
 

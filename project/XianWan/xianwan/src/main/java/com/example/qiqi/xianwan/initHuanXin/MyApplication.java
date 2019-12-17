@@ -9,6 +9,7 @@ import com.example.qiqi.xianwan.entity.Headpic;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseUI;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +43,7 @@ public class MyApplication extends Application {
         if(Headpiclist.size()==0){
             Log.i("hxr","wuxiao");
         }else{
-            Log.i("hxr","数"+Headpiclist.get(0).getUserAccount());
+            Log.i("hxr","数"+Headpiclist.get(2).getUserAccount());
             for(int i=0;i<Headpiclist.size();i++){
                 if(username.equals(Headpiclist.get(i).getUserAccount())){
                     user = new EaseUser(username);
