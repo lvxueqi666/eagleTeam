@@ -36,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Map<String,ImageView> imageViewMap = new HashMap<>();
     private Map<String,TextView> textViewMap = new HashMap<>();
+    private String hostIp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        hostIp = getResources().getString(R.string.hostStr);
+
 
         headpic();
         MyApplication myApplication = new MyApplication();
@@ -107,8 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void headpic(){
-        Resources resources = getResources();
-        final String hostIp = resources.getString(R.string.hostStr);
         new Thread(){
             @Override
             public void run() {
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 Call call = okHttpClient.newCall(request);
                 try {
+                    Headpiclist.clear();
                     Response response = call.execute();
                     String message = response.body().string();
                     Log.i("aaa","a"+message);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             Headpiclist.add(pic);
                         }
                     }
-                    Log.i("picture","头像遍历完毕");
+                    Log.i("picture","头像遍历完毕"+Headpiclist.get(1).getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
