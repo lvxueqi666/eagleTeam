@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Commodity;
+import com.example.qiqi.xianwan.meadapter.wofabu.GlideRoundTransform;
 
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class collectAdapter extends BaseAdapter {
         TextView introduce = convertView.findViewById(R.id.collect_introduce);
         TextView textView=convertView.findViewById(R.id.tv_price);
         Commodity commodity=commodities.get(position);
-        Glide.with(context).load(commodity.getImage()).into(imageView);
+        Glide.with(context).load(commodity.getImage()).transform(new GlideRoundTransform(context,10)).into(imageView);
         introduce.setText(commodity.getIntroduce());
         textView.setText(commodity.getPrice());
         return convertView;

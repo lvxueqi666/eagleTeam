@@ -26,6 +26,7 @@ import okhttp3.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
+    private ImageView loginBack;
     private EditText ed_loginAccount;
     private EditText ed_loginPassword;
     private ImageView iv_login;
@@ -67,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         listener = new CustomOnClickListener();
         iv_login.setOnClickListener(listener);
         tv_registerActivity.setOnClickListener(listener);
+        loginBack.setOnClickListener(listener);
     }
 
 
@@ -75,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         ed_loginPassword = findViewById(R.id.et_loginPassword);
         iv_login = findViewById(R.id.iv_login);
         tv_registerActivity = findViewById(R.id.tv_registerActivity);
+        loginBack = findViewById(R.id.loginBack);
     }
 
     class CustomOnClickListener implements View.OnClickListener {
@@ -92,6 +95,9 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.tv_registerActivity:
                     Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(intentRegister);
+                    break;
+                case R.id.loginBack:
+                    finish();
                     break;
             }
         }

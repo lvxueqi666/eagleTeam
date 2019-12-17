@@ -4,20 +4,19 @@
     android:layout_width="match_parent"
     xmlns:zsg="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/gray"
+    android:background="@color/yellow_ff"
     android:layout_height="match_parent">
     <LinearLayout
-        android:background="@color/white"
+        android:background="@color/yellow_ff"
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <Button
             android:id="@+id/person_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/previous"
+            android:background="@drawable/back"
             android:gravity="left"
             />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -354,7 +353,7 @@
     <Button
         android:id="@+id/finish"
         android:layout_width="360dp"
-        android:text="晚上细腻"
+        android:text="更新信息"
         android:background="@drawable/radius"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
@@ -363,7 +362,7 @@
     <Button
         android:id="@+id/cancel"
         android:layout_width="360dp"
-        android:text="zhuxiao"
+        android:text="注销"
         android:background="@drawable/radius"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"

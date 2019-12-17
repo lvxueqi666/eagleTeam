@@ -87,6 +87,7 @@ public class FabuPicDao {
 				}
 				
 			}
+			conn.close();
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
