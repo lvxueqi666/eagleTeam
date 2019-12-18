@@ -65,11 +65,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
         getView();
-
         Intent intent = getIntent();
-        commodityId = intent.getStringExtra("commodityId");
+        commodityId =  intent.getStringExtra("commodityId");
         String images = intent.getStringExtra("images");
         String introductions = intent.getStringExtra("introductions");
         String price = intent.getStringExtra("price");
