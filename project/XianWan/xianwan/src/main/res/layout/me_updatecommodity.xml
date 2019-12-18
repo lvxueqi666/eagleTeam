@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/edit_dialog"
+        android:hint="请输入修改的价格"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp" />
+    <Button
+        android:id="@+id/btOK_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确定" />
+</LinearLayout>
