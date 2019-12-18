@@ -113,7 +113,6 @@ public class UpLoadFileTask extends AsyncTask<String, Void, String> {
                             Headpiclist.add(pic);
                         }
                     }
-                    Log.i("picture","头像遍历完毕"+Headpiclist.get(1).getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

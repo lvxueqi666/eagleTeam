@@ -700,7 +700,7 @@ public class headpicoption extends AppCompatActivity {
         try {
             FileOutputStream out = new FileOutputStream(file);
             BitmapFactory.Options ops = new BitmapFactory.Options();
-            ops.inSampleSize = 8;
+            ops.inSampleSize = 4;
             //ops.inJustDecodeBounds = true;
             Bitmap bitmap2 = BitmapFactory.decodeFile(originalPic,ops);
             bitmap2.compress(Bitmap.CompressFormat.JPEG,100,out);

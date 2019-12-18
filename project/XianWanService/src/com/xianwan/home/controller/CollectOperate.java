@@ -45,11 +45,11 @@ public class CollectOperate extends HttpServlet {
 				System.out.println(jsonArray.size());
 				response.getWriter().print(jsonArray.toString());
 			}else if(operate.equals("add")){
-				cs.addCollection(Integer.parseInt(commodityId), userAccount);
+				cs.addCollection(commodityId, userAccount);
 			}else if(operate.equals("cancel")){
-				cs.cancelCollection(Integer.parseInt(commodityId), userAccount);
+				cs.cancelCollection(commodityId, userAccount);
 			}else {
-				if(cs.adjustIfExistCollection(Integer.parseInt(commodityId), userAccount)) {
+				if(cs.adjustIfExistCollection(commodityId, userAccount)) {
 					response.getWriter().print("exist");
 				}else {
 					response.getWriter().print("unexist");

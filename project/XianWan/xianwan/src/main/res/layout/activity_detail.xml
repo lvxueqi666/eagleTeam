@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/lessGary">
 
     <LinearLayout
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -77,6 +79,7 @@
 
 
     <RelativeLayout
+        android:background="#ffffff"
         android:gravity="center_vertical"
         android:id="@+id/rlBottom"
         android:layout_width="match_parent"
@@ -99,7 +102,7 @@
 
             <TextView
                 android:layout_width="40dp"
-                android:layout_height="15dp"
+                android:layout_height="17dp"
                 android:layout_below="@id/dianzan"
                 android:layout_marginLeft="20dp"
                 android:text="点赞" />
@@ -143,7 +146,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:background="@drawable/shape"
+            android:background="@drawable/want"
             android:text="我想要"
             android:textColor="#ffffff"
             android:layout_marginTop="15dp"

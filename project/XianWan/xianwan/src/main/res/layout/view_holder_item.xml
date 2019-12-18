@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="190dp"
+    android:layout_width="175dp"
     android:layout_height="331dp"
     android:orientation="vertical"
     android:background="@drawable/radius">
 
     <ImageView
         android:id="@+id/showIv"
-        android:layout_width="190dp"
+        android:layout_width="175dp"
         android:layout_height="240dp" />
 
     <TextView
         android:id="@+id/introduce"
-        android:layout_width="190dp"
+        android:layout_width="175dp"
         android:layout_height="30dp"
         android:textSize="12sp"
         android:text="haha"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="190dp"
+        android:layout_width="175dp"
         android:layout_height="30dp"
         android:textSize="12sp"
         android:text="haha"
@@ -33,7 +33,7 @@
         android:layout_height="1dp"/>
 
     <LinearLayout
-        android:layout_width="190dp"
+        android:layout_width="175dp"
         android:layout_height="30dp"
         android:orientation="horizontal">
 

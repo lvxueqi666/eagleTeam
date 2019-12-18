@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                             Headpiclist.add(pic);
                         }
                     }
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

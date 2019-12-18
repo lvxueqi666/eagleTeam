@@ -13,4 +13,6 @@
     <color name="colorGrey">#e6e6e6</color>
     <color name="colorGray">#b7b3b4</color>
     <color name="yellow_ff">#ffe7a0</color>
+    <color name="lessGary">#edece9</color>
+    <color name="lessRed">#cefb0b03</color>
 </resources>

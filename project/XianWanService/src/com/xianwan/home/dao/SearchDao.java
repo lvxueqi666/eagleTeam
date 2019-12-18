@@ -17,7 +17,7 @@ public class SearchDao {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
-		String sq = "select * from commodity as t1 join (select round(rand() * (select max(id) from commodity)) as id) as t2 where t1.id >= t2.id and tag like '%" + tag + "%' order by t1.id limit 8";
+		String sq = "select * from commodity as t1 join (select round(rand() * (select max(id) from commodity)) as id) as t2 where t1.id >= t2.id and introduce like '%" + tag + "%' order by t1.id limit 8";
 		//String sql = "select * from commodity where attr = '" + type + "' and id >= (select floor(RAND() * (select MAX(id) from commodity))) order by id limit 10";
 		String sql2 = "select address from headpic where userAccount = ?";
 		conn = DBUtil.getConn();

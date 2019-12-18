@@ -7,15 +7,15 @@ public class ShowLikeService {
 		new ShowLikeDao().modifyLikeCount(commodityId,operate);
 	}
 	
-	public void addShowLike(int commodityId,String userAccount) {
+	public void addShowLike(String commodityId,String userAccount) {
 		new ShowLikeDao().addShowLike(commodityId, userAccount);
 	}
 	
-	public void cancelShowLike(int commodityId,String userAccount) {
+	public void cancelShowLike(String commodityId,String userAccount) {
 		new ShowLikeDao().cancelShowLike(commodityId, userAccount);
 	}
 	
-	public boolean adjustIfExistShowLike(int commodityId,String userAccount) {
+	public boolean adjustIfExistShowLike(String commodityId,String userAccount) {
 		return new ShowLikeDao().adjustIfExistShowLike(commodityId, userAccount);
 	}
 }

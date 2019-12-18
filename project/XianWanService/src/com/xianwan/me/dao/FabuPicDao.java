@@ -74,7 +74,7 @@ public class FabuPicDao {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		int m = 0;
-		String sql = "select frequency from fabupic where userId = ?";
+		String sql = "select frequency from fabupic where userAccount = ?";
 		try {
 			conn = DBUtil.getConn();
 			pstm = conn.prepareStatement(sql);

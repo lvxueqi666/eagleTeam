@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String registerName;
     private String registerAccount;
     private String registerPassword;
+    private String check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +71,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if((start+count) != 0){
+                    check = "OK";
                     iv_registerName.setImageResource(R.drawable.right);
                 }else {
+                    check = "";
                     iv_registerName.setImageResource(R.drawable.warning);
                 }
             }
@@ -97,8 +100,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().trim().length() >= 6 && s.toString().trim().length() <= 12){
+                    check = "OK";
                     registerAccountWithOkHttp("http://"+hostIp+":8080/XianWanService/AccountServlet",s.toString().trim());
                 }else {
+                    check = "";
                     ToastUtils.showToast(RegisterActivity.this,"账户长度不能低于6位多于12位",Toast.LENGTH_SHORT);
                     iv_registerAccount.setImageResource(R.drawable.warning);
                 }
@@ -123,8 +128,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if((start+count) >= 6 && (start+count) <= 15){
+                    check = "OK";
                     iv_registerPassword.setImageResource(R.drawable.right);
                 }else {
+                    check = "";
                     iv_registerPassword.setImageResource(R.drawable.warning);
                 }
             }
@@ -149,8 +156,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(registerPassword.equals(s.toString().trim())){
+                    check = "OK";
                     iv_psw_again.setImageResource(R.drawable.right);
                 }else {
+                    check = "";
                     ToastUtils.showToast(RegisterActivity.this,"确认密码与原密码不匹配",Toast.LENGTH_SHORT);
                     iv_psw_again.setImageResource(R.drawable.warning);
                 }
@@ -206,7 +215,7 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.btn_register:
                     checked = ed_checked.getText().toString().trim().toLowerCase();
                     code = code.toString().trim().toLowerCase();
-                    if(!checked.equals(code)){
+                    if(checked.equals(code)){
                         String address = "http://"+hostIp+":8080/XianWanService/RegisterServlet";
                         Register(registerAccount,registerPassword);
                         registerWithOkHttp(address,registerAccount,registerPassword,registerName);
@@ -243,9 +252,11 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if(responseData.equals("true")) {
+                            check = "";
                             ToastUtils.showToast(RegisterActivity.this, "用户已存在！", Toast.LENGTH_SHORT);
                             iv_registerAccount.setImageResource(R.drawable.warning);
                         }else{
+                            check = "OK";
                             iv_registerAccount.setImageResource(R.drawable.right);
                         }
                     }
@@ -268,7 +279,7 @@ public class RegisterActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(responseData.equals("true")){
+                        if(responseData.equals("true") && check.equals("OK")){
                             ToastUtils.showToast(RegisterActivity.this,"注册成功！",Toast.LENGTH_SHORT);
                             Intent intentRegister = new Intent(RegisterActivity.this,TagsActivity.class);
                             startActivity(intentRegister);

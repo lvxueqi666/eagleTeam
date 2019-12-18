@@ -54,8 +54,6 @@ public class DetailActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private Handler handler;
     private List<String> detailImage;
-
-
     private String commodityId;
     private String userAccount;
 
@@ -102,8 +100,11 @@ public class DetailActivity extends AppCompatActivity {
         };
 
         getImages(userAccount,images);
-
-        Glide.with(this).load(icons).into(icon);
+        if(icons == null || icons.equals("")){
+            Glide.with(this).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(icon);
+        }else{
+            Glide.with(this).load(icons).into(icon);
+        }
         name.setText(userName);
         detailPrice.setText("￥" + price);
         introdu.setText(introductions);
@@ -131,7 +132,7 @@ public class DetailActivity extends AppCompatActivity {
                     count--;
                     showLikes = count + "";
                     dianzancount.setText(count+"");
-                    modifyShowLikeCount(userAccount,commodityId,"minus","add");
+                    modifyShowLikeCount(userAccount,commodityId,"minus","cancel");
                 }
             }
         });

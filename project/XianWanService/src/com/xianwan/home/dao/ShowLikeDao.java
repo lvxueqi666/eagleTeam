@@ -31,7 +31,7 @@ public class ShowLikeDao {
 		}
 	}
 	
-	public void addShowLike(int commodityId,String userAccount) {
+	public void addShowLike(String commodityId,String userAccount) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		String sql = "insert into showlike values(?,?)";
@@ -40,7 +40,7 @@ public class ShowLikeDao {
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, commodityId);
+			pstm.setString(1, commodityId);
 			pstm.setString(2, userAccount);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -50,7 +50,7 @@ public class ShowLikeDao {
 		
 	}
 	
-	public void cancelShowLike(int commodityId,String userAccount) {
+	public void cancelShowLike(String commodityId,String userAccount) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		String sql = "delete from showlike where commodityId = '" + commodityId + "' and userAccount = '" + userAccount + "'";
@@ -58,6 +58,7 @@ public class ShowLikeDao {
 		conn = DBUtil.getConn();
 		
 		try {
+			System.out.println("取消了！！！");
 			pstm = conn.prepareStatement(sql);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -65,7 +66,7 @@ public class ShowLikeDao {
 		}
 	}
 	
-	public boolean adjustIfExistShowLike(int commodityId,String userAccount) {
+	public boolean adjustIfExistShowLike(String commodityId,String userAccount) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
