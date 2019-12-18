@@ -8,7 +8,11 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8"/>
 	<classpathentry kind="lib" path="D:/javaE/apache-tomcat-9.0.0.M4/lib/servlet-api.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdkenvironment"/>
+>>>>>>> bd814dc1c69b0477743afffa9e7f02e780551561
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

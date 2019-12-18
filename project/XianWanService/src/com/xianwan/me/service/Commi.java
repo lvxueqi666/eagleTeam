@@ -2,6 +2,7 @@ package com.xianwan.me.service;
 
 import java.sql.SQLException;
 
+import com.xianwan.me.controller.updatePrice;
 import com.xianwan.me.dao.CommiDao;
 import com.xianwan.me.dao.FabuPicDao;
 
@@ -25,5 +26,11 @@ public class Commi {
 	}
 	public void deleteCommodity(String id) {
 		new CommiDao().deleteCommodity(id);
+	}
+	
+
+	public void updatePrice(String id, String price) {
+		// TODO Auto-generated method stub
+		new CommiDao().updatePrice( id, price);
 	}
 }

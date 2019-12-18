@@ -221,7 +221,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         tabLayout.setOnTabSelectedListener(tabLayoutListener);
         tabLayout.addTab(tabLayout.newTab().setText("玩具").setTag(0));
         tabLayout.addTab(tabLayout.newTab().setText("书籍").setTag(1));
-        tabLayout.setSelectedTabIndicatorColor(0);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.gray));
     }
 
     private void initRecyclerView() {
@@ -229,7 +229,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         DisplayMetrics dm = resources.getDisplayMetrics();
         int width = dm.widthPixels;//px获取
         final float fontScale = getActivity().getResources().getDisplayMetrics().density;
-        int itemWidth = (int) (190 * fontScale + 0.5f);
+        int itemWidth = (int) (175 * fontScale + 0.5f);
         int leftDecoration = (width - 2 * itemWidth) / 4;
 
         HashMap<String,Integer> stringIntegerHashMap = new HashMap<>();

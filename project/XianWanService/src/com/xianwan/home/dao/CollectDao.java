@@ -32,7 +32,7 @@ public class CollectDao {
 		return list;
 	}
 	
-	public boolean adjustIfExistCollection(int commodityId,String userAccount) {
+	public boolean adjustIfExistCollection(String commodityId,String userAccount) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -52,7 +52,7 @@ public class CollectDao {
 		
 	}
 	
-	public void addCollection(int commodityId,String userAccount) {
+	public void addCollection(String commodityId,String userAccount) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		String sql = "insert into collect values(?,?)";
@@ -61,7 +61,7 @@ public class CollectDao {
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, commodityId);
+			pstm.setString(1, commodityId);
 			pstm.setString(2, userAccount);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -72,7 +72,7 @@ public class CollectDao {
 	
 	
 	
-	public void cancelCollection(int commodityId,String userAccount) {
+	public void cancelCollection(String commodityId,String userAccount) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		String sql = "delete from collect where commodityId = '" + commodityId + "' and userAccount = '" + userAccount + "'";

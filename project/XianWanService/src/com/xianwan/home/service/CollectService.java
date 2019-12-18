@@ -9,15 +9,15 @@ public class CollectService {
 		return new CollectDao().queryCommodityIdByUserAccount(userAccount);
 	}
 	
-	public void addCollection(int commodityId,String userAccount) {
+	public void addCollection(String commodityId,String userAccount) {
 		new CollectDao().addCollection(commodityId, userAccount);
 	}
 	
-	public void cancelCollection(int commodityId,String userAccount) {
+	public void cancelCollection(String commodityId,String userAccount) {
 		new CollectDao().cancelCollection(commodityId, userAccount);
 	}
 	
-	public boolean adjustIfExistCollection(int commodityId,String userId) {
+	public boolean adjustIfExistCollection(String commodityId,String userId) {
 		return new CollectDao().adjustIfExistCollection(commodityId, userId);
 	}
 }

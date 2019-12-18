@@ -43,6 +43,7 @@ import com.bumptech.glide.Glide;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.fragment.MeFragment;
 import com.example.qiqi.xianwan.meadapter.MessageEvent;
+import com.example.qiqi.xianwan.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -212,7 +213,10 @@ public class content_fabu extends AppCompatActivity
                     String introduce=ed_introductions.getText().toString();
                     String price=ed_price.getText().toString();
                     String attr=tv_attr.getText().toString();
-                    Toast.makeText(content_fabu.this, "发布成功!", Toast.LENGTH_LONG).show();
+                    if (introduce==null||price==null||attr==null){
+                        ToastUtils.showToast(content_fabu.this, "请输入完整信息!", Toast.LENGTH_LONG);
+                    }
+                   else{
                     addOrCancelCollection(introduce,price,attr);
                     Log.i("zay","zga");
                     new Thread(){
@@ -225,6 +229,9 @@ public class content_fabu extends AppCompatActivity
                     Intent intent = new Intent();
                     intent.setClass(content_fabu.this, wofabu.class);
                     startActivity(intent);
+                    content_fabu.this.finish();
+                    Toast.makeText(content_fabu.this, "发布成功!", Toast.LENGTH_LONG).show();
+                }
                     break;
                 case R.id.item_attr:
                     showAttrChooseDialog();
@@ -390,8 +397,9 @@ public class content_fabu extends AppCompatActivity
     private void addButton(final String imagePath) {
         //将地址存放到list集合中,便于一起提交
         Log.i("zayhh",":"+imagePath);
-        final Uri suolue = makePicSmaller(imagePath);
-        pathList.add(suolue.getPath());
+        //final Uri suolue = makePicSmaller(imagePath);
+        //pathList.add(suolue.getPath());
+        pathList.add(imagePath);
 
         //图像点击按钮
         final ImageView button = new ImageView(content_fabu.this);
@@ -467,7 +475,7 @@ public class content_fabu extends AppCompatActivity
         try {
             FileOutputStream out = new FileOutputStream(file);
             BitmapFactory.Options ops = new BitmapFactory.Options();
-            ops.inSampleSize = 8;
+            ops.inSampleSize = 2;
             //ops.inJustDecodeBounds = true;
             Bitmap bitmap2 = BitmapFactory.decodeFile(originalPic,ops);
             bitmap2.compress(Bitmap.CompressFormat.JPEG,100,out);

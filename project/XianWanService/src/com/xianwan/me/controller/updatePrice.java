@@ -1,28 +1,25 @@
 package com.xianwan.me.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.xianwan.me.dao.CommiDao;
 import com.xianwan.me.service.Commi;
 
 /**
- * Servlet implementation class deleteCommodity
+ * Servlet implementation class updatePrice
  */
-@WebServlet("/deleteCommodity")
-public class deleteCommodity extends HttpServlet {
+@WebServlet("/updatePrice")
+public class updatePrice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deleteCommodity() {
+    public updatePrice() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,17 +32,13 @@ public class deleteCommodity extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 	
 		String id = request.getParameter("id");
-		
+		String price=request.getParameter("price");
 		if(id!=null) {
-			System.out.println("id123:"+id);
-			
-			
 			Commi commi = new Commi();
-			commi.deleteCommodity(id);
+			commi.updatePrice(id,price);
 			
-			response.getWriter().write("删除成功！");
+			response.getWriter().write("修改成功！");
 		}
-		
 	}
 
 	/**

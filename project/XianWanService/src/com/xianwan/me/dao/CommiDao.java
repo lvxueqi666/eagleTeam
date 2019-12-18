@@ -44,7 +44,24 @@ public class CommiDao {
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, id);
+			pstm.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public  void updatePrice(String id,String price) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String sql = "update commodity set price = ? where id = ?";
+		conn = DBUtil.getConn();
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(2, id);
+			pstm.setString(1, price);
+			System.out.println(id+"mmm"+price);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
