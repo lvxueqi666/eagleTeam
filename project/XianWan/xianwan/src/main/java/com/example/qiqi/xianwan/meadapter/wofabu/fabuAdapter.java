@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Commodity;
 
@@ -63,12 +65,14 @@ public class fabuAdapter extends BaseAdapter {
             convertView = inflater.inflate(itemLayoutId, null);
         }
         ImageView imageView = convertView.findViewById(R.id.fabu_img);
-       TextView introduce = convertView.findViewById(R.id.fabu_introduce);
-       TextView textView=convertView.findViewById(R.id.tv_price);
+        TextView introduce = convertView.findViewById(R.id.fabu_introduce);
+        TextView textView=convertView.findViewById(R.id.tv_price);
         Button button=convertView.findViewById(R.id.delete_fabu);
 
-Commodity commodity=commodities.get(position);
-        Glide.with(context).load(commodity.getImage()).transform(new GlideRoundTransform(context,10)).into(imageView);
+        Commodity commodity=commodities.get(position);
+        RequestOptions options = new RequestOptions().skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
+        Glide.with(context).load(commodity.getImage()).apply(options).transform(new GlideRoundTransform(context,10)).into(imageView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

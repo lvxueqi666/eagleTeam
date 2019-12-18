@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.tv_registerActivity:
                     Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(intentRegister);
+                    LoginActivity.this.finish();
                     break;
                 case R.id.loginBack:
                     finish();
@@ -136,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                             ).show();
                             Intent intentLogin = new Intent(LoginActivity.this,MainActivity.class);
                             startActivity(intentLogin);
+                            LoginActivity.this.finish();
                         }
                         else {
                             Toast.makeText(

@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                             Headpiclist.add(pic);
                         }
                     }
-                    Log.i("picture","头像遍历完毕"+Headpiclist.get(1).getAddress());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

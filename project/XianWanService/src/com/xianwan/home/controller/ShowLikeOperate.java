@@ -37,11 +37,12 @@ public class ShowLikeOperate extends HttpServlet {
 		if(commodityId != null) {
 			if(operate.equals("add")) {
 				sls.modifyLikeCount(commodityId,addOrCancel);
-				sls.addShowLike(Integer.parseInt(commodityId), userAccount);
+				sls.addShowLike(commodityId, userAccount);
 			}else if(operate.equals("cancel")) {
-				sls.cancelShowLike(Integer.parseInt(commodityId), userAccount);
+				sls.modifyLikeCount(commodityId,addOrCancel);
+				sls.cancelShowLike(commodityId, userAccount);
 			}else {
-				if(sls.adjustIfExistShowLike(Integer.parseInt(commodityId), userAccount)) {
+				if(sls.adjustIfExistShowLike(commodityId, userAccount)) {
 					response.getWriter().print("exist");
 				}else {
 					response.getWriter().print("unexist");

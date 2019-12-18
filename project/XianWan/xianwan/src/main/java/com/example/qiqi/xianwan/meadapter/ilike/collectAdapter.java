@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.entity.Commodity;
 import com.example.qiqi.xianwan.meadapter.wofabu.GlideRoundTransform;
@@ -76,7 +78,9 @@ public class collectAdapter extends BaseAdapter {
             }
         });
         Commodity commodity=commodities.get(position);
-        Glide.with(context).load(commodity.getImage()).transform(new GlideRoundTransform(context,10)).into(imageView);
+        RequestOptions options = new RequestOptions().skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
+        Glide.with(context).load(commodity.getImage()).apply(options).transform(new GlideRoundTransform(context,10)).into(imageView);
         introduce.setText(commodity.getIntroduce());
         textView.setText(commodity.getPrice());
         return convertView;

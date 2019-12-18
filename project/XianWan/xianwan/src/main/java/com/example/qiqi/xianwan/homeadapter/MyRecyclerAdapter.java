@@ -100,8 +100,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             public void onClick(View v) {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(v, position);
-                    Log.e("size::::::::::::",price.size() + "");
-                    Log.e("position:::::::",position+"");
                     Intent intent = new Intent();
                     intent.putExtra("commodityId",commodityId.get(position));
                     intent.putExtra("images",images.get(position));
@@ -119,8 +117,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         // 如果是正常的item，直接设置TextView的值
         if (holder instanceof NormalHolder) {
             if(mListStyle == 0){
-                RequestOptions options = new RequestOptions().transform(new CenterCrop());
-                Glide.with(mContext).asBitmap().load(images.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
+                RequestOptions options = new RequestOptions().transform(new CenterCrop()).skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE);
+                Glide.with(mContext).asBitmap().load(images.get(position)).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
                     @Override
                     protected void setResource(Bitmap resource) {
                         super.setResource(resource);
@@ -132,12 +131,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
-                //Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
-                ((NormalHolder) holder).mIcon.setImageResource(R.drawable.xinming);
+                if(icon.get(position) == null || icon.get(position).equals("")){
+                    Glide.with(mContext).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(((NormalHolder) holder).mIcon);
+                }else{
+                    Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
+                }
+                //((NormalHolder) holder).mIcon.setImageResource(R.drawable.xinming);
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }else{
-                RequestOptions options = new RequestOptions().transform(new CenterCrop());
-                Glide.with(mContext).asBitmap().load(images.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
+                RequestOptions options = new RequestOptions().transform(new CenterCrop()).skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE);
+                Glide.with(mContext).asBitmap().load(images.get(position)).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
                     @Override
                     protected void setResource(Bitmap resource) {
                         super.setResource(resource);
@@ -149,8 +153,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
-                //Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
-                ((NormalHolder) holder).mIcon.setImageResource(R.drawable.qzuozhu);
+                if(icon.get(position) == null || icon.get(position).equals("")){
+                    Glide.with(mContext).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(((NormalHolder) holder).mIcon);
+                }else{
+                    Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
+                }
+                //((NormalHolder) holder).mIcon.setImageResource(R.drawable.qzuozhu);
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }
         } else {

@@ -44,9 +44,10 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:focusable="false"
         android:id="@+id/delete_fabu"
         android:layout_width="25dp"
-        android:layout_marginLeft="380dp"
+        android:layout_marginLeft="370dp"
         android:layout_marginTop="45dp"
         android:background="@mipmap/deletebin"
         android:layout_height="25dp" />

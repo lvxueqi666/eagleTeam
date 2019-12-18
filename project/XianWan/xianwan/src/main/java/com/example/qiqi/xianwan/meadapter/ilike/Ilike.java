@@ -86,7 +86,7 @@ public class Ilike extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //跳转到详情页
                     Intent intent=new Intent();
-                    intent.putExtra("commodityId",commodities.get(i).getId());
+                    intent.putExtra("commodityId",commodities.get(i).getId()+"");
                     intent.putExtra("images",commodities.get(i).getImage());
                     intent.putExtra("introductions",commodities.get(i).getIntroduce());
                     intent.putExtra("price",commodities.get(i).getPrice());

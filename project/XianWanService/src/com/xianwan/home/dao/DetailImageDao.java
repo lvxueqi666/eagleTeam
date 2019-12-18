@@ -15,7 +15,7 @@ public class DetailImageDao {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String sql = "select imageUrl from detailimage where userAccount = ? and firstUrl = ?";
+		String sql = "select address from fabupic where userAccount = ? and firstUrl = ?";
 		conn = DBUtil.getConn();
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -23,7 +23,7 @@ public class DetailImageDao {
 			pstm.setString(2, firstUrl);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
-				String img = rs.getString("imageUrl");
+				String img = rs.getString("address");
 				images.add(img);
 			}
 		} catch (SQLException e) {

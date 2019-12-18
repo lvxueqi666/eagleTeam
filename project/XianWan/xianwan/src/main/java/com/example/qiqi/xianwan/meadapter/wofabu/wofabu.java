@@ -4,6 +4,7 @@ package com.example.qiqi.xianwan.meadapter.wofabu;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.DeadObjectException;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -46,7 +47,7 @@ public class wofabu extends AppCompatActivity
     private ListView listView;
     private Button fabu;
     private Button btn_wofabu_back;
-private SmartRefreshLayout wofabu_srl;
+    private SmartRefreshLayout wofabu_srl;
     private CustomeClickListener listener;
 
     private com.example.qiqi.xianwan.meadapter.wofabu.fabuAdapter fabuAdapter;
@@ -89,26 +90,24 @@ private SmartRefreshLayout wofabu_srl;
                     R.layout.me_fabu_item);
             listView.setAdapter(fabuAdapter);
 
-            //item点击事件
+            //item点击事
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Commodity commodity = commodities.get(i);
                     //跳转到详情页
-                    Intent intent=new Intent();
-                    intent.putExtra("commodityId",commodities.get(i).getId());
-                    intent.putExtra("images",commodities.get(i).getImage());
-                    intent.putExtra("introductions",commodities.get(i).getIntroduce());
-                    intent.putExtra("price",commodities.get(i).getPrice());
-                    intent.putExtra("icon",commodities.get(i).getIcon());
-                    intent.putExtra("userName",commodities.get(i).getUserName());
-                    intent.putExtra("userAccount",commodities.get(i).getUserAccount());
-                    intent.putExtra("showLike",commodities.get(i).getShowLike());
-                    intent.setClass(wofabu.this,DetailActivity.class);
+                    Intent intent=new Intent(getApplicationContext(), DetailActivity.class);
+                    intent.putExtra("commodityId",commodity.getId()+"");
+                    intent.putExtra("images",commodity.getImage());
+                    intent.putExtra("introductions",commodity.getIntroduce());
+                    intent.putExtra("price",commodity.getPrice());
+                    intent.putExtra("icon",commodity.getIcon());
+                    intent.putExtra("userName",commodity.getUserName());
+                    intent.putExtra("userAccount",commodity.getUserAccount());
+                    intent.putExtra("showLike",commodity.getShowLike());
                     startActivity(intent);
-
                 }
             });
-
 
         }
 
@@ -120,11 +119,10 @@ private SmartRefreshLayout wofabu_srl;
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.me_wofabu);
         if(USERACCOUNT!=null) {
-            asyncFormOp();
             getViews();
+            asyncFormOp();
             regListener();
         }
-
 
     }
 
@@ -205,6 +203,7 @@ private SmartRefreshLayout wofabu_srl;
                     Intent intent3=new Intent();
                     intent3.setClass(wofabu.this,content_fabu.class);
                     startActivity(intent3);
+                    break;
 
             }
         }
