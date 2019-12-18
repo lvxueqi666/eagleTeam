@@ -49,7 +49,6 @@ public class wofabu extends AppCompatActivity
     private Button btn_wofabu_back;
     private SmartRefreshLayout wofabu_srl;
     private CustomeClickListener listener;
-
     private com.example.qiqi.xianwan.meadapter.wofabu.fabuAdapter fabuAdapter;
     List<Commodity> commodities = new ArrayList<>();
     private Handler handler = new Handler() {
@@ -65,7 +64,6 @@ public class wofabu extends AppCompatActivity
                 for(int i = 0; i < jsonArray.length();i++){
                     String objStr = jsonArray.getString(i);
                     JSONObject jsonObject = new JSONObject(objStr);
-
                     Commodity commodity = new Commodity(
                             jsonObject.getLong("id"),
                             jsonObject.getString("image"),
@@ -85,17 +83,21 @@ public class wofabu extends AppCompatActivity
             }
 
 
+
             fabuAdapter = new fabuAdapter(getApplicationContext(),
                     commodities,
                     R.layout.me_fabu_item);
             listView.setAdapter(fabuAdapter);
 
+
             //item点击事
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Commodity commodity = commodities.get(i);
                     //跳转到详情页
+
                     Intent intent=new Intent(getApplicationContext(), DetailActivity.class);
                     intent.putExtra("commodityId",commodity.getId()+"");
                     intent.putExtra("images",commodity.getImage());
@@ -105,6 +107,7 @@ public class wofabu extends AppCompatActivity
                     intent.putExtra("userName",commodity.getUserName());
                     intent.putExtra("userAccount",commodity.getUserAccount());
                     intent.putExtra("showLike",commodity.getShowLike());
+
                     startActivity(intent);
                 }
             });
