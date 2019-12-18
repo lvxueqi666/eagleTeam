@@ -48,7 +48,6 @@ public class wofabu extends AppCompatActivity
     private Button btn_wofabu_back;
 private SmartRefreshLayout wofabu_srl;
     private CustomeClickListener listener;
-
     private com.example.qiqi.xianwan.meadapter.wofabu.fabuAdapter fabuAdapter;
     List<Commodity> commodities = new ArrayList<>();
     private Handler handler = new Handler() {
@@ -64,7 +63,6 @@ private SmartRefreshLayout wofabu_srl;
                 for(int i = 0; i < jsonArray.length();i++){
                     String objStr = jsonArray.getString(i);
                     JSONObject jsonObject = new JSONObject(objStr);
-
                     Commodity commodity = new Commodity(
                             jsonObject.getLong("id"),
                             jsonObject.getString("image"),
@@ -84,18 +82,19 @@ private SmartRefreshLayout wofabu_srl;
             }
 
 
+
             fabuAdapter = new fabuAdapter(getApplicationContext(),
                     commodities,
                     R.layout.me_fabu_item);
             listView.setAdapter(fabuAdapter);
-
             //item点击事件
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //跳转到详情页
                     Intent intent=new Intent();
-                    intent.putExtra("commodityId",commodities.get(i).getId());
+                    intent.setClass(wofabu.this,DetailActivity.class);
+                    intent.putExtra("commodityId",commodities.get(i).getId()+"");
                     intent.putExtra("images",commodities.get(i).getImage());
                     intent.putExtra("introductions",commodities.get(i).getIntroduce());
                     intent.putExtra("price",commodities.get(i).getPrice());
@@ -103,7 +102,6 @@ private SmartRefreshLayout wofabu_srl;
                     intent.putExtra("userName",commodities.get(i).getUserName());
                     intent.putExtra("userAccount",commodities.get(i).getUserAccount());
                     intent.putExtra("showLike",commodities.get(i).getShowLike());
-                    intent.setClass(wofabu.this,DetailActivity.class);
                     startActivity(intent);
 
                 }
@@ -120,8 +118,8 @@ private SmartRefreshLayout wofabu_srl;
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.me_wofabu);
         if(USERACCOUNT!=null) {
-            asyncFormOp();
             getViews();
+            asyncFormOp();
             regListener();
         }
 

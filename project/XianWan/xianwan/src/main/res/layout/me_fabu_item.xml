@@ -44,6 +44,7 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:focusable="false"
         android:id="@+id/delete_fabu"
         android:layout_width="25dp"
         android:layout_marginLeft="380dp"

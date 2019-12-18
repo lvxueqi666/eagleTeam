@@ -23,4 +23,7 @@ public class Commi {
 	public String findAddressByAccount(String userAccount) {
 		return new FabuPicDao().getFakeName(userAccount);
 	}
+	public void deleteCommodity(String id) {
+		new CommiDao().deleteCommodity(id);
+	}
 }

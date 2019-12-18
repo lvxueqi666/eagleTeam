@@ -35,6 +35,19 @@ public class CommiDao {
 		}
 		System.out.println("插入完成");
 	}
+	
+	public void deleteCommodity(String id) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		String sql = "delete from commodity where id = ?";
+		conn = DBUtil.getConn();
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 	/*
