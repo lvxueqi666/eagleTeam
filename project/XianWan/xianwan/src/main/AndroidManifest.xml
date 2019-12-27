@@ -123,18 +123,11 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <!--<provider-->
-            <!--android:name="android.support.v4.content.FileProvider"-->
-            <!--android:authorities="com.example.qiqi.xianwan.meadapter.xianwanpic.fileprovider"-->
-            <!--android:exported="false"-->
-            <!--android:grantUriPermissions="true">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-                <!--android:resource="@xml/file_paths" />-->
-        <!--</provider>-->
+
+        <!--//照相机-->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.qiqi.xianwan.fileProvider"
+            android:authorities="${applicationId}.fileProvider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
@@ -142,6 +135,11 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!--//地图-->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -150,10 +148,10 @@
                 <action android:name="com.baidu.location.service_v5.0.0" />
             </intent-filter>
         </service>
-
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="5xjqsxbtkI1wIgnGrCbA2c30ysWPEsfI" />
+
 
         <activity android:name=".ChatActivity" />
         <activity android:name=".ConversationActivity" />
