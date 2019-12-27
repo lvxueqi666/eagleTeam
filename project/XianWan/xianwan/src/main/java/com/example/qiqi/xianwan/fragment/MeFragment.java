@@ -122,8 +122,8 @@ public class MeFragment extends Fragment {
                             .fallback(R.drawable.backgroud)
                             .override(400)
                             .circleCrop()
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE);
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true);
                     Log.i("zaybbbbb",""+getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg");
                     if(new File(getContext().getFilesDir().getAbsolutePath()+"/UserPic.jpg").exists()){
                         Glide.with(getContext())
@@ -266,7 +266,7 @@ public class MeFragment extends Fragment {
 
     private void InitHeadPic2() {
         RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.add)
+
                 .error(R.drawable.back)
                 .fallback(R.drawable.backgroud)
                 .override(400)
@@ -358,6 +358,12 @@ public class MeFragment extends Fragment {
             handler2.sendMessage(msg);
         }
     private void InitHeadPic() {
+//        File file = new File(getContext().getFilesDir().getAbsolutePath() + "/UserPic.jpg");
+//            if (file.exists()) {
+//            Message message = new Message();
+//            message.what = 1;
+//            handler3.sendMessage(message);
+//        }else{
         new Thread() {
             @Override
             public void run() {
@@ -369,10 +375,12 @@ public class MeFragment extends Fragment {
                     handler3.sendMessage(message);
                 }
             }
-        }.start();
+        }.start();}
 
 
-        }
+
+
+       // }
 
 
         private void refreshData () {

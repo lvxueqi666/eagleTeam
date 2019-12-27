@@ -117,8 +117,8 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         // 如果是正常的item，直接设置TextView的值
         if (holder instanceof NormalHolder) {
             if(mListStyle == 0){
-                RequestOptions options = new RequestOptions().transform(new CenterCrop());
-                Glide.with(mContext).asBitmap().load(images.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options).into(new BitmapImageViewTarget(((MyRecyclerAdapter.NormalHolder) holder).showIv){
+                RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).transform(new CenterCrop());
+                Glide.with(mContext).asBitmap().load(images.get(position)).apply(options).into(new BitmapImageViewTarget(((MyRecyclerAdapter.NormalHolder) holder).showIv){
                     @Override
                     protected void setResource(Bitmap resource) {
                         super.setResource(resource);
@@ -130,11 +130,15 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
-                ((NormalHolder) holder).mIcon.setImageResource(R.drawable.xinming);
+                if(icon.get(position) == null || icon.get(position).equals("")){
+                    Glide.with(mContext).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(((NormalHolder) holder).mIcon);
+                }else{
+                    Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
+                }
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }else{
-                RequestOptions options = new RequestOptions().transform(new CenterCrop());
-                Glide.with(mContext).asBitmap().load(images.get(position)).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
+                RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).transform(new CenterCrop());
+                Glide.with(mContext).asBitmap().load(images.get(position)).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
                     @Override
                     protected void setResource(Bitmap resource) {
                         super.setResource(resource);
@@ -146,7 +150,11 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
                 ((NormalHolder) holder).price.setText(price.get(position));
-                ((NormalHolder) holder).mIcon.setImageResource(R.drawable.qzuozhu);
+                if(icon.get(position) == null || icon.get(position).equals("")){
+                    Glide.with(mContext).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(((NormalHolder) holder).mIcon);
+                }else{
+                    Glide.with(mContext).load(icon.get(position)).into(((NormalHolder) holder).mIcon);
+                }
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }
         } else {

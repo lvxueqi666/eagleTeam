@@ -5,9 +5,10 @@
     android:background="@color/lessGary">
 
     <LinearLayout
+        android:gravity="center_vertical"
         android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="55dp">
 
         <ImageView
             android:id="@+id/detail_back"
@@ -116,7 +117,7 @@
             android:layout_height="17dp"
             android:layout_marginLeft="-10dp"
             android:layout_centerVertical="true"
-            android:text="1250" />
+            android:text="" />
 
         <RelativeLayout
             android:layout_marginTop="10dp"

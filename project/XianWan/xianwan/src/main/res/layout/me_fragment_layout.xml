@@ -77,7 +77,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/iv_fabu"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
 
                                 android:text="我发布的" />
@@ -87,8 +87,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="50dp"
-                                android:layout_toRightOf="@id/tv_wofabu"
-                                android:text="0" />
+                                android:layout_toRightOf="@id/tv_wofabu" />
                         </RelativeLayout>
                         <!--我卖出的-->
                         <RelativeLayout
@@ -111,7 +110,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/iv_maichu"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:text="我卖出的" />
 
@@ -143,7 +142,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/iv_maidao"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:text="我买到的" />
 
@@ -175,7 +174,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/iv_shoucang"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:text="我收藏的" />
 
@@ -184,8 +183,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="50dp"
-                                android:layout_toRightOf="@id/tv_woshoucang"
-                                android:text="0" />
+                                android:layout_toRightOf="@id/tv_woshoucang" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>

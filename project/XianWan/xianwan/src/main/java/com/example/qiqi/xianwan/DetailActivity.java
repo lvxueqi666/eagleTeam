@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.qiqi.xianwan.entity.Headpic;
 import com.example.qiqi.xianwan.initHuanXin.MyApplication;
 import com.hyphenate.chat.EMMessage;
@@ -81,6 +83,9 @@ public class DetailActivity extends AppCompatActivity {
                 super.handleMessage(msg);
                 String json = (String) msg.obj;
                 Log.e("jsonjsonjson",json);
+                RequestOptions requestOptions = new RequestOptions()
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE);
                 try {
                     JSONArray jsonArray = new JSONArray(json);
                     for(int i = 0; i < jsonArray.length();i++){
@@ -93,22 +98,23 @@ public class DetailActivity extends AppCompatActivity {
                 for(int i = 0; i < detailImage.size(); i++) {
                     ImageView imageView = new ImageView(getApplicationContext());
                     imageView.setPadding(30,30,30,30);
-                    Glide.with(getApplicationContext()).load(detailImage.get(i)).into(imageView);
+                    Glide.with(getApplicationContext()).load(detailImage.get(i)).apply(requestOptions).into(imageView);
                     linearLayout.addView(imageView);
                 }
             }
         };
 
         getImages(userAccount,images);
+        RequestOptions requestOptions = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
         if(icons == null || icons.equals("")){
-            Glide.with(this).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(icon);
+            Glide.with(this).load("http://49.233.142.163:8080/images/lvgoudan.jpg").apply(requestOptions).into(icon);
         }else{
-            Glide.with(this).load(icons).into(icon);
+            Glide.with(this).load(icons).apply(requestOptions).into(icon);
         }
         name.setText(userName);
         detailPrice.setText("￥" + price);
         introdu.setText(introductions);
-        dianzancount.setText(showLikes);
         adjustShowLikeStatus(userAccount,commodityId,"adjust");
         adjustCollectionStatus(userAccount,commodityId,"adjust");
 
@@ -121,17 +127,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 if(showLike.getDrawable().getCurrent().getConstantState().equals(getResources().getDrawable(R.drawable.dianzan).getConstantState())){
                     showLike.setImageResource(R.drawable.dianzan1);
-                    int count = Integer.parseInt(showLikes);
-                    count++;
-                    showLikes = count + "";
-                    dianzancount.setText(count + "");
                     modifyShowLikeCount(userAccount,commodityId,"add","add");
                 }else{
                     showLike.setImageResource(R.drawable.dianzan);
-                    int count = Integer.parseInt(showLikes);
-                    count--;
-                    showLikes = count + "";
-                    dianzancount.setText(count+"");
                     modifyShowLikeCount(userAccount,commodityId,"minus","cancel");
                 }
             }
@@ -145,11 +143,11 @@ public class DetailActivity extends AppCompatActivity {
                 if(shoucang.getDrawable().getCurrent().getConstantState().equals(getResources().getDrawable(R.drawable.shoucang).getConstantState())){
                     shoucang.setImageResource(R.drawable.shoucang1);
                     Toast.makeText(DetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
-                    addOrCancelCollection(userAccount,commodityId,"add");
+                    addOrCancelCollection(USERACCOUNT,commodityId,"add");
                 }else{
                     shoucang.setImageResource(R.drawable.shoucang);
                     Toast.makeText(DetailActivity.this, "取消收藏", Toast.LENGTH_SHORT).show();
-                    addOrCancelCollection(userAccount,commodityId,"cancel");
+                    addOrCancelCollection(USERACCOUNT,commodityId,"cancel");
                 }
             }
         });

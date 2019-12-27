@@ -112,7 +112,7 @@ public class fabuAdapter extends BaseAdapter {
 
         Commodity commodity=commodities.get(position);
 
-        RequestOptions options = new RequestOptions().skipMemoryCache(true)
+        RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
         Glide.with(context).load(commodity.getImage()).apply(options).transform(new GlideRoundTransform(context,10)).into(imageView);
 

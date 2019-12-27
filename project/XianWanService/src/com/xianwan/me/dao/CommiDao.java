@@ -28,7 +28,7 @@ public class CommiDao {
 			pstm.setString(7, null);
 			pstm.setString(8, userName);
 			pstm.setString(9, attr);
-			pstm.setString(10, null);
+			pstm.setInt(10, 0);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

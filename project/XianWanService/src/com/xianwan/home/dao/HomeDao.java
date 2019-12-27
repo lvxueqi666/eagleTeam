@@ -23,10 +23,11 @@ public class HomeDao {
 		//String sql = "select * from commodity where attr = '" + type + "' and id >= (select floor(RAND() * (select MAX(id) from commodity))) order by id limit 10";
 		String sql2 = "select address from headpic where userAccount = ?";
 		String sql3 = "SELECT * FROM commodity WHERE id >= ((SELECT MAX(id) FROM commodity)-(SELECT MIN(id) FROM commodity)) * RAND() + (SELECT MIN(id) FROM commodity) LIMIT 10"; 
-		String sql4 = "select * from commodity order by rand() limit 10";
+		String sql4 = "select * from commodity where attr = ? order by rand() limit 10 ";
 		conn = DBUtil.getConn();
 		try {
 			pstm = conn.prepareStatement(sql4);
+			pstm.setString(1, type);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				pstm = conn.prepareStatement(sql2);

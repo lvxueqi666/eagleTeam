@@ -6,28 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <Button
+        android:layout_height="55dp"
+        android:paddingTop="10dp"
+        android:background="#ffffff">
+        <ImageView
             android:id="@+id/btn_wofabu_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:background="@drawable/back"
-            android:gravity="left"
-            />
+            android:layout_width="38dp"
+            android:layout_height="38dp" />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="我发布的玩具"
             android:gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="我发布的玩具" />
-
-
-    </LinearLayout>
+            android:textSize="25dp"
+            android:textColor="#2c2c2c" />
+    </RelativeLayout>
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_marginTop="30dp"
@@ -35,17 +31,18 @@
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
-           android:gravity="center"
+            android:gravity="center"
             android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/fabu"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:text="发布玩具"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:background="@drawable/radious_submmit"
-                android:layout_height="30dp" />
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"/>
 
         </RelativeLayout>
     </RelativeLayout>

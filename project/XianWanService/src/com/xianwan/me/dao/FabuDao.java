@@ -17,13 +17,18 @@ public class FabuDao {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		String sql = "select * from commodity where userAccount = ?";
+		String sql2 = "select address from headpic where userAccount = ?";
 		conn = DBUtil.getConn();
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, attr);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
+				pstm = conn.prepareStatement(sql2);
+				pstm.setString(1, rs.getString(6));
+				rs2 = pstm.executeQuery();
 				Commodity com = new Commodity();
 				com.setId(rs.getString(1));
 				com.setImage(rs.getString(2));
@@ -31,7 +36,9 @@ public class FabuDao {
 				com.setPrice(rs.getString(4));
 				com.setTag(rs.getString(5));
 				com.setUserAccount(rs.getString(6));
-				com.setIcon(rs.getString(7));
+				if(rs2.next()) {
+					com.setIcon(rs2.getString("address"));
+				}
 				com.setUserName(rs.getString(8));
 				com.setAttr(rs.getString(9));
 				com.setShowLike(rs.getString(10));

@@ -117,8 +117,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         // 如果是正常的item，直接设置TextView的值
         if (holder instanceof NormalHolder) {
             if(mListStyle == 0){
-                RequestOptions options = new RequestOptions().transform(new CenterCrop()).skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE);
+                RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).transform(new CenterCrop());
                 Glide.with(mContext).asBitmap().load(images.get(position)).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
                     @Override
                     protected void setResource(Bitmap resource) {
@@ -130,7 +129,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     }
                 });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
-                ((NormalHolder) holder).price.setText(price.get(position));
+                ((NormalHolder) holder).price.setText("￥" + price.get(position));
                 if(icon.get(position) == null || icon.get(position).equals("")){
                     Glide.with(mContext).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(((NormalHolder) holder).mIcon);
                 }else{
@@ -139,7 +138,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 //((NormalHolder) holder).mIcon.setImageResource(R.drawable.xinming);
                 ((NormalHolder) holder).userName.setText(userName.get(position));
             }else{
-                RequestOptions options = new RequestOptions().transform(new CenterCrop()).skipMemoryCache(true)
+                RequestOptions options = new RequestOptions().transform(new CenterCrop())
                         .diskCacheStrategy(DiskCacheStrategy.NONE);
                 Glide.with(mContext).asBitmap().load(images.get(position)).apply(options).into(new BitmapImageViewTarget(((NormalHolder) holder).showIv){
                     @Override
@@ -152,7 +151,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     }
                 });
                 ((NormalHolder) holder).introduce.setText(introductions.get(position));
-                ((NormalHolder) holder).price.setText(price.get(position));
+                ((NormalHolder) holder).price.setText("￥" + price.get(position));
                 if(icon.get(position) == null || icon.get(position).equals("")){
                     Glide.with(mContext).load("http://49.233.142.163:8080/images/lvgoudan.jpg").into(((NormalHolder) holder).mIcon);
                 }else{

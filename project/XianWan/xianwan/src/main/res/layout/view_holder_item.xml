@@ -25,6 +25,7 @@
         android:layout_height="30dp"
         android:textSize="12sp"
         android:text="haha"
+        android:textColor="#ff0000"
         android:paddingLeft="10dp"/>
 
     <View

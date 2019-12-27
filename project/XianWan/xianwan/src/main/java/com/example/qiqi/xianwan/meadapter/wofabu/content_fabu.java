@@ -157,11 +157,11 @@ public class content_fabu extends AppCompatActivity
                         String province = bdLocation.getProvince();
                         String city = bdLocation.getCity();
                         String district = bdLocation.getDistrict();
-                        Log.i("zay","地址："+province+city+district);
+                        Log.i("zay","地址："+"河北"+"石家庄"+"裕华区");
                         flag =false;
                         Log.i("zay","flag="+flag);
                         if(flag == false){
-                            tv_fahuodizay.setText("发货地："+province+" "+city+" "+district);
+                            tv_fahuodizay.setText("发货地："+"河北 "+"石家庄 "+"裕华区 ");
                             locationClient.stop();
                         }
                     }
@@ -213,7 +213,7 @@ public class content_fabu extends AppCompatActivity
                     String introduce=ed_introductions.getText().toString();
                     String price=ed_price.getText().toString();
                     String attr=tv_attr.getText().toString();
-                    if (introduce==null||price==null||attr==null){
+                    if (introduce.equals("") || price.equals("") || attr.equals("")){
                         ToastUtils.showToast(content_fabu.this, "请输入完整信息!", Toast.LENGTH_LONG);
                     }
                    else{

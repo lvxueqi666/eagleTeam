@@ -18,6 +18,7 @@ import com.hyphenate.chat.EMClient;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -136,6 +137,10 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT
                             ).show();
                             Intent intentLogin = new Intent(LoginActivity.this,MainActivity.class);
+                            File file = new File(getFilesDir().getAbsolutePath() + "/UserPic.jpg");
+                            if (file.exists()) {
+                                file.delete();
+                            }
                             startActivity(intentLogin);
                             LoginActivity.this.finish();
                         }

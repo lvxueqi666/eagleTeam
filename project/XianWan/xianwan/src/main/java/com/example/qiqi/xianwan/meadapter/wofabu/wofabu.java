@@ -19,6 +19,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,9 +54,10 @@ public class wofabu extends AppCompatActivity
     private ListView listView;
     private Button fabu;
     private AlertDialog dialog;
-    private Button btn_wofabu_back;
+    private ImageView btn_wofabu_back;
     private SmartRefreshLayout wofabu_srl;
     private CustomeClickListener listener;
+    private boolean flag = false;
     private com.example.qiqi.xianwan.meadapter.wofabu.fabuAdapter fabuAdapter;
     List<Commodity> commodities = new ArrayList<>();
     private Handler handler = new Handler() {
@@ -88,8 +90,6 @@ public class wofabu extends AppCompatActivity
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
 
             fabuAdapter = new fabuAdapter(getApplicationContext(),
                     commodities,
@@ -124,8 +124,6 @@ public class wofabu extends AppCompatActivity
                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                        setAlertDialog(view,i);
                        dialog.show();
-
-
                        return true;
                    }
                });
@@ -199,7 +197,7 @@ public class wofabu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.me_wofabu);
-        if(USERACCOUNT!=null) {
+        if(USERACCOUNT != null) {
             getViews();
             asyncFormOp();
             regListener();
@@ -284,6 +282,7 @@ public class wofabu extends AppCompatActivity
                     Intent intent3=new Intent();
                     intent3.setClass(wofabu.this,content_fabu.class);
                     startActivity(intent3);
+                    wofabu.this.finish();
                     break;
 
             }

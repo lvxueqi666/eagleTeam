@@ -86,6 +86,7 @@ public class selectbasedpopupwindow extends PopupWindow{
                 case R.id.btnzay_OpenCamera:
                     Log.i("zayaaa","133");
                     openCamera();
+
                     break;
                 case R.id.btnzay_OpenAlbum:
                     if (ContextCompat.checkSelfPermission(preContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -124,7 +125,7 @@ public class selectbasedpopupwindow extends PopupWindow{
             imageUri = Uri.fromFile(cacheimage);
         }
         else {
-            imageUri = FileProvider.getUriForFile(preContext,"com.example.qiqi.xianwan.meadapter.xianwanpic.fileprovider",cacheimage);
+            imageUri = FileProvider.getUriForFile(preContext,"com.example.qiqi.xianwan.fileprovider",cacheimage);
 
         }
 

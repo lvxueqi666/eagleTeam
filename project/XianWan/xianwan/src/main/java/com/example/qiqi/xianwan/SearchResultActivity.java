@@ -148,6 +148,12 @@ public class SearchResultActivity extends AppCompatActivity implements SwipeRefr
         mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         searchRecyclerAdapter = new SearchRecyclerAdapter(getApplicationContext(),commodityId,images,introductions,price,icon,userName,userAccount,attr,showLike,userName.size() > 0 ? true : false);
         recyclerView.setAdapter(searchRecyclerAdapter);
+        searchRecyclerAdapter.setOnItemClickListener(new SearchRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(mLayoutManager);

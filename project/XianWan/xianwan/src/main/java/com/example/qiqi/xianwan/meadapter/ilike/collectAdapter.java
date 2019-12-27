@@ -68,17 +68,9 @@ public class collectAdapter extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.collect_img);
         TextView introduce = convertView.findViewById(R.id.collect_introduce);
         TextView textView=convertView.findViewById(R.id.tv_price);
-        Button button=convertView.findViewById(R.id.delete_collect);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //实现删除数据
-                commodities.remove(position);
-                notifyDataSetChanged();
-            }
-        });
+
         Commodity commodity=commodities.get(position);
-        RequestOptions options = new RequestOptions().skipMemoryCache(true)
+        RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
         Glide.with(context).load(commodity.getImage()).apply(options).transform(new GlideRoundTransform(context,10)).into(imageView);
         introduce.setText(commodity.getIntroduce());

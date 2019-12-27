@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:background="@color/yellow_ff"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <Button
+        android:layout_height="55dp"
+        android:paddingTop="10dp"
+        android:background="#ffffff">
+        <ImageView
             android:id="@+id/ilike_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:background="@drawable/back"
-            android:gravity="left"
-            />
-
+            android:layout_width="38dp"
+            android:layout_height="38dp" />
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="我收藏的玩具"
             android:gravity="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="我收藏的玩具" />
+            android:textSize="25dp"
+            android:textColor="#2c2c2c" />
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/collect_srl"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,4 +38,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</RelativeLayout>
+</LinearLayout>

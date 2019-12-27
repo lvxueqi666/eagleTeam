@@ -1,54 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:id="@+id/fabu_img"
-        android:layout_marginLeft="25dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-
-    <TextView
-        android:layout_marginLeft="180dp"
-        android:id="@+id/fabu_introduce"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="000"
-        android:textSize="25dp"
-        android:maxEms="6"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:layout_marginTop="5dp"
-        />
+        android:paddingBottom="10dp"
+        android:background="@color/colorWhite">
+        <ImageView
+            android:id="@+id/fabu_img"
+            android:layout_centerVertical="true"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            />
 
-    <TextView
-        android:id="@+id/pricee"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="45dp"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="价格￥：" />
-    <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_toRightOf="@+id/pricee"
-        android:layout_marginTop="45dp"
-        android:textSize="20dp"
-        android:textColor="@color/orange"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/fabu_introduce"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#2c2c2c"
+            android:textSize="20dp"
+            android:maxEms="6"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_toRightOf="@id/fabu_img"
+            />
 
-    <Button
-        android:focusable="false"
-        android:id="@+id/delete_fabu"
-        android:layout_width="25dp"
-        android:layout_marginLeft="370dp"
-        android:layout_marginTop="45dp"
-        android:background="@mipmap/deletebin"
-        android:layout_height="25dp" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/pricee"
+            android:textSize="20dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="价格￥："
+            android:layout_toRightOf="@+id/fabu_img"/>
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/pricee"
+            android:layout_marginTop="50dp"
+            android:textSize="20dp"
+            android:textColor="@color/orange"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:focusable="false"
+            android:id="@+id/delete_fabu"
+            android:background="@mipmap/deletebin"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp" />
+    </RelativeLayout>
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.meadapter.MessageEvent;
@@ -18,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class Et_jianjie extends AppCompatActivity {
-    private Button jianjie_back;
+    private ImageView jianjie_back;
     private CustomeClickListener listener;
     private Button bn_jianjie;
 private EditText edit_jianjie;

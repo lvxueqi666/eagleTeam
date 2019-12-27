@@ -44,7 +44,9 @@ public class collectForAndroid extends HttpServlet {
 			JSONArray jsonArray = JSONArray.fromObject( listCommodity );
 			System.out.println(jsonArray.size());
 			response.getWriter().print(jsonArray.toString());
-		}	}
+		}	
+		
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

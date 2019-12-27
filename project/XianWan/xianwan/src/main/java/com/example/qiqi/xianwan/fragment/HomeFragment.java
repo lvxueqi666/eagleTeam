@@ -190,9 +190,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private void initBanner() {
         bannerImg = new ArrayList<>();
         titles = new ArrayList<>();
-        bannerImg.add("http://img4.imgtn.bdimg.com/it/u=4078564255,2150323891&fm=26&gp=0.jpg");
-        bannerImg.add("http://img4.imgtn.bdimg.com/it/u=1380751069,2379422871&fm=26&gp=0.jpg");
-        bannerImg.add("http://img1.imgtn.bdimg.com/it/u=2276673180,3353400665&fm=26&gp=0.jpg");
+        bannerImg.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1288666027,3971964297&fm=26&gp=0.jpg");
+        bannerImg.add("http://img0.imgtn.bdimg.com/it/u=328739071,3845765255&fm=26&gp=0.jpg");
+        bannerImg.add("http://img5.imgtn.bdimg.com/it/u=4069222070,2679259087&fm=26&gp=0.jpg");
         titles.add("1");
         titles.add("2");
         titles.add("3");
@@ -205,7 +205,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         //设置banner动画效果
         banner.setBannerAnimation(Transformer.DepthPage);
         //设置标题集合（当banner样式有显示title时）
-        banner.setBannerTitles(titles);
+        banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
+        //banner.setBannerTitles(titles);
         //设置自动轮播，默认为true
         banner.isAutoPlay(true);
         //设置轮播时间

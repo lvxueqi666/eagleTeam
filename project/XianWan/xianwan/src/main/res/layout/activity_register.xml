@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#FFE7A0"
+        android:background="#FFFFFF"
         android:gravity="center_vertical">
 
         <ImageView

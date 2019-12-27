@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:paddingTop="10dp"
-        android:background="#FFE7A0">
+        android:background="#FFFFFF">
         <ImageView
             android:id="@+id/loginBack"
             android:background="@drawable/back"

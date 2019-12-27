@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorWhite"
+    android:background="@color/lessGary"
     tools:context=".messageadapter.InteractionActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:paddingTop="10dp"
-        android:background="#FFE7A0"
+        android:background="#FFFFFF"
         >
         <ImageView
             android:id="@+id/iv_back"

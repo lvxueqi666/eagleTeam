@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
 
 public class Ilike extends AppCompatActivity {
     private ListView listView;
-    private Button ilike_back;
+    private ImageView ilike_back;
     private CustomeClickListener listener;
     private collectAdapter collectAdapter;
     List<Commodity> commodities = new ArrayList<>();

@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,12 +72,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import static com.example.qiqi.xianwan.LoginActivity.USERACCOUNT;
+import static com.example.qiqi.xianwan.LoginActivity.USERNAME;
 import static com.example.qiqi.xianwan.initHuanXin.MyApplication.Headpiclist;
 
 public class headpicoption extends AppCompatActivity {
 
     public String userAccount=USERACCOUNT;
-    private Button person_back;
+    private ImageView person_back;
     private Button finish;
     private CustomeClickListener listener;
     private RelativeLayout vip_sex;
@@ -116,9 +118,7 @@ public class headpicoption extends AppCompatActivity {
 
                     User user = new User(
                             jsonObject.getString("userAccount"),
-
                             jsonObject.getString("userName")
-
 
                     );
 
@@ -194,8 +194,6 @@ public class headpicoption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_headpicoption);
 
-
-
         imgzay_headPic = findViewById(R.id.imgzay_headPic);
 
         searchName();
@@ -217,6 +215,9 @@ public class headpicoption extends AppCompatActivity {
             public void onClick(View v) {
                 popupwindow = new selectbasedpopupwindow(headpicoption.this);
                 View parentView = LayoutInflater.from(headpicoption.this).inflate(R.layout.activity_headpicoption, null);
+                popupwindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+                popupwindow.setFocusable(true);
+                popupwindow.setOutsideTouchable(true);
                 popupwindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
 
             }
@@ -426,12 +427,8 @@ public class headpicoption extends AppCompatActivity {
                     break;
                 case R.id.cancel:
                     USERACCOUNT=null;
-                    String name =EMClient.getInstance().getCurrentUser();
-                    outchat(name);
-                    Intent intent4 = new Intent();
-                    intent4.setClass(headpicoption.this, LoginActivity.class);
-                    startActivity(intent4);
-
+                    USERNAME=null;
+                    outchat();
                     break;
             }
         }
@@ -711,12 +708,15 @@ public class headpicoption extends AppCompatActivity {
         return suolue;
     }
     //环信退出
-    public void outchat(String userAccount){
+    public void outchat(){
         EMClient.getInstance().logout(false, new EMCallBack() {
             @Override
             public void onSuccess() {
                 Log.i("aaa","用户"+userAccount+"退出成功！！！！！");
-                finish();
+                Intent intent4 = new Intent();
+                intent4.setClass(headpicoption.this, MainActivity.class);
+                startActivity(intent4);
+                headpicoption.this.finish();
             }
 
             @Override
