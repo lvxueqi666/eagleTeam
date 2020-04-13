@@ -12,6 +12,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.qiqi.xianwan.entity.Headpic;
+import com.example.qiqi.xianwan.fragment.ChildrenFragment;
 import com.example.qiqi.xianwan.fragment.HomeFragment;
 import com.example.qiqi.xianwan.fragment.MeFragment;
 import com.example.qiqi.xianwan.fragment.MessageFragment;
@@ -64,8 +65,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentTabHost.addTab(tabSpec2, MessageFragment.class,null);
 
         TabHost.TabSpec tabSpec3 = fragmentTabHost.newTabSpec("tag3")
-                .setIndicator(getTabSpecView("tag3",R.drawable.me1,"我的"));
-        fragmentTabHost.addTab(tabSpec3,MeFragment.class,null);
+                .setIndicator(getTabSpecView("tag3",R.drawable.ertong1,"儿童"));
+        fragmentTabHost.addTab(tabSpec3, ChildrenFragment.class,null);
+
+        TabHost.TabSpec tabSpec4 = fragmentTabHost.newTabSpec("tag4")
+                .setIndicator(getTabSpecView("tag4",R.drawable.me1,"我的"));
+        fragmentTabHost.addTab(tabSpec4,MeFragment.class,null);
 
         fragmentTabHost.setCurrentTab(0);
         imageViewMap.get("tag1").setImageResource(R.drawable.home);
@@ -78,18 +83,26 @@ public class MainActivity extends AppCompatActivity {
                     case "tag1":
                         imageViewMap.get("tag1").setImageResource(R.drawable.home);
                         imageViewMap.get("tag2").setImageResource(R.drawable.message1);
-                        imageViewMap.get("tag3").setImageResource(R.drawable.me1);
+                        imageViewMap.get("tag3").setImageResource(R.drawable.ertong1);
+                        imageViewMap.get("tag4").setImageResource(R.drawable.me1);
                         break;
                     case "tag2":
                         imageViewMap.get("tag1").setImageResource(R.drawable.home1);
                         imageViewMap.get("tag2").setImageResource(R.drawable.message);
-                        imageViewMap.get("tag3").setImageResource(R.drawable.me1);
+                        imageViewMap.get("tag3").setImageResource(R.drawable.ertong1);
+                        imageViewMap.get("tag4").setImageResource(R.drawable.me1);
                         break;
                     case "tag3":
                         imageViewMap.get("tag1").setImageResource(R.drawable.home1);
                         imageViewMap.get("tag2").setImageResource(R.drawable.message1);
-                        imageViewMap.get("tag3").setImageResource(R.drawable.me);
+                        imageViewMap.get("tag3").setImageResource(R.drawable.ertong);
+                        imageViewMap.get("tag4").setImageResource(R.drawable.me1);
                         break;
+                    case "tag4":
+                        imageViewMap.get("tag1").setImageResource(R.drawable.home1);
+                        imageViewMap.get("tag2").setImageResource(R.drawable.message1);
+                        imageViewMap.get("tag3").setImageResource(R.drawable.ertong1);
+                        imageViewMap.get("tag4").setImageResource(R.drawable.me);
                 }
             }
         });
