@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/child_btn1"
+        android:text="点滴"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/child_btn1"
+        android:id="@+id/child_btn2"
+        android:text="网络小课堂"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/child_btn2"
+        android:id="@+id/child_btn3"
+        android:text="知识大比拼"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
 
 </RelativeLayout>
