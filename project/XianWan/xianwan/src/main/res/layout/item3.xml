@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="260dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:paddingLeft="10dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/showIv"
+        android:layout_width="170dp"
+        android:layout_height="160dp" />
+    <TextView
+        android:id="@+id/introduce"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/actor"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:textSize="12sp" />
+
+
+
+
+
+</LinearLayout>

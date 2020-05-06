@@ -45,6 +45,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-ui:3.2.6'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-java:3.2.6'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-15'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'liji.library.dev:citypickerview:1.1.0'

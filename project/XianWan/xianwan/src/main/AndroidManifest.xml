@@ -80,6 +80,12 @@
         <activity android:name=".SearchResultActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".ketang.Search_Result"></activity>
+        <activity android:name=".ketang.SearchActivity"></activity>
+        <activity android:name=".ketang.ketangActivity"></activity>
+        <activity android:name=".ketang.DetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
