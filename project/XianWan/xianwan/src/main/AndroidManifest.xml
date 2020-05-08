@@ -164,6 +164,8 @@
         <activity android:name=".ConversationActivity" />
         <activity android:name=".TagsActivity" />
         <activity android:name=".DiandiActivity"></activity>
+        <activity android:name=".Diandi.FaBuActivity" />
+        <activity android:name=".Diandi.BigPic_fabu" />
     </application>
 
 </manifest>
