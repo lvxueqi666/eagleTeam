@@ -20,6 +20,7 @@ public class ChildrenFragment extends Fragment {
     private Button btn1;
     private Button btn2;
     private Button btn3;
+    private Button btn4;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class ChildrenFragment extends Fragment {
         btn1 = view.findViewById(R.id.child_btn1);
         btn2 = view.findViewById(R.id.child_btn2);
         btn3 = view.findViewById(R.id.child_btn3);
+        btn4 = view.findViewById(R.id.child_btn4);
     }
 
     private void setOnclick(){
@@ -61,6 +63,12 @@ public class ChildrenFragment extends Fragment {
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
