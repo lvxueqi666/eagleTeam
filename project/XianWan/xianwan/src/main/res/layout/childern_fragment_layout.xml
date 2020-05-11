@@ -5,30 +5,49 @@
     android:background="@drawable/beijing_kids2">
 
     <Button
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/child_btn1"
-        android:text="点滴"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:background="@drawable/title1_kids"/>
 
     <Button
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@id/child_btn1"
         android:id="@+id/child_btn2"
-        android:text="网络小课堂"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:background="@drawable/title2_kids"/>
 
     <Button
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@id/child_btn2"
         android:id="@+id/child_btn3"
-        android:text="知识大比拼"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:background="@drawable/title3_kids"/>
+    <Button
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/child_btn3"
+        android:id="@+id/child_btn4"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/title4_kids"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/child_btn4"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="-更多功能，即将上线！-"/>
 
 
 
