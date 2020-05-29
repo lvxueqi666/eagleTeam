@@ -20,7 +20,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/tj"
-            android:layout_marginLeft="320dp"/>
+            android:layout_marginLeft="300dp"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
