@@ -3,7 +3,6 @@
     xmlns:zsg="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow_ff"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="0dp">
 
         <EditText
             android:id="@+id/miaoshu"
@@ -65,30 +64,7 @@
                 android:background="@drawable/tj" />
         </GridLayout>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorPrimaryDark">
-    </View>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:text="权限:"
-            android:textSize="25dp"
-            android:paddingLeft="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="公开"
-            android:textSize="25dp"
-            android:layout_marginLeft="100dp"/>
-    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
