@@ -91,6 +91,7 @@ public class FabuPicSaveController extends HttpServlet {
 					String id = fileName +"FD"+userId+"N"+frequency;
 					//设置存放地址
 					String address = "http://49.233.142.163:8080/images/"+id+".jpg";
+					System.out.println(address);
 					if (flag!=true) {
 						firstUrl=address;
 						flag=true;
