@@ -142,7 +142,9 @@ public class FaBuActivity extends AppCompatActivity {
         RequestBody body = builder.build();
         Log.i("aaa","fialssss");
         Request request = new Request.Builder()
+                //可以运行！！！
                 .url("http://"+hostIp+":8080/XianWanService/FabuPicSaveController")
+//                .url("http://"+hostIp+":8080/XianWanService/PicForDiandi") 这个吕哥改完试一下
                 .post(body)
                 .build();
         Call call = client.newCall(request);
