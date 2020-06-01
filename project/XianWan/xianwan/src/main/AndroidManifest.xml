@@ -62,7 +62,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".messageadapter.NoticeActivity" />
-        <activity android:name=".game.wuziqi.BackgammonActivity"/>
+        <activity android:name=".game.wuziqi.BackgammonActivity" />
         <activity android:name=".messageadapter.ActivitiesActivity" />
         <activity android:name=".messageadapter.InteractionActivity" />
         <activity android:name=".messageadapter.MessageChatActivity" />
@@ -169,7 +169,9 @@
         <activity android:name=".Diandi.FaBuActivity" />
         <activity android:name=".Diandi.BigPic_fabu" />
         <activity android:name=".game.GameActivity" />
-        <activity android:name=".game.wuziqi.WiziqiActivity"></activity>
+        <activity android:name=".game.wuziqi.WiziqiActivity" />
+        <activity android:name=".zhishidabipin.activity.SelectActivity" />
+        <activity android:name=".zhishidabipin.activity.ReportActivity"/>
     </application>
 
 </manifest>
