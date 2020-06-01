@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -95,7 +98,13 @@ public class PicForDiandi extends HttpServlet {
 					//设置存放地址
 					String address = "http://49.233.142.163:8080/images/"+id+".jpg";
 					System.out.println(address);
-					picService.addUrl(address);
+					
+					Date date = new Date(); 
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					String time = formatter.format(date);
+					System.out.println(time);  
+					picService.addUrl(address,userId,time);
+					
 					if (flag!=true) {
 						firstUrl=address;
 						flag=true;
@@ -131,6 +140,9 @@ public class PicForDiandi extends HttpServlet {
 
 		catch (FileUploadException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

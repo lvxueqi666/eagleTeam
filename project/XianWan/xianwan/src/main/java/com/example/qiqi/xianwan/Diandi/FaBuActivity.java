@@ -57,7 +57,7 @@ public class FaBuActivity extends AppCompatActivity {
     private String imagePath;
 
     public static String USERNAME="123";
-    public static String USERACCOUNT="123";
+    public static String USERACCOUNT="xixi";
     public static int count = 0;
 
     private Button btn_tj;
@@ -143,8 +143,8 @@ public class FaBuActivity extends AppCompatActivity {
         Log.i("aaa","fialssss");
         Request request = new Request.Builder()
                 //可以运行！！！
-                .url("http://"+hostIp+":8080/XianWanService/FabuPicSaveController")
-//                .url("http://"+hostIp+":8080/XianWanService/PicForDiandi") 这个吕哥改完试一下
+//                .url("http://"+hostIp+":8080/XianWanService/FabuPicSaveController")
+                .url("http://"+hostIp+":8080/XianWanService/PicForDiandi")
                 .post(body)
                 .build();
         Call call = client.newCall(request);
