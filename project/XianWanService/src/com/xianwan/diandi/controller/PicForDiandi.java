@@ -1,4 +1,4 @@
-package com.xianwan.me.controller;
+package com.xianwan.diandi.controller;
 
 
 
@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +26,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jndi.cosnaming.IiopUrl.Address;
+import com.xianwan.diandi.service.PicService;
 import com.xianwan.me.service.FabuPicService;
 
 
@@ -30,14 +35,14 @@ import com.xianwan.me.service.FabuPicService;
 /**
  * Servlet implementation class FabuPicSaveController
  */
-@WebServlet("/FabuPicSaveController")
-public class FabuPicSaveController extends HttpServlet {
+@WebServlet("/PicForDiandi")
+public class PicForDiandi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FabuPicSaveController() {
+    public PicForDiandi() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,7 +63,7 @@ public class FabuPicSaveController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		 System.out.println("mmmmmmmmmmmmmmm");
-//	     FabuPicService fabuPicService = new FabuPicService();
+		 PicService picService = new PicService();
 		//设置第几次发布
 		int frequency = 0;
 		PrintWriter pw = response.getWriter();
@@ -83,7 +88,6 @@ public class FabuPicSaveController extends HttpServlet {
 				if(item.isFormField()) {
 					userId = item.getString();
 					System.out.println("userid"+userId);
-//					frequency = fabuPicService.queryRrequency(userId);
 				}
 				else {
 					InputStream in = item.getInputStream();
@@ -94,6 +98,13 @@ public class FabuPicSaveController extends HttpServlet {
 					//设置存放地址
 					String address = "http://49.233.142.163:8080/images/"+id+".jpg";
 					System.out.println(address);
+					
+					Date date = new Date(); 
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					String time = formatter.format(date);
+					System.out.println(time);  
+					picService.addUrl(address,userId,time);
+					
 					if (flag!=true) {
 						firstUrl=address;
 						flag=true;
@@ -110,7 +121,6 @@ public class FabuPicSaveController extends HttpServlet {
 					sendPic(id,pic);
 					//添加
 					java.sql.Date uploadTime = new java.sql.Date(new java.util.Date().getTime());
-//     				fabuPicService.addPicToSQL(id, userId, address,uploadTime, frequency,firstUrl);
 					System.out.println("nnnnnnnnnnnn");
 					in.close();
 					out.close();
@@ -118,6 +128,7 @@ public class FabuPicSaveController extends HttpServlet {
 				}
 				PrintWriter out = response.getWriter();
 				out.print("上传成功！");
+
 			}
 		}catch (org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededException e) {
 			System.out.println("111222");
@@ -129,6 +140,9 @@ public class FabuPicSaveController extends HttpServlet {
 
 		catch (FileUploadException e) {
 			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
