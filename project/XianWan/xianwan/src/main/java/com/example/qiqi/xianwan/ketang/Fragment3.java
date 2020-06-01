@@ -90,7 +90,7 @@ public class Fragment3 extends Fragment {
                     intent.putExtra("videoPath",data.getVideoPath());
                     intent.putExtra("content",data.getContent());
                     startActivity(intent);
-                    Toast.makeText(getActivity(),"我是item", Toast.LENGTH_SHORT).show();
+
                 }
             });
 
@@ -163,23 +163,7 @@ public class Fragment3 extends Fragment {
             goodsEntityList.add(goodsEntity);
         }*/
         //第一块
-        GoodsEntity goodsEntity=new GoodsEntity();
-        goodsEntity.setImgPath("https://bkimg.cdn.bcebos.com/pic/4034970a304e251f46b43366a586c9177e3e53e9?x-bce-process=image/resize,m_lfit,w_250,h_250,limit_1");
-        goodsEntity.setIntroduce("《春江花月夜》是唐代诗人张若虚的诗作。此诗沿用陈隋乐府旧题，运用富有生活气息的清丽之笔，以月为主体，以江为场景，描绘了一幅幽美邈远、惝恍迷离的春江月夜图，抒写了游子思妇真挚动人的离情别绪以及富有哲理意味的人生感慨，表现了一种迥绝的宇宙意识，创造了一个深沉、寥廓、宁静的境界。全诗共三十六句，每四句一换韵，通篇融诗情、画意、哲理为一体，意境空明，想象奇特，语言自然隽永，韵律宛转悠扬，洗净了六朝宫体的浓脂腻粉，具有极高的审美价值，素有“孤篇盖全唐”之誉。");
-        goodsEntity.setActor("张若虚");
-        goodsEntityList.add(goodsEntity);
-        //第二块
-        GoodsEntity goodsEntity2=new GoodsEntity();
-        goodsEntity2.setImgPath("http://pics.shicimingju.com/item/26317.jpg");
-        goodsEntity2.setIntroduce("《蜀道难》是中国唐代大诗人李白的代表作品。此诗袭用乐府旧题，以浪漫主义的手法，展开丰富的想象，艺术地再现了蜀道峥嵘、突兀、强悍、崎岖等奇丽惊险和不可凌越的磅礴气势，借以歌咏蜀地山川的壮秀，显示出祖国山河的雄伟壮丽，充分显示了诗人的浪漫气质和热爱自然的感情。全诗二百九十四字，采用律体与散文间杂，文句参差，笔意纵横，豪放洒脱，感情强烈，一唱三叹。诗中诸多的画面此隐彼现，无论是山之高，水之急，河山之改观，林木之荒寂，连峰绝壁之险，皆有逼人之势，气象宏伟，境界阔大，集中体现了李白诗歌的艺术特色和创作个性，深受学者好评，被誉为“奇之又奇”之作。");
-        goodsEntity2.setActor("李白");
-        goodsEntityList.add(goodsEntity2);
-        //第三块
-        GoodsEntity goodsEntity3=new GoodsEntity();
-        goodsEntity3.setImgPath("https://bkimg.cdn.bcebos.com/pic/35a85edf8db1cb138ea4c5e6d154564e93584b72?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1");
-        goodsEntity3.setIntroduce("《离骚》是中国战国时期诗人屈原创作的诗篇，是中国古代最长的抒情诗。此诗以诗人自述身世、遭遇、心志为中心。前半篇反复倾诉诗人对楚国命运和人民生活的关心，表达要求革新政治的愿望，和坚持理想、虽逢灾厄也绝不与邪恶势力妥协的意志；后半篇通过神游天界、追求实现理想和失败后欲以身殉的陈述，反映出诗人热爱国家和人民的思想感情。全诗运用美人香草的比喻、大量的神话传说和丰富的想象，形成绚烂的文采和宏伟的结构，表现出积极的浪漫主义精神，并开创了中国文学史上的“骚体”诗歌形式，对后世产生了深远的影响。其主要注本有东汉王逸的《楚辞章句》、南宋朱熹的《楚辞集注》、清代戴震的《屈原赋注》等。");
-        goodsEntity3.setActor("屈原");
-        goodsEntityList.add(goodsEntity3);
+
     }
 
     private void initRecyclerView() {

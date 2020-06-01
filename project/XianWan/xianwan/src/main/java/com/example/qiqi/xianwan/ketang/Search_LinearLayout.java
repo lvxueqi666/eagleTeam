@@ -192,7 +192,7 @@ public class Search_LinearLayout extends LinearLayout {
                     queryData("");
                 }
                 //根据输入的内容模糊查询商品，并跳转到另一个界面，这个根据需求实现
-                Toast.makeText(context, "搜索" + et_search.getText(), Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(context, "搜索" + et_search.getText(), Toast.LENGTH_SHORT).show();
               //  Intent intent = new Intent(getContext(), SearchResultActivity.class);
              //   intent.putExtra("content",et_search.getText().toString().trim());
               //  context.startActivity(intent);
