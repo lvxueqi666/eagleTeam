@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import com.example.qiqi.xianwan.DiandiActivity;
 import com.example.qiqi.xianwan.R;
+import com.example.qiqi.xianwan.game.GameActivity;
+import com.example.qiqi.xianwan.game.wuziqi.WiziqiActivity;
 import com.example.qiqi.xianwan.ketang.ketangActivity;
 
 public class ChildrenFragment extends Fragment {
@@ -71,6 +73,9 @@ public class ChildrenFragment extends Fragment {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), GameActivity.class);
+                startActivity(intent);
 
             }
         });
