@@ -8,9 +8,11 @@ import android.widget.Button;
 
 import com.example.qiqi.xianwan.R;
 import com.example.qiqi.xianwan.game.wuziqi.WiziqiActivity;
+import com.example.qiqi.xianwan.game.xiangqi.chess.ChessGame;
 
 public class GameActivity extends AppCompatActivity {
     private Button btnStarGame;
+    private Button btnStartXiangqi;
     private CustomOnClickListener listener;
 
     @Override
@@ -19,6 +21,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         btnStarGame = findViewById(R.id.btn_wuziqistart);
+        btnStartXiangqi = findViewById(R.id.btn_xiangqistart);
 
         registerListenrs();
     }
@@ -26,6 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private void registerListenrs() {
         listener = new CustomOnClickListener();
         btnStarGame.setOnClickListener(listener);
+        btnStartXiangqi.setOnClickListener(listener);
     }
 
     class CustomOnClickListener implements View.OnClickListener{
@@ -36,6 +40,11 @@ public class GameActivity extends AppCompatActivity {
                     Intent intent= new Intent();
                     intent.setClass(GameActivity.this, WiziqiActivity.class);
                     startActivity(intent);
+                    break;
+                case R.id.btn_xiangqistart:
+                    Intent intent2= new Intent();
+                    intent2.setClass(GameActivity.this, ChessGame.class);
+                    startActivity(intent2);
                     break;
             }
         }

@@ -172,6 +172,9 @@
         <activity android:name=".game.wuziqi.WiziqiActivity" />
         <activity android:name=".zhishidabipin.activity.SelectActivity" />
         <activity android:name=".zhishidabipin.activity.ReportActivity"/>
+        <activity android:name=".game.xiangqi.chess.ChessGame"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

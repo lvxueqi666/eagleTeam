@@ -72,7 +72,40 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:background="@drawable/icon"
+            android:background="@drawable/xiangqiicon"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="象棋"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:background="@drawable/gameicon"/>
+
+        <Button
+            android:id="@+id/btn_xiangqistart"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:text="开始游戏"
+            android:background="@drawable/gameicon"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/gameicon">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/wzry"
             />
         <TextView
             android:layout_width="100dp"
