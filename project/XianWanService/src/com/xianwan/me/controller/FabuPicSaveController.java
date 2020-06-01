@@ -3,6 +3,7 @@ package com.xianwan.me.controller;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -57,7 +58,7 @@ public class FabuPicSaveController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		 System.out.println("mmmmmmmmmmmmmmm");
-		FabuPicService fabuPicService = new FabuPicService();
+//	     FabuPicService fabuPicService = new FabuPicService();
 		//设置第几次发布
 		int frequency = 0;
 		PrintWriter pw = response.getWriter();
@@ -78,10 +79,11 @@ public class FabuPicSaveController extends HttpServlet {
 			List<FileItem> items = upload.parseRequest(request);
 			for(FileItem item : items) {
 				//普通字段
+				System.out.println(item);
 				if(item.isFormField()) {
 					userId = item.getString();
 					System.out.println("userid"+userId);
-					frequency = fabuPicService.queryRrequency(userId);
+//					frequency = fabuPicService.queryRrequency(userId);
 				}
 				else {
 					InputStream in = item.getInputStream();
@@ -91,6 +93,7 @@ public class FabuPicSaveController extends HttpServlet {
 					String id = fileName +"FD"+userId+"N"+frequency;
 					//设置存放地址
 					String address = "http://49.233.142.163:8080/images/"+id+".jpg";
+					System.out.println(address);
 					if (flag!=true) {
 						firstUrl=address;
 						flag=true;
@@ -107,7 +110,7 @@ public class FabuPicSaveController extends HttpServlet {
 					sendPic(id,pic);
 					//添加
 					java.sql.Date uploadTime = new java.sql.Date(new java.util.Date().getTime());
-					fabuPicService.addPicToSQL(id, userId, address,uploadTime, frequency,firstUrl);
+//     				fabuPicService.addPicToSQL(id, userId, address,uploadTime, frequency,firstUrl);
 					System.out.println("nnnnnnnnnnnn");
 					in.close();
 					out.close();

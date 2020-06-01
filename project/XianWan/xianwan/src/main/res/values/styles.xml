@@ -15,4 +15,30 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BarItem">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CustomDialog">
+
+        <!-- windowFrame框为无 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 除去背景 -->
+        <item name="android:windowBackground">@drawable/bg_transparent</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 去掉覆盖层 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 设置背景颜色 -->
+        <item name="android:background">@drawable/bg_transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
 </resources>

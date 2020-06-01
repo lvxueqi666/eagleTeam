@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFE7A0"
+    tools:context=".messageadapter.MessageChatActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:paddingTop="10dp"
+        android:background="#FFE7A0"
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:background="@drawable/back"
+            android:layout_width="38dp"
+            android:layout_height="38dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="智慧小游戏"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="#000000"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/gameicon">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/icon"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="五子棋"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:background="@drawable/gameicon"/>
+
+        <Button
+            android:id="@+id/btn_wuziqistart"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:text="开始游戏"
+            android:background="@drawable/gameicon"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/gameicon">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/icon"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="象棋"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:background="@drawable/gameicon"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:text="敬请期待~"
+            android:background="@drawable/gameicon"/>
+
+    </LinearLayout>
+
+</LinearLayout>

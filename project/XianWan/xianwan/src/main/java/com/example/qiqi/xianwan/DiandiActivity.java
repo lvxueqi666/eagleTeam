@@ -1,14 +1,24 @@
 package com.example.qiqi.xianwan;
 
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
+import com.example.qiqi.xianwan.Diandi.FaBuActivity;
 import com.example.qiqi.xianwan.bean.Diandi;
 import com.example.qiqi.xianwan.bean.MyBean;
 import com.example.qiqi.xianwan.childadapter.MyAdapter;
@@ -32,8 +42,11 @@ public class DiandiActivity extends AppCompatActivity {
 
     private List<Diandi> list = new ArrayList<>();
     private List<MyBean> beans = new ArrayList<>();
+    private Button btn_fabu;
+    private Button btn_back;
     private RecyclerView rv;
     private MyAdapter adapter;
+    private ImageView imageView;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -77,6 +90,7 @@ public class DiandiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diandi);
+        getView();
         asyncFormOp();
         initView();
 
@@ -97,7 +111,59 @@ public class DiandiActivity extends AppCompatActivity {
 
     private void getView(){
         rv = findViewById(R.id.main_rv);
+        btn_fabu = findViewById(R.id.btn_fabu);
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btn_fabu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), btn_fabu);
+                // 通过XML文件对菜单进行填充
+                popupMenu.getMenuInflater().inflate(R.menu.add_dongtai, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        // TODO
+                        switch (item.getItemId()){
+                            case R.id.item1:
+                                Intent intent = new Intent(DiandiActivity.this,FaBuActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext(),"fabu",Toast.LENGTH_SHORT).show();
+                                break;
+                            default:
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
+
+    public void open(){
+        Intent intent = new Intent(Intent.ACTION_PICK, null);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intent, 2);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 2) {
+            // 从相册返回的数据
+            if (data != null) {
+                // 得到图片的全路径
+                Uri uri = data.getData();
+                imageView.setImageURI(uri);
+            }
+        }
+    }
+
 
 
     private void asyncFormOp() {
