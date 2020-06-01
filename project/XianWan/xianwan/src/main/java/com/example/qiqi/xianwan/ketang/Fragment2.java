@@ -90,7 +90,7 @@ public class Fragment2 extends Fragment {
                     intent.putExtra("videoPath",data.getVideoPath());
                     intent.putExtra("content",data.getContent());
                     startActivity(intent);
-                    Toast.makeText(getActivity(),"我是item", Toast.LENGTH_SHORT).show();
+
                 }
             });
 
